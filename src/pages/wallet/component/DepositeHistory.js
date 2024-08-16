@@ -120,7 +120,7 @@ function DepositeHistory() {
                         sx={{ color: "green", textTransform: "capitalize" }}
                         className={`${i?.tr15_status === "Success"
                           ? "!text-green-500"
-                          : "!text-red-500"
+                          : "!text-green-500"
                           }`}
                       >
                         {i?.tr15_status}

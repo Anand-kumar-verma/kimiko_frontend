@@ -36,16 +36,10 @@ function Footer() {
               Home
             </Typography>
           </Box>
-          <Box sx={style.nav} onClick={() => navigate("/activity")}>
-            {location.pathname == "/activity" && <Box component='img' src={puzzleact} width={25} />}
-            {location.pathname !== "/activity" && <Box component='img' src={puzzle} width={25} />}
-            <Typography variant="body1" sx={style.text}>
-              Activity
-            </Typography>
-          </Box>
+         
           <Box sx={style.nav} onClick={() => navigate("/menu")}>
             {location.pathname == "/menu" && <Box component='img' src={puzzleact} width={25} />}
-            {location.pathname !== "/menu" && <Box component='img' src={menu} width={25} />}
+            {location.pathname !== "/menu" && <Box component='img' src={puzzle} width={25} />}
             <Typography variant="body1" sx={style.text}>
               Menu
             </Typography>

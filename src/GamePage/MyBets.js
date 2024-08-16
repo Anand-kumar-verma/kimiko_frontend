@@ -79,7 +79,7 @@ const MyBets = () => {
                   </span>
                   <span
                     className={`bg-black rounded-full px-3 py-1 text-[10px] ${
-                      index % 2 === 0 ? "text-[#4e92ea]" : "text-red-500"
+                      index % 2 === 0 ? "text-[#4e92ea]" : "text-green-500"
                     }`}
                   >
                     {Number(i?.multiplier || 0)?.toFixed(2)}x

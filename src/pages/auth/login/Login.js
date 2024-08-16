@@ -6,31 +6,19 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../../../assets/images/logo-2 (2).png";
+import logo from "../../../assets/logokimi.png";
 import poster from "../../../assets/images/poster3.jpg";
 import LoginWithEmail from "./LoginWithEmail";
 import LoginWithMobile from "./LoginWithMobile";
-import { get_user_data_fn } from "../../../services/apicalling";
 import CryptoJS from 'crypto-js'
 import { useDispatch, useSelector } from "react-redux";
 function Login() {
   const navigate = useNavigate()
   const [Nav, setNav] = useState(1);
 
-  const dispatch = useDispatch()
-  const aviator_login_data = useSelector(
-    (state) => state.aviator.aviator_login_data
-  );
 
 
   const logindata = localStorage.getItem("logindataen") && CryptoJS.AES.decrypt(localStorage.getItem("logindataen"), "anand")?.toString(CryptoJS.enc.Utf8) || null
-  // const aviator_data = localStorage.getItem("aviator_data")
-
-
-  // useEffect(() => {
-  //   !aviator_login_data && get_user_data_fn(dispatch);
-  // }, []);
-
 
   useEffect(() => {
     (logindata) && navigate('/dashboard')

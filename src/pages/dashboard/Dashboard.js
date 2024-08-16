@@ -45,7 +45,7 @@ import two from "../../assets/images/2.jpg";
 import bgms from "../../assets/images/bgms1.png";
 import gmbg from "../../assets/images/gmbg.jpg";
 import winp4 from "../../assets/images/jacpot.jpg";
-import logo from "../../assets/images/logo-2 (2).png";
+import logo from "../../assets/logokimi.png";
 import cash from "../../assets/images/money.png";
 import stage from "../../assets/images/pod2.png";
 import position2 from "../../assets/images/positio2.png";
@@ -228,19 +228,17 @@ function Dashboard() {
     <Layout>
       <Box sx={styles.root}>
         <Container
-          className="!h-[100%] !overflow-auto no-scrollbar"
-          sx={{ background: zubgback }}
+          className="!h-[100%] !overflow-auto no-scrollbar "
+         
         >
           <div
-            style={{
-              background: zubgback,
-            }}
-            className=" rounded-b-md"
+           
+            className=" rounded-b-md !bg-gray-400"
           >
             <div className="px-2 py-2 flex justify-between">
               <div
-                className="flex items-center gap-2"
-                style={{ color: zubgtext }}
+                className="flex items-center gap-2 "
+                
               >
                 <Box component="img" src={logo} sx={{ width: "60px" }}></Box>
               </div>
@@ -809,7 +807,7 @@ const styles = {
     borderRadius: "5px",
     "&>div>input": { color: zubgtext },
   },
-  referralLinkButton: { marginLeft: 2, background: zubgmid },
+  referralLinkButton: { marginLeft: 2, background: zubgtext },
   socialButtonsContainer: {
     alignItems: "center",
     justifyContent: "space-between",
@@ -828,7 +826,7 @@ const styles = {
     color: "white !important",
     textTransform: "capitalize",
     fontWeight: "400",
-    background: zubgmid,
+    background: zubgtext,
   },
   socialButtonIcon: {
     margin: "auto",

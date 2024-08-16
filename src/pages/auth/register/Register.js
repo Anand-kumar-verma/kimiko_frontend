@@ -24,7 +24,7 @@ import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
 import { zubgbackgrad, zubgtext } from "../../../Shared/color";
-import logo from "../../../assets/images/logo-2 (2).png";
+import logo from "../../../assets/logokimi.png";
 import poster from "../../../assets/images/poster3.jpg";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";

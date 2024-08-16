@@ -557,7 +557,7 @@ export default SpentBetRight;
 //           </div>
 //           <div className="w-[50%]">
 //             {fk.values.waitingForNextTime2 && (
-//               <p className="text-[10px] !text-red-500">
+//               <p className="text-[10px] !text-green-500">
 //                 Waiting for next round.
 //               </p>
 //             )}{" "}

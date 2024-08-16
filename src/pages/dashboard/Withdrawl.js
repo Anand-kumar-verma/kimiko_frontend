@@ -355,7 +355,7 @@ function Withdrawl() {
               {/* <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{color:zubgtext}}>
-                    Account holder name <span className="!text-red-600">*</span>
+                    Account holder name <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -375,7 +375,7 @@ function Withdrawl() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{color:zubgtext}}>
-                    Enter Email <span className="!text-red-600">*</span>
+                    Enter Email <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -395,7 +395,7 @@ function Withdrawl() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{color:zubgtext}}>
-                    Enter Mobile <span className="!text-red-600">*</span>
+                    Enter Mobile <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -416,7 +416,7 @@ function Withdrawl() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Enter amount <span className="!text-red-600">*</span>
+                    Enter amount <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -437,7 +437,7 @@ function Withdrawl() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Bank name <span className="!text-red-600">*</span>
+                    Bank name <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -475,7 +475,7 @@ function Withdrawl() {
               {/* <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{color:zubgtext}}>
-                    IFSC code <span className="!text-red-600">*</span>
+                    IFSC code <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -495,7 +495,7 @@ function Withdrawl() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{color:zubgtext}}>
-                    Account number <span className="!text-red-600">*</span>
+                    Account number <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -515,7 +515,7 @@ function Withdrawl() {
               {/* <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Description <span className="!text-red-600">*</span>
+                    Description <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -562,12 +562,12 @@ function Withdrawl() {
         className="mt-2 !py-4 border border-red-500  rounded-lg"
         sx={{ "&>p": { color: "", fontSize: "18px" } }}
       >
-          <p className="  !text-red-600 !m-1">⭐️ Need to bet ₹0.00  to be able to withdraw .</p>
-        <p className="  !text-red-600 !m-1">⭐️ Withdraw time 00:00-23:59 </p>
-        <p className="  !text-red-600 !m-1">⭐️ Inday Remaining Withdrawal Times 3</p>
-        <p className="  !text-red-600 !m-1">⭐️ Withdrawal amount range ₹110.00-₹50,000.00</p>
-        <p className="  !text-red-600 !m-1">⭐️ Please confirm your beneficial account information before withdrawing. If your information is incorrect, our company will not be liable for the amount of loss</p>
-        <p className="  !text-red-600 !m-1">⭐️ If your beneficial information is incorrect, please contact customer service</p>
+          <p className="  !text-green-600 !m-1">⭐️ Need to bet ₹0.00  to be able to withdraw .</p>
+        <p className="  !text-green-600 !m-1">⭐️ Withdraw time 00:00-23:59 </p>
+        <p className="  !text-green-600 !m-1">⭐️ Inday Remaining Withdrawal Times 3</p>
+        <p className="  !text-green-600 !m-1">⭐️ Withdrawal amount range ₹110.00-₹50,000.00</p>
+        <p className="  !text-green-600 !m-1">⭐️ Please confirm your beneficial account information before withdrawing. If your information is incorrect, our company will not be liable for the amount of loss</p>
+        <p className="  !text-green-600 !m-1">⭐️ If your beneficial information is incorrect, please contact customer service</p>
 
       
      </Box>

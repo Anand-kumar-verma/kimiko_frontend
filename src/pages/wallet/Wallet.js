@@ -53,7 +53,7 @@ function Wallet() {
   ];
 
   const [options] = React.useState({
-    colors: ["#E71D1E", "red", "green"],
+    colors: ["#008000", "red", "green"],
     chart: {
       height: 150,
       type: "radialBar",
@@ -69,7 +69,7 @@ function Wallet() {
           },
         },
         stroke: {
-          colors: ["#E71D1E"],
+          colors: ["#008000"],
         },
       },
       radialBar: {

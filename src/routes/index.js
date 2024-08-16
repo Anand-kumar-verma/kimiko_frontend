@@ -1,7 +1,9 @@
 import LayoutAviator from "../GamePage/Layout";
 import MainPage from "../GamePage/MainPage";
 import PlayGame from "../GamePage/PlayGame";
-import Menu from "../pages/Menu";
+import Menu from "../pages/Product/Menu";
+import MenuDetails from "../pages/Product/Menudetails";
+import RentNow from "../pages/Product/RentNow";
 import Test from "../pages/Test";
 import Account from "../pages/account/Account";
 import AddBankDetails from "../pages/account/Component/AddBankDetails";
@@ -66,6 +68,14 @@ export const routes = [
     {
         path: "/menu",
         component: <Menu />
+    },
+    {
+        path: "/rent",
+        component: <RentNow />
+    },
+    {
+        path: "/menu/menu-details/:m_pack_id",
+        component: <MenuDetails />
     },
     {
         path: "/withdravalHistory",

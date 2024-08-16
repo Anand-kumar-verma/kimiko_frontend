@@ -22,13 +22,13 @@ export const bgcolorlight = '#3F3F3F !important'
 
 export const zubgback = '#F6F7FE';
 // export const zubgtext = '#F02257';
-export const zubgtext = '#E71D1E';
+export const zubgtext = '#2daf2d';
 export const zubggray = '#68686A';
 
 export const zubgshadow = ' rgba(149, 157, 165, 0.2) 0px 8px 24px';
 export const zubgwhite = '#c1c1c1';
 export const zubgback_cricket = '#3883BF';
-export const zubgbackgrad = '#ff4b00c4';
+export const zubgbackgrad = '#79e279';
 // export const zubgbackgrad = 'linear-gradient(0deg, rgb(255 0 0) 0%, rgb(129, 0, 0) 100%)';
 
 export const zubgmid = '#E71D1E';
@@ -41,4 +41,4 @@ export const zubgcrickgred = "#005543";
 export const zubgcricklight = "#00B55E";
 
 
-export const gamename = 'Play2Earn'
+export const gamename = 'Kimiko'

@@ -75,10 +75,10 @@ const MyHistory = ({ gid }) => {
                     <p
                       className={`${
                         i?.status === "0"
-                          ? "!text-red-400"
+                          ? "!text-green-600"
                           : i?.status === "1"
                           ? "!text-green-400"
-                          : "!text-red-400"
+                          : "!text-green-600"
                       }`}
                     >
                       {i?.status === "0"
@@ -90,10 +90,10 @@ const MyHistory = ({ gid }) => {
                     <span
                       className={`${
                         i?.status === "0"
-                          ? "!text-red-400"
+                          ? "!text-green-600"
                           : i?.status === "1"
                           ? "!text-green-400"
-                          : "!text-red-400"
+                          : "!text-green-600"
                       }`}
                     >
                       {" "}
@@ -273,10 +273,10 @@ const MyHistory = ({ gid }) => {
                     <span
                       className={`${
                         i?.status === "0"
-                          ? "!text-red-400"
+                          ? "!text-green-600"
                           : i?.status === "1"
                           ? "!text-green-400"
-                          : "!text-red-400"
+                          : "!text-green-600"
                       } bg-white !bg-opacity-10 py-1 px-2`}
                     >
                       {i?.status === "0"
@@ -313,7 +313,7 @@ const MyHistory = ({ gid }) => {
                 <Typography variant="body1" sx={{ background: zubgmid, color: 'white !important', padding: '5px 20px', borderRadius: '5px' }}>Bet</Typography>
                 <p
                   className={`${i?.status === "0"
-                    ? "!text-red-400"
+                    ? "!text-green-600"
                     : i?.status === "1"
                       ? "!text-green-400"
                       : "!text-blue-400"

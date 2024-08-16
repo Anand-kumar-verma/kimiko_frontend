@@ -107,7 +107,7 @@ function Services() {
               <option value="Deposit">Deposit</option>
             </select>
             {fk.touched.activity_type && fk.errors.activity_type ? (
-              <div className="text-red-500">{fk.errors.activity_type}</div>
+              <div className="text-green-500">{fk.errors.activity_type}</div>
             ) : null}
           </div>
           <div className='!w-[60%]'>
@@ -121,7 +121,7 @@ function Services() {
               onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
               className='!border !text-gray-600 !border-gray-600 rounded w-[100%] p-1' />
                 {fk.touched.transection_id && fk.errors.transection_id ? (
-              <div className="text-red-500">{fk.errors.transection_id}</div>
+              <div className="text-green-500">{fk.errors.transection_id}</div>
             ) : null}
           </div>
           <div className='!w-[60%]'>
@@ -144,18 +144,18 @@ function Services() {
               className='!border !text-gray-600 !border-gray-600 rounded w-[100%] p-1' />
           </div>
 
-          <div className="mt-5  bg-[#E71D1E] text-white  text-center p-2 w-[45%]">
+          <div className="mt-5  bg-[#008000] text-white  text-center p-2 w-[45%]">
             <button className='w-[100%]' type="submit"
               onClick={(e) => {
                 e.preventDefault();
                 fk.handleSubmit();
               }}> Submit Application </button></div>
-         <div className="my-1  mb-16 w-[45%] bg-[#E71D1E] text-white  text-center p-2">
+         <div className="my-1  mb-16 w-[45%] bg-[#008000] text-white  text-center p-2">
             <button className='w-[100%]' onClick={()=>navigate('/queries')}> Reviews Program Queries </button></div>
             {isLoading && (
                             <CustomCircularProgress isLoading={isLoading}/>
                         )}
-           {/* <div className="my-1 mb-16 w-[45%] bg-[#E71D1E] text-white  text-center p-2">
+           {/* <div className="my-1 mb-16 w-[45%] bg-[#008000] text-white  text-center p-2">
             <button className='w-[100%]'
             > Other Problems </button></div> */}
         </div>

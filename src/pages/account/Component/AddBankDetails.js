@@ -133,7 +133,7 @@ function AddBankDetails() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">
-                    Account holder name <span className="!text-red-600">*</span>
+                    Account holder name <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -153,7 +153,7 @@ function AddBankDetails() {
               {/* <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">
-                    Enter Email <span className="!text-red-600">*</span>
+                    Enter Email <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -173,7 +173,7 @@ function AddBankDetails() {
               {/* <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">
-                    Enter Mobile <span className="!text-red-600">*</span>
+                    Enter Mobile <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -194,7 +194,7 @@ function AddBankDetails() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">
-                    Bank name <span className="!text-red-600">*</span>
+                    Bank name <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -215,7 +215,7 @@ function AddBankDetails() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">
-                    IFSC code <span className="!text-red-600">*</span>
+                    IFSC code <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -235,7 +235,7 @@ function AddBankDetails() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">
-                    Account number <span className="!text-red-600">*</span>
+                    Account number <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField

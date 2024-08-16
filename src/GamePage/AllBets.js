@@ -111,7 +111,7 @@ const AllBets = ({ formik, fk }) => {
                 fk?.values?.isFlying && (
                   <span
                     className={`bg-black rounded-full px-3 py-1 text-[10px] 
-               ${index % 2 === 0 ? "text-[#4e92ea]" : "text-red-500"} ${
+               ${index % 2 === 0 ? "text-[#4e92ea]" : "text-green-500"} ${
                       isAvailable.includes(index) && "text-white"
                     }`}
                   >

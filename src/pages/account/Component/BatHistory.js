@@ -244,7 +244,7 @@ function BatHistorys() {
                       </Typography>
                       <p
                         className={`${i?.status === "0"
-                          ? "!text-red-400"
+                          ? "!text-green-600"
                           : i?.status === "1"
                             ? "!text-green-400"
                             : "!text-blue-400"

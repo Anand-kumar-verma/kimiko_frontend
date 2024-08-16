@@ -388,3 +388,14 @@ export const GetProductListFn = async () => {
     console.log(e);
   }
 };
+export const GetRentListFn = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.rent_now_history}/${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};

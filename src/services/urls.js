@@ -20,6 +20,10 @@ export const telegram_url = "https://t.me/play2earnspace";
 
 export const endpoint = {
   product_list: `${Url}/api/package_list`,
+  product_details :`${Url}/api/get_pack_details`,
+  rent_now :`${Url}/api/buy_product`,
+  rent_now_history :`${Url}/api/buy_product_report`,
+
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,

@@ -121,7 +121,7 @@ function WithdravalHistory() {
                         sx={{ color: "green", textTransform: "capitalize" }}
                         className={`${i?.status === "Success"
                           ? "!text-green-500"
-                          : "!text-red-500"
+                          : "!text-green-500"
                           }`}
                       >
                         {i?.status}
