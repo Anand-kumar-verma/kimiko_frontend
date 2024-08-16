@@ -51,7 +51,7 @@ const MenuDetails = () => {
         setLoading(true);
         try {
             const response = await axios.get(`${endpoint.product_details}/${m_pack_id}`);
-            toast(response?.data?.msg, [-1])
+            // toast(response?.data?.msg, [-1])
              setData(response.data?.data);
             
         } catch (e) {
@@ -67,11 +67,6 @@ const MenuDetails = () => {
         try {
             const response = await axios.post(`${endpoint.rent_now}`, reqbody);
             toast(response?.data?.msg, [-1])
-            if (response?.data?.msg === "Data get successfully") {
-                setData(response.data?.data);
-            } else {
-                toast.error('Data not found');
-            }
         } 
          catch (e) {
             toast.error(e?.message || 'An error occurred');
@@ -107,11 +102,11 @@ const MenuDetails = () => {
                 </Box>
                 <div className="p-4 mb-20">
                      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
-                            {/* <img
-                                src={images[images.length].img}
-                                alt={data.image}
-                                className="w-full h-72 object-cover"
-                            /> */}
+                     {/* {images?.map((img, index) => (
+                            <img key={index} src={img} 
+                            alt={`Image ${index + 1}`} 
+                            style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} />
+                        ))} */}
                             <div className="p-4 flex-col gap-5 ">
                                 <p className="text-red-800 !text-center !font-bold mb-2">{data?.m_pack_name || "Solar"}</p>
                                 <p className="text-black !text-center !font-bold mb-2">₹ {data?.m_pack_fee || 0}</p>

@@ -7,6 +7,7 @@ import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeft
 import {  GetRentListFn } from '../../services/apicalling';
 import { useQuery } from 'react-query';
 import CustomCircularProgress from '../../Shared/CustomCircularProgress';
+import { Balance } from '@mui/icons-material';
 
 
 const RentNow = () => {
@@ -63,7 +64,9 @@ const RentNow = () => {
         <Typography variant="body1" color="initial">
           Rent Now History
         </Typography>
-        <Box component={NavLink} onClick={() => navigate(-1)}></Box>
+        <Box  >
+          <Balance  onClick={() => navigate('/income')}/>
+        </Box>
       </Box>
       <div className="p-4 mb-20">
       <div className="grid grid-cols-1 gap-5 ">

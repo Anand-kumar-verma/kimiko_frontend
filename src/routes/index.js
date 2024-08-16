@@ -14,6 +14,7 @@ import FundTransferHistory from "../pages/account/Component/FundTransferHistory"
 import GameNotification from "../pages/account/Component/GameNotification";
 import Gamestaticks from "../pages/account/Component/Gamestaticks";
 import Gift from "../pages/account/Component/Gift";
+import Income from "../pages/account/Component/Income";
 import Languages from "../pages/account/Component/Language";
 import LoginPassword from "../pages/account/Component/LoginPassword";
 import Mail from "../pages/account/Component/Mail";
@@ -61,6 +62,11 @@ export const routes = [
         path: "/account",
         component: <Account />
     },
+    {
+        path: "/income",
+        component: <Income />
+    },
+    
     {
         path: "/menu",
         component: <Menu />

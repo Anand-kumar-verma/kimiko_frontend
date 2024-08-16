@@ -371,3 +371,4 @@ export const GetRentListFn = async () => {
     console.log(e);
   }
 };
+
