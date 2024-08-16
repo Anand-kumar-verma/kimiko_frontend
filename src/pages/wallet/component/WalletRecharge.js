@@ -76,7 +76,6 @@ function WalletRecharge() {
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [deposit_req_data, setDeposit_req_data] = React.useState();
   const [loding, setloding] = React.useState(false);
-  const [selectedGateway, setSelectedGateway] = React.useState("");
   const [amount, setAmount] = React.useState({
     wallet: 0,
     winning: 0,
@@ -153,7 +152,7 @@ function WalletRecharge() {
       fd.append("Name", user_name);
       fd.append("TransactionID", transaction_id);
 
-      // return toast("We are upgrading for smooth and fast payin please wait...");
+      return toast("We are upgrading for smooth and fast payin please wait...");
 
       paymentRequest(fd, fk.values.amount);
       fk.setFieldValue("all_data", {
