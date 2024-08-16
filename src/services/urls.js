@@ -1,28 +1,28 @@
-export const dummy_aviator = "https://play2earn-timer-1.onrender.com"
-export const aviatordomain = "https://play2earn-timer-1.onrender.com"
+export const dummy_aviator = "https://kimiko-backend.onrender.com"
+export const aviatordomain = "https://kimiko-backend.onrender.com"
 
 // export const aviatordomain = "http://192.168.18.183:8000"
 // export const dummy_aviator = "http://192.168.18.183:8000"
 // export const domain = "http://192.168.18.183:8000"
 
 export const rupees = "₹";
-export const Url = "https://admin.kimiko.biz";
 
-export const baseUrl = "https://admin.play2earn.space";
-export const fron_end_main_domain = "https://play2earn.space";
-export const newDomain = "https://api.play2earn.space";
+export const baseUrl = "https://admin.kimiko.biz";
+export const fron_end_main_domain = "https://kimiko.biz";
+export const newDomain = "https://api.kimiko.biz";
 
 // export const domain = "https://aviator-with-sql-backend.onrender.com"
 
-export const domain = "https://play2earn-timer-1.onrender.com"
+export const domain = "https://kimiko-backend.onrender.com"
 export const support_mail = "";
-export const telegram_url = "https://t.me/play2earnspace";
+export const telegram_url = ""
+// "https://t.me/play2earnspace";
 
 export const endpoint = {
-  product_list: `${Url}/api/package_list`,
-  product_details :`${Url}/api/get_pack_details`,
-  rent_now :`${Url}/api/buy_product`,
-  rent_now_history :`${Url}/api/buy_product_report`,
+  product_list: `${baseUrl}/api/package_list`,
+  product_details :`${baseUrl}/api/get_pack_details`,
+  rent_now :`${baseUrl}/api/buy_product`,
+  rent_now_history :`${baseUrl}/api/buy_product_report`,
 
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
@@ -78,13 +78,5 @@ export const endpoint = {
   fund_transfer_history: `${baseUrl}/api/wallet-fund-trasfer-list`,
   get_status: `${newDomain}/api/v1/get-status`,
 
-  node_api:{
-    get_leder_data:`${aviatordomain}/api/v1/get-ledger-data`,
-    my_history: `${aviatordomain}/api/v1/my-history-by-user-id`,
-    login_with_node:`${aviatordomain}/api/v1/createuser`,
-    main_wallet:`${aviatordomain}/main-wallet-to-aviator`,
-    aviator_main:`${aviatordomain}/aviator-to-main-wallet`,
-    get_top_users: `${aviatordomain}/api/v1/get-top-users`,
-  }
 };
 

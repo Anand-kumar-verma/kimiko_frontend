@@ -1,15 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { zubgshadow, zubgwhite } from "../../../Shared/color";
-import wingobg from '../../../assets/images/wingo11111.jpg';
 import epicWin from "../../../assets/images/PSD.jpg";
-import jackpot from "../../../assets/images/PSD.jpg";
-import kind from "../../../assets/images/PSD.jpg";
-import megawin from "../../../assets/images/PSD.jpg";
-import toast from "react-hot-toast";
+import wingobg from '../../../assets/images/wingo11111.jpg';
 import { endpoint } from "../../../services/urls";
-import axios from "axios";
 
 
 const Lottery = () => {
@@ -51,7 +47,7 @@ const Lottery = () => {
             <Box component="img" sx={style.imgtwo} src={epicWin}></Box>
           </Box>
         </Box>
-        <Box sx={style.roottwo} component={NavLink} onClick={() => toast("Comming Soon !")}>
+        {/* <Box sx={style.roottwo} component={NavLink} onClick={() => toast("Comming Soon !")}>
           <Box sx={{ width: "70%", height: "100%", position: 'relative' }}>
             <Box sx={{
               position: 'absolute', top: 0, left: '0', width: '100%', height: '100%', borderRadius: '10px 0px 0px 10px',
@@ -117,9 +113,9 @@ const Lottery = () => {
           <Box sx={{ width: "30%", height: "100%" }}>
             <Box component="img" sx={style.imgtwo} src={kind}></Box>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
-    </Box >
+    </Box>
   );
 };
 

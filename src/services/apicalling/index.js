@@ -350,35 +350,7 @@ export const BankListDetails = async () => {
     console.log(e);
   }
 };
-//aviator
-export const GetTopFn = async () => {
-  try {
-    const response = await axios.get(endpoint.node_api.get_top_users);
-    return response;
-  } catch (e) {
-    toast(e?.message);
-    console.log(e);
-  }
-};
-export const walletamountAviator = async () => {
-  // try {
-  //   const response = await axios.get(
-  //     `${endpoint.userwallet}?userid=${user_id}`
-  //   );
-  //   return response;
-  try {
-  
 
-    const response = await axios.post(
-      `${dummy_aviator}/api/v1/get-wallet-amount-by-id`,
-      { id: user_id }
-    );
-    return response;
-  } catch (e) {
-    toast(e?.message);
-    console.log(e);
-  }
-};
 export const GetProductListFn = async () => {
   try {
     const response = await axios.get(endpoint.product_list);

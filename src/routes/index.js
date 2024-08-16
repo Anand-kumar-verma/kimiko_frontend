@@ -1,6 +1,4 @@
-import LayoutAviator from "../GamePage/Layout";
-import MainPage from "../GamePage/MainPage";
-import PlayGame from "../GamePage/PlayGame";
+
 import Menu from "../pages/Product/Menu";
 import MenuDetails from "../pages/Product/Menudetails";
 import RentNow from "../pages/Product/RentNow";
@@ -46,8 +44,6 @@ import Services from "../pages/promotion/component/Services";
 import Subordinate from "../pages/promotion/component/Subordinate";
 import TeamData from "../pages/promotion/component/TeamData";
 import TeamReports from "../pages/promotion/component/TeamReport";
-import Trx from "../pages/trx/Trx";
-import TronScanPage from "../pages/trx/component/TronScanPage";
 import Wallet from "../pages/wallet/Wallet";
 import DepositeHistory from "../pages/wallet/component/DepositeHistory";
 import QRScreen from "../pages/wallet/component/QRScreen";
@@ -93,10 +89,7 @@ export const routes = [
         path: "/wallet/Recharge",
         component: <WalletRecharge />
     },
-    {
-        path: "/trx",
-        component: <Trx />
-    },
+   
     {
         path: "/wallet",
         component: <Wallet />
@@ -218,18 +211,6 @@ export const routes = [
         component: <FundRequest />
     },
     {
-        path: "/aviator-login",
-        component: <MainPage />
-    },
-    {
-        path: "/playgame",
-        component: <LayoutAviator component={<PlayGame />} />
-    },
-    {
-        path: "/account/:id",
-        component: <LayoutAviator component={<Account />} />
-    },
-    {
         path: "/account/income-main",
         component: <MainPageOFIncome />
     },
@@ -281,8 +262,5 @@ export const routes = [
         path: "/deposit/qr-screen",
         component: <QRScreen />
     },
-    {
-        path: "/trx/tron-scan",
-        component: <TronScanPage />
-    },
+    
 ]
