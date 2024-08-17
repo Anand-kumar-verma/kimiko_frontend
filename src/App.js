@@ -22,20 +22,15 @@ const App = () => {
       <Route path="/" element={<Login />} />
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path="/register" element={<Register />} />
-      {routes?.map((route, index) => {
-          return (
-            <Route key={index} path={route?.path} element={route?.component} />
-          );
-        })}
-      {/* {isAuthenticated ? (
+      {isAuthenticated ? (
         routes?.map((route, index) => {
           return (
             <Route key={index} path={route?.path} element={route?.component} />
           );
         })
       ) : (
-        <Route path="/" element=<Login /> />
-      )} */}
+        <Route path="/" element={<Login /> }/>
+      )}
     </Routes>
   );
 };
