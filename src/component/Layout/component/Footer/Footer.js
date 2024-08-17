@@ -68,7 +68,7 @@ function Footer() {
                   border: "2px solid #F02257",
                   position: "absolute",
                   top: " -62px",
-                  left: "-50%",
+                  left: "22%",
                 }}
               >
                 {location.pathname == "/promotion" && (
