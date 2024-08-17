@@ -1235,7 +1235,7 @@ img {
 }
 
 .wallet-textfield {
-  background-color: #E71D1E !important;
+  background-color: #2daf2d;
   border-radius: 10px;
   text-align: center;
 }
@@ -1263,11 +1263,11 @@ img {
 }
 
 .withdrawalfield>div>input.MuiInputBase-input {
-  color: #E71D1E !important;
+  color: #E71D1E ;
 }
 
 .withdrawalfield>div>input.MuiInputBase-input::placeholder {
-  color: #E71D1E !important;
+  color: #E71D1E ;
 }
 
 .withdrawalfield>div>input::placeholder {

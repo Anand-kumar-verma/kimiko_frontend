@@ -1,3 +1,4 @@
+
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
 import HistoryIcon from "@mui/icons-material/History";
@@ -6,16 +7,9 @@ import {
   Box,
   Button,
   Container,
-  Dialog,
-  DialogContent,
-  FormControl,
   IconButton,
   InputAdornment,
-  InputLabel,
-  MenuItem,
   OutlinedInput,
-  Select,
-  Slide,
   Stack,
   Typography
 } from "@mui/material";
@@ -24,11 +18,9 @@ import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
+import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
   gray,
   zubgback,
@@ -37,30 +29,25 @@ import {
   zubgshadow,
   zubgtext,
   zubgwhite,
-} from "../../../Shared/color";
-import audiovoice from "../../../assets/bankvoice.mp3";
-import cip from "../../../assets/cip.png";
-import dot from "../../../assets/images/circle-arrow.png";
-import payment from "../../../assets/images/deposit (1).png";
-import user from "../../../assets/images/manuscript.png";
-import playgame from "../../../assets/images/playgame.jpg";
-import balance from "../../../assets/images/send.png";
-import payNameIcon2 from "../../../assets/payNameIcon2.png";
-import Layout from "../../../component/Layout/Layout";
-import { get_user_data_fn } from "../../../services/apicalling";
-import { endpoint } from "../../../services/urls";
-import Msg from "./Msg";
+} from "../../Shared/color";
+import audiovoice from "../../assets/bankvoice.mp3";
+import cip from "../../assets/cip.png";
+import dot from "../../assets/images/circle-arrow.png";
+import payment from "../../assets/images/deposit (1).png";
+import user from "../../assets/images/manuscript.png";
+import playgame from "../../assets/images/playgame.jpg";
+import balance from "../../assets/images/send.png";
+import payNameIcon2 from "../../assets/payNameIcon2.png";
+import Layout from "../../component/Layout/Layout";
+import { get_user_data_fn } from "../../services/apicalling";
+import { endpoint } from "../../services/urls";
 
-function WalletRecharge() {
-  const [t_id, setT_id] = React.useState();
+function Recharge() {
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
-  const [poicy, setpoicy] = React.useState(false);
   const deposit_amount = localStorage.getItem("amount_set");
-  const Deposit_type = localStorage.getItem("Deposit_type");
-  const server_provider = localStorage.getItem("server_provider");
 
   const audioRefMusic = React.useRef(null);
   const login_data =
@@ -70,25 +57,15 @@ function WalletRecharge() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  // const aviator_data = localStorage.getItem("aviator_data");
-  const user_name =
-    aviator_login_data && JSON.parse(aviator_login_data)?.username;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [deposit_req_data, setDeposit_req_data] = React.useState();
-  const [loding, setloding] = React.useState(false);
+  const [loding, setLoding] = React.useState(false);
   const [amount, setAmount] = React.useState({
     wallet: 0,
     winning: 0,
     cricket_wallet: 0,
   });
-  const handleClosemsg = () => {
-    setpoicy(false);
-  };
 
-
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
@@ -99,18 +76,19 @@ function WalletRecharge() {
   }, []);
 
   React.useEffect(() => {
-    !aviator_login_data && get_user_data_fn(dispatch);
-  }, []);
+    if (!aviator_login_data) {
+      get_user_data_fn(dispatch);
+    }
+  }, [aviator_login_data, dispatch]);
 
   const handlePlaySound = async () => {
     try {
-      if (audioRefMusic?.current?.pause) {
+      if (audioRefMusic?.current?.paused) {
         await audioRefMusic?.current?.play();
       } else {
         await audioRefMusic?.current?.pause();
       }
     } catch (error) {
-      // Handle any errors during play
       console.error("Error during play:", error);
     }
   };
@@ -120,35 +98,30 @@ function WalletRecharge() {
       const response = await axios.get(
         `${endpoint.userwallet}?userid=${user_id}`
       );
-
       setAmount(response?.data?.data);
-      setpoicy(true)
     } catch (e) {
-      toast(e?.message);
-      console.log(e);
+      toast.error(e?.message || "Error fetching wallet amount");
     }
   };
 
   React.useEffect(() => {
     walletamountFn();
-
-  }, []);
+  }, [user_id]);
 
   const formik = useFormik({
     initialValues: {
-      txtamount: deposit_amount || 110,
+      txtamount: deposit_amount || 0,
     },
-    validationSchema: cashDepositRequestValidationSchema,
     onSubmit: (values) => {
       payment(values.txtamount);
     },
   });
 
   async function payment(amnt) {
-    setloding(true);
+    setLoding(true);
     if (!amnt) {
       toast.error("Please enter an amount");
-      setloding(false);
+      setLoding(false);
       return;
     }
     const formdata = {
@@ -156,27 +129,13 @@ function WalletRecharge() {
       txtamount: Number(amnt),
     };
     try {
-      const res = await axios.post(`${endpoint.deposit_request}`, formdata);
-      const msg = res?.data?.earning?.msg;
-      let qr_url = "";
-      if (msg) {
-        try {
-          qr_url = JSON.parse(msg)?.msg || "";
-        } catch (error) {
-          qr_url = msg;
-        }
-      }
-      
-      if (qr_url) {
-        setDeposit_req_data(qr_url);
-      } else {
-        toast.error("Received unexpected response format");
-      }
+      const response = await axios.post(`${endpoint.deposit_request}`, formdata);
+      toast(response?.data?.message)
+      setDeposit_req_data(response?.data?.data);
     } catch (e) {
-      console.error("Payment processing error:", e);
-      toast.error("Error processing payment");
+      toast.error(e?.message || "Error processing payment");
     }
-    setloding(false);
+    setLoding(false);
   }
 
   const audio = React.useMemo(() => {
@@ -205,9 +164,8 @@ function WalletRecharge() {
           <Typography
             variant="body1"
             color="initial"
-            sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+            sx={{ fontSize: "15px", color: zubgtext, ml: "10px" }}
           >
-            {" "}
             Recharge instructions
           </Typography>
         </Stack>
@@ -278,10 +236,11 @@ function WalletRecharge() {
     );
   }, [formik]);
 
-  if (deposit_req_data) {
-    window.open(deposit_req_data);
-   
-  }
+  React.useEffect(() => {
+    if (deposit_req_data) {
+      window.open(deposit_req_data);
+    }
+  }, [deposit_req_data]);
   return (
     <Layout>
       {audio}
@@ -296,10 +255,7 @@ function WalletRecharge() {
         }}
       >
         <Box sx={style.header}>
-          <Box component={NavLink}  onClick={() => {
-                  setDeposit_req_data(null);
-                  goBack()
-                }}>
+          <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
           <Typography variant="body1" color="initial">
@@ -383,7 +339,8 @@ function WalletRecharge() {
                 Number(deposit_amount ? amount?.cricket_wallet || 0
                   : Number(amount?.wallet || 0) + Number(amount?.winning || 0)).toFixed(2)
               )}
-            
+             
+
             </Typography>
             <CachedIcon
               sx={{
@@ -420,7 +377,7 @@ function WalletRecharge() {
           </Stack>
         </Box>
         <Box sx={style.paymentBoxOuter}>
-          <Box sx={style.paymentlink} >
+          <Box sx={style.paymentlink} component={NavLink}>
             <Box
               component="img"
               src={payNameIcon2}
@@ -432,7 +389,7 @@ function WalletRecharge() {
           </Box>
         </Box>
         <Box>
-          
+         
             <Box
               sx={{
                 padding: "10px",
@@ -458,7 +415,7 @@ function WalletRecharge() {
                 <OutlinedInput
                   fullWidth
                   placeholder="Enter amount"
-                  className="wallet-textfield !text-green-500"
+                  className="wallet-textfield"
                   type="number"
                   id="txtamount"
                   name="txtamount"
@@ -475,67 +432,25 @@ function WalletRecharge() {
                 {formik.touched.txtamount && formik.errors.txtamount && (
                   <div className="error">{formik.errors.txtamount}</div>
                 )}
-                <Button sx={style.paytmbtntwo}
-                 onClick={() => {
-                  setDeposit_req_data(null);
-                  formik.handleSubmit()
-                }}
-                >
+                <Button sx={style.paytmbtntwo} onClick={formik.handleSubmit}>
                   Deposit
                 </Button>
-             
+
               </Stack>
             </Box>
         
 
           {rechargeInstruction}
         </Box>
-        {poicy && (
-          <Dialog
-            open={poicy}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={handleClosemsg}
-            aria-describedby="alert-dialog-slide-description"
-            PaperProps={{ className: `!max-w-[400px] ${gray}` }}
-          >
-            <div
-              style={{
-                background: zubgtext,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "15px",
-              }}
-            >
-
-              <p style={{ color: "white", fontSize: "14px" }}>
-                Deposit  Instruction
-              </p>
-
-              <RxCross2
-                style={{ color: "white" }}
-                  onClick={() => {
-                    setDeposit_req_data(null);
-                    handleClosemsg()
-                  }}
-              />
-            </div>
-            <DialogContent style={{ background: zubgback }}>
-
-              <Msg handleClosemsg={handleClosemsg} />
-
-            </DialogContent>
-          </Dialog>
-        )}
+       
         <CustomCircularProgress isLoading={loding} />
-   
+
       </Container>
     </Layout>
   );
 }
 
-export default WalletRecharge;
+export default Recharge;
 
 const style = {
   header: {
@@ -560,7 +475,7 @@ const style = {
     textAlign: "center",
     width: "32%",
     minHeight: "15vh",
-    background: zubgtext,
+    background: zubgmid,
     borderRadius: "10px",
     mb: "10px",
     display: "flex",
@@ -603,13 +518,13 @@ const style = {
     width: "31%",
     border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: zubgtext, border: "1px solid transparent" },
+    "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
   },
   paytmbtntwo: {
     borderRadius: "5px",
     textTransform: "capitalize",
     mb: 2,
-    background: zubgtext,
+    background: zubgmid,
     color: "white !important",
     width: "100%",
     mt: "20px",

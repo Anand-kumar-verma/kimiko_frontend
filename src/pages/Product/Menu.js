@@ -63,7 +63,9 @@ const Menu = () => {
         <Typography variant="body1" color="initial">
           Products 
         </Typography>
-        <Box component={NavLink} onClick={() => navigate(-1)}></Box>
+        <Box >
+        </Box>
+       
       </Box>
       <div className="p-4 mb-20">
       <div className="grid grid-cols-1 gap-5 ">

@@ -1,4 +1,5 @@
 
+import Recharge from "../pages/Product/Deposit";
 import Menu from "../pages/Product/Menu";
 import MenuDetails from "../pages/Product/Menudetails";
 import RentNow from "../pages/Product/RentNow";
@@ -74,6 +75,10 @@ export const routes = [
     {
         path: "/rent",
         component: <RentNow />
+    },
+    {
+        path: "/recharge",
+        component: <Recharge />
     },
     {
         path: "/menu/menu-details/:m_pack_id",

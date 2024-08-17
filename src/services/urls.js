@@ -24,6 +24,8 @@ export const endpoint = {
   rent_now :`${baseUrl}/api/buy_product`,
   rent_now_history :`${baseUrl}/api/buy_product_report`,
   report_income :`${baseUrl}/api/view_income_report`,
+  deposit_request: `${baseUrl}/api/insert_fund_request_vapayout`,
+
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
@@ -63,7 +65,7 @@ export const endpoint = {
   trx_game_history: `${newDomain}/api/v1/trx-auto-genrated-result`, 
   trx_game_bet: `${newDomain}/api/v1/trx-bet`, 
   my_history_all_trx: `${newDomain}/api/v1/trx-getColourBets`, 
-
+ 
   // aviator api's
   aviator_login: `${baseUrl}/api/aviator/login`,
   get_data_by_user_id: `${baseUrl}/api/userProfile`,

@@ -22,8 +22,12 @@ const App = () => {
       <Route path="/" element={<Login />} />
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path="/register" element={<Register />} />
-      
-      {isAuthenticated ? (
+      {routes?.map((route, index) => {
+          return (
+            <Route key={index} path={route?.path} element={route?.component} />
+          );
+        })}
+      {/* {isAuthenticated ? (
         routes?.map((route, index) => {
           return (
             <Route key={index} path={route?.path} element={route?.component} />
@@ -31,7 +35,7 @@ const App = () => {
         })
       ) : (
         <Route path="/" element=<Login /> />
-      )}
+      )} */}
     </Routes>
   );
 };

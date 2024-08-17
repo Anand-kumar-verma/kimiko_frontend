@@ -38,6 +38,7 @@ import trans from "../../assets/images/translate.png";
 import s from "../../assets/images/wallet (1).png";
 import dpt from "../../assets/images/wallet (3).png";
 import wtd from "../../assets/images/withdraw.png";
+import buy from "../../assets/images/casino.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import {  walletamount } from "../../services/apicalling";
@@ -166,6 +167,12 @@ function Account() {
             <Box component="img" src={wtd} sx={style.actionImage} />
             <Typography variant="body1" color="initial" sx={style.actionText}>
               Withdraw
+            </Typography>
+          </Box>
+          <Box sx={style.actionBox} component={NavLink} to="/rent">
+            <Box component="img" src={buy} sx={style.actionImage} />
+            <Typography variant="body1" color="initial" sx={style.actionText}>
+             Buy History
             </Typography>
           </Box>
           <Box sx={style.actionBox} component={NavLink} to="/add-bank-details">

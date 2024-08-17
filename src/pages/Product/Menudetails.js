@@ -9,7 +9,6 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import CustomCircularProgress from '../../Shared/CustomCircularProgress';
 import CryptoJS from "crypto-js";
-import { History } from '@mui/icons-material';
 
 const MenuDetails = () => {
     const { m_pack_id } = useParams()
@@ -66,7 +65,9 @@ const MenuDetails = () => {
         };
         try {
             const response = await axios.post(`${endpoint.rent_now}`, reqbody);
-            toast(response?.data?.msg, [-1])
+            toast(response?.data?.msg [-1])
+            // navigate('/rent')
+            // window.location.reload()
         } 
          catch (e) {
             toast.error(e?.message || 'An error occurred');
@@ -97,7 +98,6 @@ const MenuDetails = () => {
                         Product Details
                     </Typography>
                     <Box  >
-                        <History onClick={() => navigate('/rent')}/>
                     </Box>
                 </Box>
                 <div className="p-4 mb-20">

@@ -90,18 +90,9 @@ export const withdraw_amount_validation_schema = Yup.object().shape({
 });
 
 export const cashDepositRequestValidationSchema = Yup.object().shape({
-  amount: Yup.string().required("Amount is required"),
-  // .test(
-  //   "minimumAmount",
-  //   "Amount must be greater than or equal to 100",
-  //   (value) => {
-  //     if (value) {
-  //       const numericValue = Number(value);
-  //       return numericValue >= 100;
-  //     }
-  //     return true;
-  //   }
-  // ),
+  txtamount: Yup.number().required("Amount is required")
+  .min(110, "Amount must be greater than or equal to 110"),
+ 
 });
 
 export const servicesvalidationSchema = Yup.object().shape({
