@@ -57,7 +57,7 @@ function WithdravalHistory() {
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
           <Typography variant="body1" color="initial">
-            Withdrawl history
+            Withdrawal history
           </Typography>
           <Box></Box>
         </Box>
@@ -80,7 +80,7 @@ function WithdravalHistory() {
                 color="initial"
                 sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
               >
-                Withdrawl history
+                Withdrawal history
               </Typography>
             </Stack>
             {res?.map((i) => {
@@ -113,7 +113,7 @@ function WithdravalHistory() {
                           textTransform: "capitalize",
                         }}
                       >
-                        Withdrawl
+                        Withdrawal
                       </Button>
                     </Box>
                     <Box>
