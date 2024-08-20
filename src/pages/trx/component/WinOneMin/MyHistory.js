@@ -77,8 +77,8 @@ const MyHistory = ({ gid }) => {
                         i?.status === "0"
                           ? "!text-green-600"
                           : i?.status === "1"
-                          ? "!text-green-400"
-                          : "!text-green-600"
+                          ? "!text-red-400"
+                          : "!text-red-600"
                       }`}
                     >
                       {i?.status === "0"
@@ -92,8 +92,8 @@ const MyHistory = ({ gid }) => {
                         i?.status === "0"
                           ? "!text-green-600"
                           : i?.status === "1"
-                          ? "!text-green-400"
-                          : "!text-green-600"
+                          ? "!text-red-400"
+                          : "!text-red-600"
                       }`}
                     >
                       {" "}
