@@ -252,7 +252,7 @@ function Account() {
                 />
               </Box>
             </Stack>
-            <Stack
+            {/* <Stack
               component={NavLink}
               to="/gamestaticks"
               direction="row"
@@ -283,7 +283,7 @@ function Account() {
                   sx={{ color: zubgtext, fontSize: "23px", fontWeight: "600" }}
                 />
               </Box>
-            </Stack>
+            </Stack> */}
             <Stack
               component={NavLink}
               to="/Language"

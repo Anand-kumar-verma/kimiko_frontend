@@ -177,7 +177,7 @@ function Dashboard() {
   };
   useEffect(() => {
     if (isAvailableUser) {
-      setpoicy(true);
+      setpoicy(false);
     }
   }, []);
 

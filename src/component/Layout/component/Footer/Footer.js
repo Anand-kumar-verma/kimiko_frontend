@@ -47,7 +47,7 @@ function Footer() {
               <Box component="img" src={puzzle} width={25} />
             )}
             <Typography variant="body1" sx={style.text}>
-              Menu
+              Product
             </Typography>
           </Box>
           <Box sx={style.nav} onClick={() => navigate("/promotion")}>
