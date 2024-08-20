@@ -7,7 +7,6 @@ import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeft
 import {  GetRentListFn } from '../../services/apicalling';
 import { useQuery } from 'react-query';
 import CustomCircularProgress from '../../Shared/CustomCircularProgress';
-import { Balance } from '@mui/icons-material';
 
 
 const RentNow = () => {
@@ -89,9 +88,6 @@ const RentNow = () => {
       </div>
     </div>
     
-
-   
-  
     </Container>
   </Layout>
   

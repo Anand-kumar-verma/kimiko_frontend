@@ -70,25 +70,18 @@ const user_id = value && JSON.parse(value)?.UserID;
     }
   );
   const res = React.useMemo(() => {
-    if (startDate && endDate && filter) {
+    if (startDate && endDate) {
       return data?.earning?.rid?.filter(
         (i) =>
-          moment(i?.l01_date)?.format("YYYY-MM-DD") >=
+          moment(i?.m_datetime)?.format("YYYY-MM-DD") >=
             moment(startDate)?.format("YYYY-MM-DD") &&
-          moment(i?.l01_date)?.format("YYYY-MM-DD") <=
-            moment(endDate)?.format("YYYY-MM-DD") &&
-          i?.l01_transection_type?.includes(filter)
+            moment(i?.m_datetime)?.format("YYYY-MM-DD") <=
+            moment(endDate)?.format("YYYY-MM-DD")
       );
     }
-    
-    return filter === "0"
-      ? data?.earning?.rid
-      : data?.earning?.rid?.filter((i) =>
-          i?.l01_transection_type?.includes(filter)
-        );
-  }, [filter, data?.earning?.rid, startDate && endDate]);
+    return data?.earning?.rid;
+  }, [startDate, endDate, data?.earning?.rid]);
 
-  
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -210,7 +203,7 @@ const user_id = value && JSON.parse(value)?.UserID;
               <TableRow key={i?.id}>
                 <TableCell  className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index+1}</TableCell>
                 <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">
-                  {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
+                  {moment(i?.m_datetime).format("DD-MM-YYYY HH:mm:ss")}
                 </TableCell>
                 <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.m_cramount}</TableCell>
                 <TableCell  className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.m_description}</TableCell>
