@@ -351,6 +351,11 @@ function Account() {
                 logo: balance,
               },
               {
+                to: "/activity",
+                name: "Report",
+                logo: hand,
+              },
+              {
                 to: "/SettingCenter",
                 name: "Setting",
                 logo: setting,
@@ -370,11 +375,7 @@ function Account() {
                 name: "Customer service",
                 logo: customer,
               },
-              {
-                to: "/activity",
-                name: "Report",
-                logo: hand,
-              },
+             
             ]?.map((i) => {
               return (
                 <Box
