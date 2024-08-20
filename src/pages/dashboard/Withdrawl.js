@@ -497,7 +497,7 @@ function Withdrawl() {
             sx={{ "&>p": { color: "", fontSize: "12px" } }}
           >
             <p className="  !text-green-600 !m-1">
-              ⭐️ Need to bet ₹0.00 to be able to withdraw .
+              ⭐️ Need to bet ₹ 0.00 to be able to withdraw .
             </p>
             <p className="  !text-green-600 !m-1">
               ⭐️ Withdraw time 00:00-23:59{" "}
