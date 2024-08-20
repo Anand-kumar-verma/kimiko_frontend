@@ -249,18 +249,65 @@ function WalletRecharge() {
           mt: "10px",
         }}
       >
-        {[110, 500, 1000, 5000, 10000, 15000].map((amount) => (
           <Button
-            key={amount}
             sx={style.paytmbtn}
             onClick={() => {
-              formik.setFieldValue("txtamount", amount);
+              formik.setFieldValue("txtamount", 110);
               setDeposit_req_data(null);
             }}
           >
-            ₹ {amount.toLocaleString()}
+            {" "}
+            ₹   110
           </Button>
-        ))}
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => {
+              formik.setFieldValue("txtamount", 500);
+              setDeposit_req_data(null);
+            }}
+          >
+            {" "}
+            ₹   500
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => {
+              formik.setFieldValue("txtamount", 1000);
+              setDeposit_req_data(null);
+            }}
+          >
+            {" "}
+            ₹   1k
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => {
+              formik.setFieldValue("txtamount", 5000);
+              setDeposit_req_data(null);
+            }}
+          >
+            {" "}
+            ₹   5k
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => {
+              formik.setFieldValue("txtamount", 10000);
+              setDeposit_req_data(null);
+            }}
+          >
+            ₹  10k
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => {
+              formik.setFieldValue("txtamount", 15000);
+              setDeposit_req_data(null);
+            }}
+          >
+            ₹  15k
+          </Button>
+
       </Stack>
     );
   }, [formik]);

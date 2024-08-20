@@ -494,7 +494,7 @@ function Withdrawl() {
         >
           <Box
             className="mt-2 !py-4 border border-red-500  rounded-lg"
-            sx={{ "&>p": { color: "", fontSize: "18px" } }}
+            sx={{ "&>p": { color: "", fontSize: "12px" } }}
           >
             <p className="  !text-green-600 !m-1">
               ⭐️ Need to bet ₹0.00 to be able to withdraw .
