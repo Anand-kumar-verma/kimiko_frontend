@@ -39,9 +39,6 @@ function Footer() {
               Home
             </Typography>
           </Box>
-         
-        
-        
           <Box sx={style.nav} onClick={() => navigate("/menu")}>
             {location.pathname == "/menu" && (
               <Box component="img" src={puzzleact} width={25} />
