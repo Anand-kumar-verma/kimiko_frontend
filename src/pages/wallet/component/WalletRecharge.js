@@ -8,13 +8,9 @@ import {
   Container,
   Dialog,
   DialogContent,
-  FormControl,
   IconButton,
   InputAdornment,
-  InputLabel,
-  MenuItem,
   OutlinedInput,
-  Select,
   Slide,
   Stack,
   Typography
@@ -33,7 +29,6 @@ import {
   gray,
   zubgback,
   zubgbackgrad,
-  zubgmid,
   zubgshadow,
   zubgtext,
   zubgwhite,
@@ -41,7 +36,6 @@ import {
 import audiovoice from "../../../assets/bankvoice.mp3";
 import cip from "../../../assets/cip.png";
 import dot from "../../../assets/images/circle-arrow.png";
-import payment from "../../../assets/images/deposit (1).png";
 import user from "../../../assets/images/manuscript.png";
 import playgame from "../../../assets/images/playgame.jpg";
 import balance from "../../../assets/images/send.png";
@@ -52,15 +46,12 @@ import { endpoint } from "../../../services/urls";
 import Msg from "./Msg";
 
 function WalletRecharge() {
-  const [t_id, setT_id] = React.useState();
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
   const [poicy, setpoicy] = React.useState(false);
   const deposit_amount = localStorage.getItem("amount_set");
-  const Deposit_type = localStorage.getItem("Deposit_type");
-  const server_provider = localStorage.getItem("server_provider");
 
   const audioRefMusic = React.useRef(null);
   const login_data =
@@ -70,9 +61,6 @@ function WalletRecharge() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  // const aviator_data = localStorage.getItem("aviator_data");
-  const user_name =
-    aviator_login_data && JSON.parse(aviator_login_data)?.username;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [deposit_req_data, setDeposit_req_data] = React.useState();
   const [loding, setloding] = React.useState(false);
