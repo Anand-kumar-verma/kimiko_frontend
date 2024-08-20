@@ -1,8 +1,8 @@
 import axios from "axios";
-import {dummy_aviator, endpoint } from "../urls";
+import CryptoJS from "crypto-js";
 import toast from "react-hot-toast";
 import { aviator_login_data_fn } from "../../redux/slices/counterSlice";
-import CryptoJS from "crypto-js";
+import { endpoint } from "../urls";
 const value =
   (localStorage.getItem("logindataen") &&
     CryptoJS.AES.decrypt(
