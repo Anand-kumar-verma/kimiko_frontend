@@ -20,7 +20,14 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
+import {
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgshadow,
+  zubgtext,
+  zubgwhite,
+} from "../../Shared/color";
 import cip from "../../assets/cip.png";
 import payment from "../../assets/images/deposit (2).png";
 import playgame from "../../assets/images/playgame.jpg";
@@ -46,9 +53,6 @@ function Withdrawl() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  const first_rechange =
-    aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
-
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [amount, setAmount] = React.useState({
     wallet: 0,
@@ -92,8 +96,8 @@ function Withdrawl() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false,
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
@@ -107,7 +111,7 @@ function Withdrawl() {
     // name: "",
     // ifsc: "",
     // account_number: "",
-    // transaction_id: "",
+    withdrawl_type: "Withdrawl Type",
     bank_id: "Select Bank",
   };
 
@@ -118,37 +122,36 @@ function Withdrawl() {
       if (type) {
         if (Number(amount?.cricket_wallet || 0) < Number(fk.values.amount || 0))
           return toast("Your Wallet Amount is low");
-      } else {
-        if (amount?.winning < fk.values.amount)
-          return toast("Your winning amount is low.");
       }
       if (fk.values.bank_id === "Select Bank")
         return toast("Select Bank Account");
-      if (Number(fk.values.amount) < 110 && Number(fk.values.amount) > 50000)
+
+      if (fk.values.withdrawl_type === "Withdrawl Type")
+        return toast("Select Withdrawl Type");
+
+      if (Number(fk.values.amount) < 199 && Number(fk.values.amount) > 50000)
         return toast("Amount shoulb be minimum 110 and maximum 50,000");
 
       const data = result?.find((i) => i?.id === fk.values.bank_id);
       if (!data) return toast("Data not found");
-
       const fd = new FormData();
 
-      // fd.append("Name", data?.holder_name);
-      // 1 for wingo 2 for cricket
       fd.append("type", type ? 2 : 1);
-      fd.append("Bankid", fk.values.bank_id);
+      fd.append("Bankid", data?.id);
       fd.append("TransactionID", `${Date.now()}${user_id}`);
       fd.append("Description", fk.values.description);
       fd.append("Amount", fk.values.amount);
       fd.append("Mobile", data?.mobile);
       fd.append("user_id", user_id);
 
-      return toast(
-        "We are upgrading for smooth and fast payout please wait..."
-      );
-  
-      Number(first_rechange) === 1
-        ? withdraw_payment_Function(fd)
-        : toast("You must be sure that , your first deposit is done.");
+      // return toast(
+      //   "We are upgrading for smooth and fast payout please wait..."
+      // );
+
+      if (fk.values.withdrawl_type === "game_withdrawl")
+        withdraw_payment_Function(fd);
+      else if (fk.values.withdrawl_type === "main_withdrawl")
+        payoutRequestNew(fd);
     },
   });
 
@@ -156,8 +159,6 @@ function Withdrawl() {
     setloding(true);
     try {
       const response = await axios.post(`${endpoint.withdraw_payment}`, fd);
-    console.log(response,"aanandn");
-
       if (response?.data?.msg === "Successfully Data Found") {
         walletamountFn();
         fk.handleReset();
@@ -177,6 +178,24 @@ function Withdrawl() {
         } else {
           toast(response?.data?.msg);
         }
+      }
+    } catch (e) {
+      toast(e?.message);
+      console.log(e);
+    }
+    setloding(false);
+  };
+  const payoutRequestNew = async (fd) => {
+    setloding(true);
+    try {
+      const response = await axios.post(`${endpoint.payout_request_new}`, fd);
+      console.log(response);
+      if (response?.data?.msg === "Withdrawal Request Placed Successfully") {
+        walletamountFn();
+        fk.handleReset();
+        setOpenDialogBox(true);
+      } else {
+        toast(response?.data?.msg);
       }
     } catch (e) {
       toast(e?.message);
@@ -258,10 +277,14 @@ function Withdrawl() {
               overflow: "hidden",
             }}
           ></Box>
-          <Stack direction="row" sx={{
-            alignItems: "center", position: 'relative',
-            zIndex: 10,
-          }}>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              position: "relative",
+              zIndex: 10,
+            }}
+          >
             <Box component="img" src={balance} width={50}></Box>
             <Typography
               variant="body1"
@@ -286,7 +309,7 @@ function Withdrawl() {
                 fontWeight: "600",
                 color: "white",
                 mr: "10px",
-                position: 'relative',
+                position: "relative",
                 zIndex: 10,
               }}
             >
@@ -294,32 +317,44 @@ function Withdrawl() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                )?.toFixed(2)}
+                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  )?.toFixed(2)}
             </Typography>
-            <CachedIcon sx={{
-              color: "white", position: 'relative',
-              zIndex: 10,
-            }} />
+            <CachedIcon
+              sx={{
+                color: "white",
+                position: "relative",
+                zIndex: 10,
+              }}
+            />
           </Stack>
           <Stack
             direction="row"
             sx={{
               alignItems: "center",
               justifyContent: "space-between",
-              mt: "20px", position: 'relative',
+              mt: "20px",
+              position: "relative",
               zIndex: 10,
             }}
           >
-            <Box component="img" src={cip} width={50} sx={{
-              position: 'relative',
-              zIndex: 10,
-            }}></Box>
+            <Box
+              component="img"
+              src={cip}
+              width={50}
+              sx={{
+                position: "relative",
+                zIndex: 10,
+              }}
+            ></Box>
             <Typography
               variant="body1"
               color="initial"
               sx={{
-                fontSize: "14px ", color: "white", ml: "10px", position: 'relative',
+                fontSize: "14px ",
+                color: "white",
+                ml: "10px",
+                position: "relative",
                 zIndex: 10,
               }}
             >
@@ -330,7 +365,6 @@ function Withdrawl() {
         <Box>
           <Box
             sx={{
-
               padding: "10px",
               width: "95%",
               margin: "auto",
@@ -352,67 +386,7 @@ function Withdrawl() {
               </Typography>
             </Stack>
             <Box mt={2} component="form" onSubmit={fk.handleSubmit}>
-              {/* <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{color:zubgtext}}>
-                    Account holder name <span className="!text-green-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={fk.values.name}
-                  onChange={fk.handleChange}
-                  placeholder="Enter account holder name *"
-                  className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.name && fk.errors.name && (
-                  <div className="error">{fk.errors.name}</div>
-                )}
-              </FormControl>
-              <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{color:zubgtext}}>
-                    Enter Email <span className="!text-green-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={fk.values.email}
-                  onChange={fk.handleChange}
-                  placeholder="Enter email *"
-                  className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.email && fk.errors.email && (
-                  <div className="error">{fk.errors.email}</div>
-                )}
-              </FormControl>
-              <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{color:zubgtext}}>
-                    Enter Mobile <span className="!text-green-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  id="mobile"
-                  name="mobile"
-                  type="number"
-                  value={fk.values.mobile}
-                  onChange={fk.handleChange}
-                  placeholder="Enter mobile *"
-                  className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.mobile && fk.errors.mobile && (
-                  <div className="error">{fk.errors.mobile}</div>
-                )}
-              </FormControl> */}
-              {/* amount */}
+             
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
@@ -437,7 +411,7 @@ function Withdrawl() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Bank name <span className="!text-green-600">*</span>
+                    Select Bank <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -471,78 +445,36 @@ function Withdrawl() {
                   <div className="error">{fk.errors.bank_id}</div>
                 )}
               </FormControl>
-
-              {/* <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{color:zubgtext}}>
-                    IFSC code <span className="!text-green-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  id="ifsc"
-                  name="ifsc"
-                  type="text"
-                  value={fk.values.ifsc}
-                  onChange={fk.handleChange}
-                  placeholder="Enter IFSC code *"
-                  className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.ifsc && fk.errors.ifsc && (
-                  <div className="error">{fk.errors.ifsc}</div>
-                )}
-              </FormControl>
+              {/* withdrawl type */}
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{color:zubgtext}}>
-                    Account number <span className="!text-green-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  id="account_number"
-                  name="account_number"
-                  type="text"
-                  value={fk.values.account_number}
-                  onChange={fk.handleChange}
-                  placeholder="Enter account number *"
-                  className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.account_number && fk.errors.account_number && (
-                  <div className="error">{fk.errors.account_number}</div>
-                )}
-              </FormControl> */}
-              {/* <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Description <span className="!text-green-600">*</span>
+                    Withdrawl Type <span className="!text-green-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
-                  id="description"
-                  name="description"
-                  type="text"
-                  rows={3}
-                  multiline={true}
-                  value={fk.values.description}
+                  select
+                  id="withdrawl_type"
+                  name="withdrawl_type"
+                  value={fk.values.withdrawl_type}
                   onChange={fk.handleChange}
-                  placeholder="Enter description *"
-                  className="withdrawalfield !border-[2px] !border-[#ff82823d]  !rounded-[10px] no-scrollbar !text-white"
+                  className="withdrawalfield"
                   InputProps={{
                     style: {
-                      boxShadow: zubgshadow, background: '#dcdcdc92',
-                      color: zubgtext, // Text color
-                      "::placeholder": {
-                        color: zubgtext, // Placeholder color
-                      },
+                      borderColor: "#ffffff",
+                      borderWidth: "1px",
+                      color: zubgtext,
+                      background: "#dcdcdc92",
+                      borderRadius: "10px",
                     },
                   }}
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.description && fk.errors.description && (
-                  <div className="error">{fk.errors.description}</div>
-                )}
-              </FormControl> */}
+                >
+                  <MenuItem value={"Withdrawl Type"}>Withdrawl Type</MenuItem>
+                  <MenuItem value={"main_withdrawl"}>Main Withdrawl</MenuItem>
+                  <MenuItem value={"game_withdrawl"}>Game Withdrawl</MenuItem>
+                </TextField>
+              </FormControl>
+
               <Button
                 sx={style.paytmbtntwo}
                 type="submit"
@@ -556,22 +488,37 @@ function Withdrawl() {
             </Box>
           </Box>
         </Box>
-        <Box className="!my-10 !mx-5 "  sx={{ "&>p": { textAlign: "center", color: "red" } }}>
-    
-      <Box
-        className="mt-2 !py-4 border border-red-500  rounded-lg"
-        sx={{ "&>p": { color: "", fontSize: "18px" } }}
-      >
-          <p className="  !text-green-600 !m-1">⭐️ Need to bet ₹0.00  to be able to withdraw .</p>
-        <p className="  !text-green-600 !m-1">⭐️ Withdraw time 00:00-23:59 </p>
-        <p className="  !text-green-600 !m-1">⭐️ Inday Remaining Withdrawal Times 3</p>
-        <p className="  !text-green-600 !m-1">⭐️ Withdrawal amount range ₹110.00-₹50,000.00</p>
-        <p className="  !text-green-600 !m-1">⭐️ Please confirm your beneficial account information before withdrawing. If your information is incorrect, our company will not be liable for the amount of loss</p>
-        <p className="  !text-green-600 !m-1">⭐️ If your beneficial information is incorrect, please contact customer service</p>
-
-      
-     </Box>
-    </Box>
+        <Box
+          className="!my-10 !mx-5 "
+          sx={{ "&>p": { textAlign: "center", color: "red" } }}
+        >
+          <Box
+            className="mt-2 !py-4 border border-red-500  rounded-lg"
+            sx={{ "&>p": { color: "", fontSize: "18px" } }}
+          >
+            <p className="  !text-green-600 !m-1">
+              ⭐️ Need to bet ₹0.00 to be able to withdraw .
+            </p>
+            <p className="  !text-green-600 !m-1">
+              ⭐️ Withdraw time 00:00-23:59{" "}
+            </p>
+            <p className="  !text-green-600 !m-1">
+              ⭐️ Inday Remaining Withdrawal Times 3
+            </p>
+            <p className="  !text-green-600 !m-1">
+              ⭐️ Withdrawal amount range ₹110.00-₹50,000.00
+            </p>
+            <p className="  !text-green-600 !m-1">
+              ⭐️ Please confirm your beneficial account information before
+              withdrawing. If your information is incorrect, our company will
+              not be liable for the amount of loss
+            </p>
+            <p className="  !text-green-600 !m-1">
+              ⭐️ If your beneficial information is incorrect, please contact
+              customer service
+            </p>
+          </Box>
+        </Box>
         <Dialog open={openDialogBox}>
           <div className="!p-5 !max-w-[300px]">
             <p className="!font-bold text-center flex-col">

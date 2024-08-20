@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import Layout from '../../component/Layout/Layout';
-import { Box, Button, Container, Typography } from '@mui/material';
-import { useNavigate ,NavLink } from 'react-router-dom';
-import { zubgback, zubgbackgrad, zubggray, zubgmid, zubgtext } from '../../Shared/color';
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import {  GetRentListFn } from '../../services/apicalling';
+import { Box, Container, Typography } from '@mui/material';
+import React from 'react';
 import { useQuery } from 'react-query';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Layout from '../../component/Layout/Layout';
+import { GetRentListFn } from '../../services/apicalling';
+import { zubgback, zubgbackgrad, zubggray, zubgtext } from '../../Shared/color';
 import CustomCircularProgress from '../../Shared/CustomCircularProgress';
 
 

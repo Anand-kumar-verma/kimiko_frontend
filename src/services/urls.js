@@ -25,7 +25,7 @@ export const endpoint = {
   rent_now_history :`${baseUrl}/api/buy_product_report`,
   report_income :`${baseUrl}/api/view_income_report`,
   deposit_request: `${baseUrl}/api/insert_fund_request_vapayout`,
-
+  
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
@@ -42,6 +42,7 @@ export const endpoint = {
   cash_deposit: `${baseUrl}/api/deposit`,
   payment_url: "https://vpayout.com/Upi_controller/insert_fund_request_online",
   withdraw_payment: `${baseUrl}/api/payout-request`,
+  payout_request_new: `${baseUrl}/api/payout_request_new`,
   get_name_by_referral_code: `${baseUrl}/api/get-user-reffral-name`,
   payment_request: `${baseUrl}/api/deposit-request`,
   registration_bonus: `${baseUrl}/api/welcom-bonus`,

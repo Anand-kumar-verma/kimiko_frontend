@@ -18,10 +18,8 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { zubgback, zubgmid, zubgtext } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import dp2 from "../../assets/dp2.png";
-import dp3 from "../../assets/dp3.png";
-import dp4 from "../../assets/dp4.png";
 import edit from "../../assets/images/banking.png";
+import buy from "../../assets/images/casino.png";
 import customer from "../../assets/images/customer-service.png";
 import gift from "../../assets/images/gift-box-with-a-bow.png";
 import graph from "../../assets/images/graph (1).png";
@@ -38,10 +36,9 @@ import trans from "../../assets/images/translate.png";
 import s from "../../assets/images/wallet (1).png";
 import dpt from "../../assets/images/wallet (3).png";
 import wtd from "../../assets/images/withdraw.png";
-import buy from "../../assets/images/casino.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import {  walletamount } from "../../services/apicalling";
+import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 
 function Account() {
