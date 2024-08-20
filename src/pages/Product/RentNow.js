@@ -60,7 +60,7 @@ const RentNow = () => {
           <KeyboardArrowLeftOutlinedIcon />
         </Box>
         <Typography variant="body1" color="initial">
-          Rent Now History
+          Buy Now History
         </Typography>
         <Box  >
         </Box>
