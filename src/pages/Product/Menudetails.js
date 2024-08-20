@@ -99,19 +99,19 @@ const MenuDetails = () => {
                                 </div>
                                 <div className="flex justify-between my-2" >
                                     <p className="text-gray-600 font-semibold">Validity Period: </p>
-                                    <span className='!font-bold  ml-5 !text-black'> ₹ {data?.m_pack_roi_days || 0}</span>
+                                    <span className='!font-bold  ml-5 !text-black'>  {data?.m_pack_roi_days || 0} Days</span>
                                 </div>
                                 <div className="flex justify-between my-2"  >
                                     <p className="text-gray-600 font-semibold">Cashback income: </p>
                                     <span className='!font-bold  ml-5 !text-black'> ₹ {data?.m_pack_growth_amt || 0}</span>
                                 </div>
 
-                                <p className='!text-center !my-5 font-bold border-b-2 '>  🌟California Almonds🌟</p>
-                                <p className='my-2 !font-bold'> Daily Income: <span className='!font-bold  !text-purple-700'>0💰</span></p>
-                                <p className='my-2 !font-bold'> Cycle:  <span className='!font-bold  !text-purple-700'>0 days</span></p>
-                                <p className='my-2 !font-bold'> Cashback income:  <span className='!font-bold  !text-purple-700'>3% cashback on every purchase.</span></p>
-                                <p className='my-2 !font-bold'> Direct income:<span className='!font-bold  !text-purple-700'> 10%; on get every refferal ID </span></p>
-                                <p className='my-2 !font-bold'>💰Purchase Bonus:  <span className='!font-bold  !text-purple-700'>1600Rs (Buyer will receive 76.19Rs/day bonus)</span></p>
+                                <p className='!text-center !my-5 font-bold border-b-2 '>  🌟{data?.m_pack_name || "Solar"}🌟</p>
+                                <p className='my-2 !font-bold'> Daily Income: <span className='!font-bold  !text-purple-700'>{data?.m_pack_roi_income}💰</span></p>
+                                <p className='my-2 !font-bold'> Cycle:  <span className='!font-bold  !text-purple-700'>{data?.m_pack_roi_days || 0} days</span></p>
+                                <p className='my-2 !font-bold'> Cashback income:  <span className='!font-bold  !text-purple-700'>{data?.m_pack_growth_amt || 0} cashback on every purchase.</span></p>
+                                <p className='my-2 !font-bold'> Direct income:<span className='!font-bold  !text-purple-700'> {data?.m_pack_direct_amt} on get every refferal ID </span></p>
+                                <p className='my-2 !font-bold'>💰Purchase Bonus:  <span className='!font-bold  !text-purple-700'>0</span></p>
 
                             </div>
                             <Button sx={style.paytmbtn} onClick={handleBuyNow}
