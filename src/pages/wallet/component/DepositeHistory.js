@@ -37,7 +37,7 @@ function DepositeHistory() {
       refetchOnWindowFocus:false
     }
   );
-  const res = data?.data?.data?.filter((i) => i?.tr15_depo_type === "Winzo")
+  const res = data?.data?.data
 
 
   return (
@@ -213,7 +213,6 @@ function DepositeHistory() {
                 </Box>
               );
             })}
-            {/* <Button sx={style.paytmbtntwo}>All history</Button> */}
           </Box>
         </Box>
       </Container>
