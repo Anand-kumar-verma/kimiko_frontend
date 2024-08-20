@@ -70,9 +70,6 @@ function WalletRecharge() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  // const aviator_data = localStorage.getItem("aviator_data");
-  const user_name =
-    aviator_login_data && JSON.parse(aviator_login_data)?.username;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [deposit_req_data, setDeposit_req_data] = React.useState();
   const [loding, setloding] = React.useState(false);
@@ -110,7 +107,6 @@ function WalletRecharge() {
         await audioRefMusic?.current?.pause();
       }
     } catch (error) {
-      // Handle any errors during play
       console.error("Error during play:", error);
     }
   };

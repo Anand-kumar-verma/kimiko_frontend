@@ -20,8 +20,8 @@ function MainPageOFIncome() {
 
   const data_array = [
     {
-      to: "/account/income-main/registration-bonus",
-      name: "Registration Bonus",
+      to: "/account/income-main/cashback",
+      name: "Cashback Income ",
       logo: (
         <CurrencyExchangeIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -30,8 +30,8 @@ function MainPageOFIncome() {
       ),
     },
     {
-      to: "/account/income-main/deposit-bonus",
-      name: "Deposit Bonus",
+      to: "/account/income-main/income",
+      name: "Direct Income",
       logo: (
         <PriceCheckIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -40,8 +40,8 @@ function MainPageOFIncome() {
       ),
     },
     {
-      to: "/account/income-main/referral-bonus",
-      name: "Referral Bonus",
+      to: "/account/income-main/level-income",
+      name: "Level Income",
       logo: (
         <RedeemIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -50,8 +50,8 @@ function MainPageOFIncome() {
       ),
     },
     {
-      to: "/account/income-main/daily-cash-back-bonus",
-      name: "Daily Cashback Bonus",
+      to: "/account/income-main/roi-income",
+      name: "ROI Income",
       logo: (
         <LocalConvenienceStoreIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -59,56 +59,56 @@ function MainPageOFIncome() {
         />
       ),
     },
-    {
-      to: "/account/income-main/daily-salary-bonus",
-      name: "Daily Salary Bonus",
-      logo: (
-        <AccountBalanceIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
-    {
-      to: "/account/income-main/self-trading-bonus",
-      name: "Self Trading Bonus",
-      logo: (
-        <StoreIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
-    {
-      to: "/account/income-main/team-trading-bonus",
-      name: "Team Trading  Bonus",
-      logo: (
-        <CardGiftcardIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
-    {
-      to: "/account/income-main/team-reward-bonus",
-      name: "Team Reward Bonus",
-      logo: (
-        <Diversity2Icon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
-    {
-      to: "/account/income-main/daily-non-working",
-      name: "Daily Non Working Bonus",
-      logo: (
-        <Balance
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
+    // {
+    //   to: "/account/income-main/daily-salary-bonus",
+    //   name: "Daily Salary Bonus",
+    //   logo: (
+    //     <AccountBalanceIcon
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
+    // {
+    //   to: "/account/income-main/self-trading-bonus",
+    //   name: "Self Trading Bonus",
+    //   logo: (
+    //     <StoreIcon
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
+    // {
+    //   to: "/account/income-main/team-trading-bonus",
+    //   name: "Team Trading  Bonus",
+    //   logo: (
+    //     <CardGiftcardIcon
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
+    // {
+    //   to: "/account/income-main/team-reward-bonus",
+    //   name: "Team Reward Bonus",
+    //   logo: (
+    //     <Diversity2Icon
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
+    // {
+    //   to: "/account/income-main/daily-non-working",
+    //   name: "Daily Non Working Bonus",
+    //   logo: (
+    //     <Balance
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
   ];
   return (
    

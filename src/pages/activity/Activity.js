@@ -67,7 +67,7 @@ function Activity() {
             color="initial"
             sx={{ mt: 2, fontSize: "16px", fontWeight: "600" }}
           >
-            Activity
+            Income Report
           </Typography>
           <Box></Box>
         </Box>

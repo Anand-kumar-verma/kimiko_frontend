@@ -1,5 +1,4 @@
 
-import Recharge from "../pages/Product/Deposit";
 import Menu from "../pages/Product/Menu";
 import MenuDetails from "../pages/Product/Menudetails";
 import RentNow from "../pages/Product/RentNow";
@@ -15,7 +14,7 @@ import FundTransferHistory from "../pages/account/Component/FundTransferHistory"
 import GameNotification from "../pages/account/Component/GameNotification";
 import Gamestaticks from "../pages/account/Component/Gamestaticks";
 import Gift from "../pages/account/Component/Gift";
-import Income from "../pages/account/Component/Income";
+import Income from "../pages/account/AccountSubSection/Income/IncomeSubParts/Income";
 import Languages from "../pages/account/Component/Language";
 import LoginPassword from "../pages/account/Component/LoginPassword";
 import Mail from "../pages/account/Component/Mail";
@@ -53,6 +52,9 @@ import WalletRecharge from "../pages/wallet/component/WalletRecharge";
 import WithdravalHistory from "../pages/wallet/component/WithdravalHistory";
 import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
 import Win from "../pages/win/win";
+import Cashback from "../pages/account/AccountSubSection/Income/IncomeSubParts/Cashback";
+import ROI from "../pages/account/AccountSubSection/Income/IncomeSubParts/RoiIncome";
+import Level from "../pages/account/AccountSubSection/Income/IncomeSubParts/LevelBonus";
 
 export const routes = [
     {
@@ -64,10 +66,22 @@ export const routes = [
         component: <Account />
     },
     {
-        path: "/income",
+        path: "/account/income-main/income",
         component: <Income />
     },
-    
+    {
+        path: "/account/income-main/cashback",
+        component: <Cashback />
+    },
+    {
+        path: "/account/income-main/roi-income",
+        component: <ROI  />
+    },
+    {
+        path: "/account/income-main/level-income",
+        component: <Level />
+    },
+   
     {
         path: "/menu",
         component: <Menu />
@@ -75,10 +89,6 @@ export const routes = [
     {
         path: "/rent",
         component: <RentNow />
-    },
-    {
-        path: "/recharge",
-        component: <Recharge />
     },
     {
         path: "/menu/menu-details/:m_pack_id",

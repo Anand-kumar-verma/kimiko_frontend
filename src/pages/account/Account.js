@@ -371,8 +371,8 @@ function Account() {
                 logo: customer,
               },
               {
-                to: "/feedback",
-                name: "Feedback",
+                to: "/activity",
+                name: "Report",
                 logo: hand,
               },
             ]?.map((i) => {
