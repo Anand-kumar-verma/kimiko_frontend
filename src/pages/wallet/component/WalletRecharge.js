@@ -98,7 +98,6 @@ function WalletRecharge() {
         await audioRefMusic?.current?.pause();
       }
     } catch (error) {
-      // Handle any errors during play
       console.error("Error during play:", error);
     }
   };

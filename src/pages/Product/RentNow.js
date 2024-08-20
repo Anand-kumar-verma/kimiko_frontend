@@ -63,7 +63,6 @@ const RentNow = () => {
           Rent Now History
         </Typography>
         <Box  >
-          {/* <Balance  onClick={() => navigate('/income')}/> */}
         </Box>
       </Box>
       <div className="p-4 mb-20">
@@ -89,9 +88,6 @@ const RentNow = () => {
       </div>
     </div>
     
-
-   
-  
     </Container>
   </Layout>
   

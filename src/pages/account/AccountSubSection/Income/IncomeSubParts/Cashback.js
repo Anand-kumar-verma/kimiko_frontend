@@ -22,7 +22,7 @@ import { endpoint } from "../../../../../services/urls";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 
-function Level() {
+function Cashback() {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
@@ -43,10 +43,10 @@ function Level() {
   null;
 const user_id = value && JSON.parse(value)?.UserID; 
 
-  const Level_bonus_functoin = async () => {    
+  const Cashback_bonus_functoin = async () => {    
     const reqbody = {
         userid: user_id || "",
-        type: 5,
+        type: 4,
         start: startDate,
         end: endDate
     };
@@ -61,8 +61,8 @@ const user_id = value && JSON.parse(value)?.UserID;
 
 
   const { isLoading, data } = useQuery(
-    ["Level_bonus"],
-    () => Level_bonus_functoin(),
+    ["cashback_bonus"],
+    () => Cashback_bonus_functoin(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
@@ -116,7 +116,7 @@ const user_id = value && JSON.parse(value)?.UserID;
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon />
             </Box>
-            <p>Level Income</p>
+            <p>Cashback Income</p>
           </Box>
           <div>
             <img className="" src={nodatafoundimage} />
@@ -141,7 +141,7 @@ const user_id = value && JSON.parse(value)?.UserID;
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <p>Level Income</p>
+          <p>Cashback Income</p>
         </Box>
         <div
           className="!flex !w-fullpx-5 justify-between py-1 items-center"
@@ -235,7 +235,7 @@ const user_id = value && JSON.parse(value)?.UserID;
   );
 }
 
-export default Level;
+export default Cashback;
 
 const style = {
   header: {
