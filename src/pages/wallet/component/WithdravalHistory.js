@@ -37,7 +37,7 @@ function WithdravalHistory() {
     }
   );
 
-  const res = data?.data?.data?.filter((i) => i?.type === "Winzo")
+  const res = data?.data?.data || []
 
   return (
     <Layout>

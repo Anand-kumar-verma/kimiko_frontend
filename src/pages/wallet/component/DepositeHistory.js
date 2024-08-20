@@ -37,7 +37,7 @@ function DepositeHistory() {
       refetchOnWindowFocus:false
     }
   );
-  const res = data?.data?.data
+  const res = data?.data?.data || []
 
 
   return (
