@@ -27,7 +27,7 @@ const Original = () => {
     <Box>
       <Box sx={style.root}>
         <Box sx={style.roottwo} component={NavLink} 
-        to={status?.find((i)=>i?.title==="aviator_status")?.status!== "0" && "/playgame"}
+        // to={status?.find((i)=>i?.title==="aviator_status")?.status!== "0" && "/playgame"}
          >
           <Box sx={{ width: "70%", height: "100%", position: 'relative' }}>
             <Box sx={{
