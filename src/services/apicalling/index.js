@@ -371,3 +371,12 @@ export const GetRentListFn = async () => {
     console.log(e);
   }
 };
+export const GetPanelBanner = async ()=>{
+  try{
+    const response = await axios.get(endpoint.panel_banner);
+    return response;
+  } catch(e){
+    toast (e?.message);
+    console.log(e)
+  }
+}

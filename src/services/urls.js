@@ -25,6 +25,8 @@ export const endpoint = {
   rent_now_history :`${baseUrl}/api/buy_product_report`,
   report_income :`${baseUrl}/api/view_income_report`,
   deposit_request: `${baseUrl}/api/insert_fund_request_vapayout`,
+  panel_banner:`${baseUrl}/api/panel_banner`,
+  get_balance:`${baseUrl}/api/get_balance`,
   
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,

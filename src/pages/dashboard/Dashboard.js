@@ -45,13 +45,13 @@ import two from "../../assets/images/2.jpg";
 import bgms from "../../assets/images/bgms1.png";
 import gmbg from "../../assets/images/gmbg.jpg";
 import winp4 from "../../assets/images/jacpot.jpg";
-import logo from "../../assets/logokimi.png";
 import cash from "../../assets/images/money.png";
 import stage from "../../assets/images/pod2.png";
 import position2 from "../../assets/images/positio2.png";
 import position3 from "../../assets/images/position3.png";
 import position1 from "../../assets/images/positoin1.png";
 import deposit from "../../assets/images/security-box.png";
+import logo from "../../assets/logokimi.png";
 import sajid from "../../assets/sajid.PNG";
 import tanveer from "../../assets/tanveer.PNG";
 import Layout from "../../component/Layout/Layout";
@@ -177,7 +177,7 @@ function Dashboard() {
   };
   useEffect(() => {
     if (isAvailableUser) {
-      setpoicy(false);
+      setpoicy(true);
     }
   }, []);
 
