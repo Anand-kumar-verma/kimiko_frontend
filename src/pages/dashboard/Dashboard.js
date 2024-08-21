@@ -16,7 +16,6 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import copy from "clipboard-copy";
-import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -84,17 +83,9 @@ function Dashboard() {
   );
 
   const isAvailableUser = sessionStorage.getItem("isAvailableUser");
-  const value =
-    (localStorage.getItem("logindataen") &&
-      CryptoJS.AES.decrypt(
-        localStorage.getItem("logindataen"),
-        "anand"
-      )?.toString(CryptoJS.enc.Utf8)) ||
-    null;
   const navigate = useNavigate();
   const [poicy, setpoicy] = React.useState(false);
   const [type_of_game, settype_of_game] = React.useState("");
-  const user_id = value && JSON.parse(value).UserID;
   const [winnner_data, setwinnerdata] = useState([]);
   const [openbannerurl, setopenbannerurl] = useState(""); 
   const [loding, setloding] = useState(false);

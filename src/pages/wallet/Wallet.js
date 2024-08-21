@@ -170,7 +170,7 @@ function Wallet() {
               <Typography variant="h2" color="initial" sx={{ color: zubgtext }}>
                 ₹{" "}
                 {Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0) ||
+                  Number(response?.main_balance || 0)||
                   0
                 )?.toFixed(2)}
               </Typography>
@@ -179,7 +179,7 @@ function Wallet() {
                 color="initial"
                 sx={{ color: zubgtext }}
               >
-                Total balance
+                Total Main Wallet Balance
               </Typography>
             </Box>
           </Box>
@@ -581,7 +581,7 @@ function Wallet() {
                 </IconButton>
               </p>
               <p>
-                <img src={sunlotteryhomebanner} />
+                <img src={sunlotteryhomebanner} alt="" />
               </p>
             </div>
           </Dialog>
