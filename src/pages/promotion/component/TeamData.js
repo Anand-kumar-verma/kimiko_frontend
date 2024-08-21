@@ -65,7 +65,7 @@ function TeamData() {
             </AccordionSummary>
           </Accordion>
         }
-         {[1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]?.map((i,index) => {
+         {[1, 2, 3, 4, 5]?.map((i,index) => {
             return (
               <Box  sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
               <Accordion className="!rounded-lg" >
