@@ -719,7 +719,7 @@ function Dashboard() {
             >
               <div
                 style={{
-                  background: zubgtext,
+                  background: "",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",

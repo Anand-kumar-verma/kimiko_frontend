@@ -23,7 +23,7 @@ const Notification = () => {
             className="mt-2"
             sx={{ "&>p": { color: "white", fontSize: "12px" } }}
           >
-            <img src={`https://admin.kimiko.biz/public/${item?.image}`} alt="" />
+            <img src={`https://admin.kimiko.biz/public/${item?.image}`} alt="" className="!w-64" />
           </Box>
         )
       })}
