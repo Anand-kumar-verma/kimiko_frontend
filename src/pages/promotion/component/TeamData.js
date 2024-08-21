@@ -60,7 +60,7 @@ function TeamData() {
               <div className="w-full grid grid-cols-3 pr-2">
                 <span className="">Levels</span>
                 <p className="">Members</p>
-                <p className="">Deposit Amount</p>
+                <p className="">Recharge Amount</p>
               </div>
             </AccordionSummary>
           </Accordion>
@@ -82,7 +82,7 @@ function TeamData() {
                     <p className="">
                       {rupees}{" "}
                       <span className="text-green-200">
-                        {result?.filter((j)=>j?.LEVEL === i)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0}
+                        {result?.filter((j)=>j?.LEVEL === i)?.reduce((a,b)=>a+Number(b?.recharge_amount||0 ),0) || 0}
                       </span>{" "}
                     </p>
                   </div>
@@ -94,6 +94,7 @@ function TeamData() {
                         <span>S.No.</span>
                         <span>User Id</span>
                         <span className="">Name</span>
+                       
                       </div>
                       <div className="h-[2px] w-full "></div>
                       {result?.filter((j)=>j?.LEVEL === i)?.map((i, index) => {
@@ -101,11 +102,12 @@ function TeamData() {
                           <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                             <span>{index + 1}</span>
                             <span className=" ">
-                              {i?.id || "No data found"}
+                              {i?.username || "No data found"}
                             </span>
                             <span className=" ">
                               {i?.full_name || "No data found"}
                             </span>
+                          
                           </div>
                         );
                       })}
