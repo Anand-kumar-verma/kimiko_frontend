@@ -74,14 +74,15 @@ img {
   font-weight: 500;
 }
 
-.loginfields>div>input {
+/* .loginfields>div>input {
   background-color: #0f0232cc !important;
   border-radius: 10px;
   border: 1px solid #ff82823d;
-}
+} */
 
 .loginfields>div>input.MuiInputBase-input {
   color: white !important;
+  padding: 13px 0px;
 }
 
 
@@ -107,13 +108,16 @@ img {
 }
 
 .btnLogin {
-  background: #E71D1E !important;
+  background: #227E22 !important;
   font-size: 14px !important;
   font-weight: 600 !important;
   text-transform: capitalize !important;
   color: white !important;
   border-radius: 5px !important;
   padding: 10px 30px !important;
+  width: 100% !important;
+  border-radius: 25px !important;
+  margin-top: 15px !important;
 }
 
 .btnregister {
@@ -132,21 +136,24 @@ img {
   text-transform: capitalize !important;
   width: 95% !important;
   margin: auto !important;
-  border-radius: 25px !important;
+  border-radius: 5px !important;
   color: white !important;
   margin-left: 2.5% !important;
   padding: 10px !important;
 }
 
-.loginfields>div>input {
-  background-color: transparent !important;
-  border-radius: 5px;
-  border: 1px solid #E71D1E !important;
+.loginfields>div {
+  background-color: #163300 !important;
+  border-radius: 25px;
 }
 
-.loginfields>div>input.MuiInputBase-input {
+.loginfields>div>div>p {
+  color: white;
+}
+
+.loginfields>div {
   color: white !important;
-  padding: 13px 10px;
+  padding: 0px 40px;
 }
 
 
@@ -165,15 +172,14 @@ img {
 }
 
 .loginfieldspass {
-  background: transparent !important;
-  border-radius: 5px !important;
-  border: 1px solid #E71D1E;
+  background: #163300 !important;
+  border-radius: 25px !important;
   padding: 0px 10px;
 }
 
 .loginfieldspass>.MuiInputBase-input {
   color: white !important;
-  padding: 13px 10px;
+  padding: 13px 65px;
 }
 
 .loginfieldspass>.MuiInputBase-input::placeholder {
@@ -1439,4 +1445,28 @@ img {
   100% {
     opacity: 1;
   }
+}
+
+.loginfieldspass2 {
+  background: #163300 !important;
+  border-radius: 25px !important;
+  padding: 0px 10px;
+}
+
+.loginfieldspass2>.MuiInputBase-input {
+  color: white !important;
+  padding: 13px 30px;
+}
+
+.loginfieldspass2>.MuiInputBase-input::placeholder {
+  color: white !important;
+  font-size: 13px;
+}
+
+.loginfieldspass2>input {
+  color: black;
+}
+
+.loginfieldspass2>fieldset {
+  border: none !important;
 }

@@ -23,8 +23,9 @@ import CryptoJS from 'crypto-js';
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { LoginMobileSchemaValidaton } from "../../../Shared/Validation";
-import { zubgmid, zubgtext } from "../../../Shared/color";
+import { kidarkgreen, kigreen, kilightgreen, zubgmid, zubgtext } from "../../../Shared/color";
 import { endpoint } from "../../../services/urls";
+import { ArrowRightAltTwoTone } from "@mui/icons-material";
 function LoginWithMobile() {
   // const device_id = uuid.v4();
   const [showPassword, setShowPassword] = React.useState(false);
@@ -118,12 +119,12 @@ function LoginWithMobile() {
       }}
       onSubmit={fk.handleSubmit}
     >
-      <Box mt={2}>
+      <Box mt={10}>
         <FormControl fullWidth>
-          <Stack direction="row" className="loginlabel">
-            <Typography variant="h3">Phone number</Typography>
-          </Stack>
           <TextField
+            InputProps={{
+              startAdornment: <InputAdornment position="start" sx={{ color: 'white !important' }}>+91</InputAdornment>,
+            }}
             id="mob"
             name="mob"
             type="number"
@@ -144,9 +145,6 @@ function LoginWithMobile() {
       </Box>
       <Box mt={3}>
         <FormControl fullWidth>
-          <Stack direction="row" className="loginlabel">
-            <Typography variant="h3">Password</Typography>
-          </Stack>
           <OutlinedInput
             id="pass"
             name="pass"
@@ -156,6 +154,7 @@ function LoginWithMobile() {
             onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
             className="loginfieldspass"
             type={showPassword ? "text" : "password"}
+
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -165,9 +164,9 @@ function LoginWithMobile() {
                   edge="end"
                 >
                   {showPassword ? (
-                    <VisibilityOff sx={{ color: zubgmid }} />
+                    <VisibilityOff sx={{ color: kilightgreen }} />
                   ) : (
-                    <Visibility sx={{ color: zubgmid }} />
+                    <Visibility sx={{ color: kilightgreen }} />
                   )}
                 </IconButton>
               </InputAdornment>
@@ -176,17 +175,20 @@ function LoginWithMobile() {
           {fk.touched.pass && fk.errors.pass && (
             <div className="error">{fk.errors.pass}</div>
           )}
-          <p className="!text-end col-span-1 ">
-            <span
-              className="!text-white !cursor-pointer"
-              onClick={() => navigate("/forget-password")}
-            >
-              Forget Password?
-            </span>
-          </p>
+          <Box mt={2}>
+            <p className="!text-end col-span-1 ">
+              <span
+                style={{ color: kidarkgreen, fontWeight: '600' }}
+                className=" !cursor-pointer"
+                onClick={() => navigate("/forget-password")}
+              >
+                Forget Password?
+              </span>
+            </p>
+          </Box>
         </FormControl>
       </Box>
-      <Box mt={1}>
+      {/* <Box mt={1}>
         <FormControl fullWidth>
           <FormControlLabel
             required
@@ -203,29 +205,22 @@ function LoginWithMobile() {
             sx={{ color: 'white', fontSize: '13px', fontWeight: '800' }}
           />
         </FormControl>
-      </Box>
-      <Stack direction="row" className="loginbtnbox" mt={2}>
-
+      </Box> */}
       <Button
-          type="submit"
-          value="Submit"
-          component={NavLink}
-          className="btnLogin"
-          onClick={fk.handleSubmit}
-        >
-          Let's go
-        </Button>
-        <Button
-          component={NavLink}
-          className="btnregister"
-          mt={2}
-          to="/register"
-          sx={{ color: zubgtext }}
-        >
-          Register
-        </Button>
-       
-      </Stack>
+        type="submit"
+        value="Submit"
+        component={NavLink}
+        className="btnLogin"
+        onClick={fk.handleSubmit}
+      >
+        Login
+      </Button>
+      <Box sx={{ width: '100%', textAlign: 'center' }} mt={10}>
+        <Typography variant="body1" sx={{ color: kidarkgreen, fontSize: '13px !important', fontWeight: '500 !important' }}>"Don't have an account yet? "</Typography>
+        <NavLink to="/register">
+          <Typography variant="body1" sx={{ color: kigreen, fontSize: '17px', fontWeight: '600', mt: 1, }}>Register Now <ArrowRightAltTwoTone /></Typography>
+        </NavLink>
+      </Box>
       <CustomCircularProgress isLoading={loding} />
     </Box>
   );

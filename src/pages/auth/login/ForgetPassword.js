@@ -15,9 +15,10 @@ import OtpInput from "react-otp-input";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { ForgetPasswordSchemaValidation } from "../../../Shared/Validation";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/logokimi.png";
 import poster from "../../../assets/images/poster3.jpg";
 import { endpoint } from "../../../services/urls";
+import { kigrad } from "../../../Shared/color";
 function ForgetPassword() {
   const [loding, setloding] = useState(false);
   const navigate = useNavigate();
@@ -94,12 +95,12 @@ function ForgetPassword() {
   return (
     <Container
       sx={{
-        backgroundImage: `url(${poster})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100% 100%",
+        background: kigrad,
         minHeight: "100vh",
+        pb: '100px !important',
       }}
     >
+      <Typography variant="body1" color="initial" sx={{ textAlign: 'center', py: 2, fontWeight: '600', fontSize: '17px' }}>Forget Password</Typography>
       <Box sx={{}}>
         <Box
           sx={{
@@ -116,37 +117,8 @@ function ForgetPassword() {
             ></Box>
           </Box>
           <Box
-            sx={{
-              mt: "6vh",
-              background: "white",
-              borderRadius: "10px",
-              padding: "20px 10px",
-              "& > p:nth-child(1)": {
-                fontSize: "20px",
-                fontWeight: "500",
-                color: "white",
-              },
-              "& > p:nth-child(2)": {
-                fontSize: "12px",
-                fontWeight: "400",
-                color: "white",
-              },
-              background: "rgba(255, 255, 255, 0.15)",
-              WebkitBackdropFilter: "blur(17px)",
-              backdropFilter: "blur(17px)",
-              border: "1px solid rgba(255, 255, 255, 0.075)",
-            }}
+
           >
-            <div className="error text-center">
-              After sent OTP , Please do not refresh your page.{" "}
-              <span className="!text-green-500">Thank You</span>
-            </div>
-            <Typography variant="body1" color="initial">
-              Forget Password{" "}
-            </Typography>
-            <Typography variant="body1" color="initial">
-              Please Enter mobile no for otp, and verify OTP for reset password.
-            </Typography>
             <Box
               component="form"
               sx={{
@@ -156,16 +128,13 @@ function ForgetPassword() {
               }}
               onSubmit={fk.handleSubmit}
             >
-              <FormControl fullWidth sx={{ mt: 2 }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3">Enter email or mobile no</Typography>
-                </Stack>
+              <FormControl fullWidth sx={{ mt: 10 }}>
                 <>
                   <TextField
                     id="mobile"
                     type="number"
                     name="mobile"
-                    placeholder="Enter email or mobile no"
+                    placeholder="Enter  mobile no"
                     className="loginfields"
                     value={fk.values.email}
                     onChange={fk.handleChange}
@@ -229,12 +198,12 @@ function ForgetPassword() {
                   className="btnLogin"
                   onClick={fk.handleSubmit}
                 >
-                  {openOTPBox ? "Submit" : "Send OTP"}
+                  {openOTPBox ? "Submit" : "Forget Password"}
                 </Button>
-                <p className="!text-sm text-right">
+                <p className="!text-sm text-right" style={{ marginTop: '30PX' }}>
                   <span
                     className="!cursor-pointer"
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/auth")}
                   >
                     Return to Login
                   </span>

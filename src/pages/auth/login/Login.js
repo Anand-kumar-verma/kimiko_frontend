@@ -12,6 +12,7 @@ import LoginWithEmail from "./LoginWithEmail";
 import LoginWithMobile from "./LoginWithMobile";
 import CryptoJS from 'crypto-js'
 import { useDispatch, useSelector } from "react-redux";
+import { kigrad } from "../../../Shared/color";
 function Login() {
   const navigate = useNavigate()
   const [Nav, setNav] = useState(1);
@@ -27,13 +28,12 @@ function Login() {
   return (
     <Container
       sx={{
-        backgroundImage: `url(${poster})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100% 100%",
+        background: kigrad,
         minHeight: "100vh",
         pb: '100px !important',
       }}
     >
+      <Typography variant="body1" color="initial" sx={{ textAlign: 'center', py: 2, fontWeight: '600', fontSize: '17px' }}>Login</Typography>
       <Box sx={{}}>
         <Box
           sx={{
@@ -49,7 +49,7 @@ function Login() {
               sx={{ width: "200px", margin: "auto" }}
             ></Box>
           </Box>
-          <Box
+          {/* <Box
             sx={{
               mt: "3vh",
               background: "white",
@@ -71,14 +71,14 @@ function Login() {
               border: "1px solid rgba(255, 255, 255, 0.075)",
             }}
           >
-            <Typography variant="body1" color="initial">
+          <Typography variant="body1" color="initial">
               Login{" "}
             </Typography>
             <Typography variant="body1" color="initial">
               Please log in with your phone number or email If you forget your
               password, please contact customer service
             </Typography>
-            <Box>
+          <Box>
               <Stack direction="row">
                 <Box
                   component={NavLink}
@@ -96,8 +96,9 @@ function Login() {
                 </Box>
               </Stack>
             </Box>
-            {Nav === 1 ? <LoginWithMobile /> : <LoginWithEmail />}
-          </Box>
+          {Nav === 1 ?  : <LoginWithEmail />}
+          </Box> */}
+          <LoginWithMobile />
         </Box>
       </Box>
     </Container>
