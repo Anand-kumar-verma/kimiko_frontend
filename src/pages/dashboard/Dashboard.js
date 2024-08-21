@@ -470,7 +470,7 @@ function Dashboard() {
                     }}
                     className="cursor-pointer   flex flex-col items-center justify-center"
                   >
-                    <img className="w-[90px] h-[90px] " src={i?.img} />
+                    <img className="w-[90px] h-[90px] " src={i?.img} alt="" />
                   </a>
                   <p
                     className="!text-sm font-bold"
@@ -742,7 +742,7 @@ function Dashboard() {
                   openbannerurl === "" ? (
                   <Notification handleClosepolicy={handleClosepolicy} />
                 ) : (
-                  <img src={openbannerurl} className="w-[100%] h-[100%]" />
+                  <img src={openbannerurl} className="w-[100%] h-[100%]" alt="" />
                 )}
               </DialogContent>
             </Dialog>
