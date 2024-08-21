@@ -176,14 +176,7 @@ function LoginWithMobile() {
           {fk.touched.pass && fk.errors.pass && (
             <div className="error">{fk.errors.pass}</div>
           )}
-          <p className="!text-end col-span-1 ">
-            <span
-              className="!text-white !cursor-pointer"
-              onClick={() => navigate("/forget-password")}
-            >
-              Forget Password?
-            </span>
-          </p>
+         
         </FormControl>
       </Box>
       <Box mt={1}>

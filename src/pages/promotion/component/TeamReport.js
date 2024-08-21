@@ -82,7 +82,7 @@ function TeamReports() {
                   <span className="">{i?.username}</span>
                   <span className="!text-center ">{i?.full_name || "No data found"}</span>
                   <span className="">{i?.mobile || "987654210"}</span>
-                  <span className="">{i?.total_recharge || "0"}</span>
+                  <span className="">{i?.recharge_amount || "0"}</span>
 
                 </div>
               );
