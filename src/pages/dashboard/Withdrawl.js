@@ -496,22 +496,21 @@ function Withdrawl() {
             className="mt-2 !py-4 border border-red-500  rounded-lg"
             sx={{ "&>p": { color: "", fontSize: "12px" } }}
           >
+           
             <p className="  !text-green-600 !m-1">
-              ⭐️ Need to bet ₹ 0.00 to be able to withdraw .
+              ⭐️ Withdraw time 10:00-5:59{" "}
             </p>
+           
             <p className="  !text-green-600 !m-1">
-              ⭐️ Withdraw time 00:00-23:59{" "}
-            </p>
-            <p className="  !text-green-600 !m-1">
-              ⭐️ Inday Remaining Withdrawal Times 3
-            </p>
-            <p className="  !text-green-600 !m-1">
-              ⭐️ Withdrawal amount range ₹110.00-₹50,000.00
+              ⭐️ Withdrawal minimum amount range ₹ 199.00
             </p>
             <p className="  !text-green-600 !m-1">
               ⭐️ Please confirm your beneficial account information before
-              withdrawing. If your information is incorrect, our company will
-              not be liable for the amount of loss
+              withdrawing. 
+            </p>
+            <p className="  !text-green-600 !m-1">
+              ⭐️ If your information is incorrect, our company will
+              not be able for the amount of loss .
             </p>
             <p className="  !text-green-600 !m-1">
               ⭐️ If your beneficial information is incorrect, please contact
