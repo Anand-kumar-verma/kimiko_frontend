@@ -6,6 +6,11 @@ import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color
 import Layout from '../../../component/Layout/Layout';
 import Giftimg from '../../../assets/images/gift-removebg-preview.png'
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import CryptoJS from "crypto-js";
+import toast from 'react-hot-toast';
+import { endpoint } from '../../../services/urls';
+import axios from 'axios';
+import { useFormik } from 'formik';
 
 function LoginPassword() {
   const navigate = useNavigate();
@@ -17,7 +22,7 @@ function LoginPassword() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [show_confirm_password, set_show_confirm_password] =
     React.useState(false);
-  const [agree, setAgree] = React.useState(false);
+  const [isLoading, setLoading] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
@@ -27,6 +32,85 @@ function LoginPassword() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  // const {  data: profile } = useQuery(
+  //   ["myprofile"],
+  //   () => MyProfileDataFn(),
+  //   {
+  //     refetchOnMount: false,
+  //     refetchOnReconnect: false,
+  //     refetchOnWindowFocus: false
+  //   }
+  // );
+
+  // const result = profile?.data?.data || [];
+
+  const login_data =
+  (localStorage.getItem("logindataen") &&
+    CryptoJS.AES.decrypt(
+      localStorage.getItem("logindataen"),
+      "anand"
+    )?.toString(CryptoJS.enc.Utf8)) ||
+  null;
+
+const user_id = login_data && JSON.parse(login_data)?.UserID;
+
+  const initialValue = {
+    userid: "",
+    old_pass: "",
+    new_pass: "",
+    confirm_new_pass: "",
+  };
+
+  const fk = useFormik({
+    initialValues: initialValue,
+    enableReinitialize: true,
+    onSubmit: () => {
+      if (!fk.values.old_pass || !fk.values.new_pass || !fk.values.confirm_new_pass) {
+        toast.error("Please enter all fields");
+        return;
+      }
+      // if (fk.values.old_pass !== result?.password) {
+      //   toast.error("Old password is incorrect");
+      //   return;
+      // }
+      if (fk.values.old_pass === fk.values.new_pass) {
+        toast.error("New password must be different from old password");
+        return;
+      }
+      if (fk.values.new_pass !== fk.values.confirm_new_pass) {
+        toast.error("New password and confirm password do not match");
+        return;
+      }
+      const reqbody = {
+        userid: user_id,
+        old_pass: fk.values.old_pass,
+        new_pass: fk.values.new_pass,
+        confirm_new_pass: fk.values.confirm_new_pass,
+      };
+      changePassword(reqbody);
+    },
+  });
+
+  const changePassword = async (reqbody) => {
+    setLoading(true);
+
+    try {
+      const response = await axios.post(endpoint.change_password, reqbody, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    toast.success(response?.data?.msg);
+      navigate("/account");
+    } catch (error) {
+      toast.error(error?.message);
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <Layout>
       <Container sx={style.container}>
@@ -34,7 +118,7 @@ function LoginPassword() {
           <Box component={NavLink} onClick={() => goBack()}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">Change login passwords</Typography>
+          <Typography variant="body1" color="initial">Change login password</Typography>
           <Typography variant="body1" color="initial"> </Typography>
         </Box>
         <Box sx={{ width: '95%', marginLeft: '2.5%', background: zubgback, borderRadius: '10px', padding: '10px', mt: '10px', }}>
