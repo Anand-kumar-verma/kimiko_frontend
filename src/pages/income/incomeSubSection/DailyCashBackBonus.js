@@ -8,13 +8,12 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgtext, zubgshadow, zubgwhite } from "../../../Shared/color";
+import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
 import {
-  dailyWalletIncomeFn,
-  registrationBonusFn
+  dailyWalletIncomeFn
 } from "../../../services/apicalling";
-import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 function DailyCashBackBonus() {
   const navigate = useNavigate();
   const goBack = () => {
@@ -27,8 +26,8 @@ function DailyCashBackBonus() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
   const res = data?.data?.data;
@@ -82,7 +81,7 @@ function DailyCashBackBonus() {
                 <div className="!w-full !flex !justify-between">
                   <span style={{ color: zubgtext }}>{i?.l01_transection_type}</span>
                   <span className="!text-green-800 !text-lg">
-                    {i?.l01_amount}                           
+                    {i?.l01_amount}
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
@@ -93,7 +92,7 @@ function DailyCashBackBonus() {
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
-                 
+
                 </div>
               </div>
             );

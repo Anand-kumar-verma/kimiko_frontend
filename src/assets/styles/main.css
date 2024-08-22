@@ -1474,3 +1474,36 @@ img {
 button {
   text-transform: none !important;
 }
+
+a {
+  text-transform: none !important;
+}
+
+
+
+.kip13 {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.kip15 {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+.w95 {
+  width: 95% !important;
+  margin-left: 2.5% !important;
+}
+
+.flexb {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.flexs {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

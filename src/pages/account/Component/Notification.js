@@ -4,7 +4,7 @@ import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import { Box, Container, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from '../../../Shared/color';
+import { zubgback, zubgshadow, zubgtext, zubgwhite } from '../../../Shared/color';
 import Layout from '../../../component/Layout/Layout';
 
 function Notification() {

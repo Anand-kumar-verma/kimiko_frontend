@@ -1,3 +1,4 @@
+import { ArrowRightAltTwoTone } from "@mui/icons-material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
@@ -15,6 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -23,13 +25,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
-import { kidarkgreen, kigrad, kigreen, zubgbackgrad, zubgtext } from "../../../Shared/color";
+import { kidarkgreen, kigrad, kigreen, zubgbackgrad } from "../../../Shared/color";
 import logo from "../../../assets/logokimi.png";
-import poster from "../../../assets/images/poster3.jpg";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
-import CryptoJS from "crypto-js";
-import { ArrowRightAltTwoTone } from "@mui/icons-material";
 function Register() {
   const url = new URL(window.location.href);
   const [refParam, setrefParam] = useState(url.searchParams.get("ref") || "");

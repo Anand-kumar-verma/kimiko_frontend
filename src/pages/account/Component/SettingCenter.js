@@ -1,22 +1,22 @@
-import * as React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import CopyAllIcon from "@mui/icons-material/CopyAll";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Box, Container, Dialog, Stack, Typography } from "@mui/material";
-import profile from "../../../assets/images/profile.jpg";
-import synchronize from "../../../assets/images/padlock.png";
-import mail from "../../../assets/images/email.png";
-import updated from "../../../assets/images/quality-control.png";
-import Layout from "../../../component/Layout/Layout";
-import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../../Shared/color";
-import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { MyProfileDataFn } from "../../../services/apicalling";
+import * as React from "react";
 import { useQuery } from "react-query";
+import { NavLink, useNavigate } from "react-router-dom";
 import dp1 from "../../../assets/dp1.png";
 import dp2 from "../../../assets/dp2.png";
 import dp3 from "../../../assets/dp3.png";
 import dp4 from "../../../assets/dp4.png";
+import mail from "../../../assets/images/email.png";
+import synchronize from "../../../assets/images/padlock.png";
+import updated from "../../../assets/images/quality-control.png";
+import Layout from "../../../component/Layout/Layout";
+import { MyProfileDataFn } from "../../../services/apicalling";
+import { zubgback, zubgtext } from "../../../Shared/color";
+import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
+
 function SettingCenter() {
   const navigate = useNavigate();
   const [openbox, setOpenBox] = React.useState(false);

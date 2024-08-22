@@ -17,7 +17,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { gray, kidarkgreen, kigrad, kigreen, kilightgreen, zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
+import { gray, kidarkgreen, kigreen, zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
 import aviator_game_image from "../../assets/aviator_game_image.png";
 import one from "../../assets/images/1.jpg";
 import three from "../../assets/images/123.png";
@@ -55,22 +55,22 @@ import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
 // kimiko imports
 
-import kislider1 from '../../assets/kiimages/slider1.jpg'
-import kislider2 from '../../assets/kiimages/slider2.jpg'
-import kislider3 from '../../assets/kiimages/slider3.jpg'
-import kislider4 from '../../assets/kiimages/slider4.jpg'
-import kislider5 from '../../assets/kiimages/slider5.jpg'
-import recharge from '../../assets/kiimages/mobile.png'
-import withdraw from '../../assets/kiimages/hand.png'
-import bonus from '../../assets/kiimages/bonus.png'
-import order from '../../assets/kiimages/order-now.png'
-import task from '../../assets/kiimages/clipboard.png'
-import news from '../../assets/kiimages/info.png'
-import about from '../../assets/kiimages/messages.png'
-import shop from '../../assets/kiimages/shop.png'
 import { CurrencyExchangeTwoTone, NavigateNextRounded } from "@mui/icons-material";
 import SwipeRightAltRoundedIcon from '@mui/icons-material/SwipeRightAltRounded';
-import coffeem1 from '../../assets/kiimages/coffeem1.jpg'
+import bonus from '../../assets/kiimages/bonus.png';
+import task from '../../assets/kiimages/clipboard.png';
+import coffeem1 from '../../assets/kiimages/coffeem1.jpg';
+import withdraw from '../../assets/kiimages/hand.png';
+import news from '../../assets/kiimages/info.png';
+import about from '../../assets/kiimages/messages.png';
+import recharge from '../../assets/kiimages/mobile.png';
+import order from '../../assets/kiimages/order-now.png';
+import shop from '../../assets/kiimages/shop.png';
+import kislider1 from '../../assets/kiimages/slider1.jpg';
+import kislider2 from '../../assets/kiimages/slider2.jpg';
+import kislider3 from '../../assets/kiimages/slider3.jpg';
+import kislider4 from '../../assets/kiimages/slider4.jpg';
+import kislider5 from '../../assets/kiimages/slider5.jpg';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -1310,7 +1310,6 @@ const styles = {
   kipercentageLabel: { textAlign: 'center', color: kidarkgreen, fontSize: '13px', fontWeight: '600', position: 'absolute', zIndex: 100, left: '45%', top: '1%' },
   kiprogressBar: { height: '100%', background: kigreen, width: '40%', borderRadius: '0px 30px 30px 0px', position: 'absolute', top: 0, left: 0 },
   kibutton: { width: '49%', borderRadius: '50px 0px 10px 0px', py: 1, px: 0, pl: 2, fontSize: '13px', '&>svg': { fontSize: '20px', mb: '3px' } },
-
 };
 
 

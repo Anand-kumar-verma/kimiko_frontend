@@ -1,18 +1,18 @@
+import { Star } from "@mui/icons-material";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import { Box, Container, Typography } from "@mui/material";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubggray, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { zubgback, zubggray, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
-import { MygetdataFn, MypromotionDataFn } from "../../../services/apicalling";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { MygetdataFn } from "../../../services/apicalling";
 import { rupees } from "../../../services/urls";
-import { Star } from "@mui/icons-material";
 function TeamData() {
   const { isLoading, data } = useQuery(
     ["get_level"],
@@ -33,7 +33,7 @@ function TeamData() {
           width: "100%",
           height: "100vh",
           overflow: "auto",
-          mb:10
+          mb: 10
         }}
       >
         <CustomCircularProgress isLoading={isLoading} />
@@ -65,9 +65,9 @@ function TeamData() {
             </AccordionSummary>
           </Accordion>
         }
-         {[1, 2, 3, 4, 5]?.map((i,index) => {
-            return (
-              <Box  sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
+        {[1, 2, 3, 4, 5]?.map((i, index) => {
+          return (
+            <Box sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
               <Accordion className="!rounded-lg" >
                 <AccordionSummary
                   expandIcon={<ArrowDownwardIcon className="!text-white" />}
@@ -77,12 +77,12 @@ function TeamData() {
                 >
                   <div className="w-full grid grid-cols-3 pr-2">
                     <span className="">Level: {i}</span>
-                    <p className="">{result?.filter((j)=>j?.LEVEL === i)?.length}
-                      </p>
+                    <p className="">{result?.filter((j) => j?.LEVEL === i)?.length}
+                    </p>
                     <p className="">
                       {rupees}{" "}
                       <span className="text-green-200">
-                        {result?.filter((j)=>j?.LEVEL === i)?.reduce((a,b)=>a+Number(b?.recharge_amount||0 ),0) || 0}
+                        {result?.filter((j) => j?.LEVEL === i)?.reduce((a, b) => a + Number(b?.recharge_amount || 0), 0) || 0}
                       </span>{" "}
                     </p>
                   </div>
@@ -94,10 +94,10 @@ function TeamData() {
                         <span>S.No.</span>
                         <span>User Id</span>
                         <span className="">Name</span>
-                       
+
                       </div>
                       <div className="h-[2px] w-full "></div>
-                      {result?.filter((j)=>j?.LEVEL === i)?.map((i, index) => {
+                      {result?.filter((j) => j?.LEVEL === i)?.map((i, index) => {
                         return (
                           <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                             <span>{index + 1}</span>
@@ -107,7 +107,7 @@ function TeamData() {
                             <span className=" ">
                               {i?.full_name || "No data found"}
                             </span>
-                          
+
                           </div>
                         );
                       })}
@@ -116,9 +116,9 @@ function TeamData() {
                 </AccordionDetails>
               </Accordion>
             </Box>
-            );
-          })}
-   </Container >
+          );
+        })}
+      </Container >
     </Layout >
   );
 }

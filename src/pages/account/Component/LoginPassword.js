@@ -1,11 +1,10 @@
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import { Box, Button, Container, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
 import Layout from '../../../component/Layout/Layout';
-import Giftimg from '../../../assets/images/gift-removebg-preview.png'
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 function LoginPassword() {
   const navigate = useNavigate();

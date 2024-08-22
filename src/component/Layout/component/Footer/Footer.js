@@ -1,17 +1,12 @@
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import StorefrontRoundedIcon from '@mui/icons-material/StorefrontRounded';
 import { Box, Stack, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import puzzle from "../../../../assets/images/activity (1).png";
-import puzzleact from "../../../../assets/images/activity.png";
-import promotionact from "../../../../assets/images/diamond (4).png";
-import promotion from "../../../../assets/images/diamond (6).png";
-import home from "../../../../assets/images/home (2).png";
-import homeact from "../../../../assets/images/home (3).png";
-import tabBarBg from "../../../../assets/images/tabBarBg-301df93c.png";
-import useract from "../../../../assets/images/user (6).png";
-import user from "../../../../assets/images/user (7).png";
-import wallet from "../../../../assets/images/wallet (4).png";
-import walletact from "../../../../assets/images/wallet (5).png";
-import { zubgtext } from "../../../../Shared/color";
+import { kidarkgreen, kigreen, zubgtext } from "../../../../Shared/color";
+import MediationRoundedIcon from '@mui/icons-material/MediationRounded';
+import WalletRoundedIcon from '@mui/icons-material/WalletRounded';
+import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
+
 
 function Footer() {
   const navigate = useNavigate();
@@ -27,78 +22,59 @@ function Footer() {
     >
       <Box sx={style.root}>
         <Stack direction="row" sx={style.stack}>
-          <Box sx={style.nav} onClick={() => navigate("/dashboard")}>
+          <Box sx={{ ...style.nav, background: location.pathname == "/dashboard" ? kigreen : '' }} onClick={() => navigate("/dashboard")}>
             {location.pathname == "/dashboard" && (
-              
-              <Box component="img" src={homeact} width={25} />
+              <HomeRoundedIcon sx={{ color: kidarkgreen }} />
+
             )}
             {location.pathname !== "/dashboard" && (
-              <Box component="img" src={home} width={25} />
+              <HomeRoundedIcon sx={{ color: 'white' }} />
             )}
-            <Typography variant="body1" sx={style.text}>
+            <Typography variant="body1" className="kip13" sx={{ color: 'white' }}>
               Home
             </Typography>
           </Box>
-          <Box sx={style.nav} onClick={() => navigate("/menu")}>
+          <Box sx={{ ...style.nav, background: location.pathname == "/menu" ? kigreen : '' }} onClick={() => navigate("/menu")}>
             {location.pathname == "/menu" && (
-              <Box component="img" src={puzzleact} width={25} />
+              <StorefrontRoundedIcon sx={{ color: kidarkgreen }} />
             )}
             {location.pathname !== "/menu" && (
-              <Box component="img" src={puzzle} width={25} />
+              <StorefrontRoundedIcon sx={{ color: 'white' }} />
             )}
-            <Typography variant="body1" sx={style.text}>
+            <Typography variant="body1" className="kip13" sx={{ color: 'white' }}>
               Product
             </Typography>
           </Box>
-          <Box sx={style.nav} onClick={() => navigate("/promotion")}>
-            <Box sx={{ position: "relative", width: "100%" }}>
-              <Box
-                className="promotion"
-                sx={{
-                  width: "55px",
-                  height: "55px",
-                  background: "white",
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "2px solid #F02257",
-                  position: "absolute",
-                  top: " -62px",
-                  left: "22%",
-                }}
-              >
-                {location.pathname == "/promotion" && (
-                  <Box component="img" src={promotionact} width={35} />
-                )}
-                {location.pathname !== "/promotion" && (
-                  <Box component="img" src={promotion} width={35} />
-                )}
-              </Box>
-            </Box>
-            <Typography variant="body1" sx={style.text}>
+          <Box sx={{ ...style.nav, background: location.pathname == "/promotion" ? kigreen : '' }} onClick={() => navigate("/promotion")}>
+            {location.pathname == "/promotion" && (
+              <MediationRoundedIcon sx={{ color: kidarkgreen }} />
+            )}
+            {location.pathname !== "/promotion" && (
+              <MediationRoundedIcon sx={{ color: 'white' }} />
+            )}
+            <Typography variant="body1" className="kip13" sx={{ color: 'white' }}>
               Promotion
             </Typography>
           </Box>
-          <Box onClick={() => navigate("/wallet")} sx={style.nav}>
+          <Box onClick={() => navigate("/wallet")} sx={{ ...style.nav, background: location.pathname == "/wallet" ? kigreen : '' }} >
             {location.pathname == "/wallet" && (
-              <Box component="img" src={walletact} width={25} />
+              <WalletRoundedIcon sx={{ color: kidarkgreen }} />
             )}
             {location.pathname !== "/wallet" && (
-              <Box component="img" src={wallet} width={25} />
+              <WalletRoundedIcon sx={{ color: 'white' }} />
             )}
-            <Typography variant="body1" sx={style.text}>
+            <Typography variant="body1" className="kip13" sx={{ color: 'white' }}>
               Wallet
             </Typography>
           </Box>
-          <Box sx={style.nav} onClick={() => navigate("/account")}>
+          <Box sx={{ ...style.nav, background: location.pathname == "/account" ? kigreen : '' }} onClick={() => navigate("/account")}>
             {location.pathname == "/account" && (
-              <Box component="img" src={useract} width={25} />
+              <MenuOpenRoundedIcon sx={{ color: kidarkgreen }} />
             )}
             {location.pathname !== "/account" && (
-              <Box component="img" src={user} width={25} />
+              <MenuOpenRoundedIcon sx={{ color: 'white' }} />
             )}
-            <Typography variant="body1" sx={style.text}>
+            <Typography variant="body1" className="kip13" sx={{ color: 'white' }}>
               Account
             </Typography>
           </Box>
@@ -112,22 +88,26 @@ export default Footer;
 
 const style = {
   root: {
-    backgroundImage: `url(${tabBarBg})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    height: "70px",
-    borderRadius: "10px 10px 0px 0px",
-    padding: "22px 20px 0px 20px",
+    background: kidarkgreen,
+    height: "60px",
+    borderRadius: "5px 5px 0px 0px",
+    // padding: "10px 20px 0px 20px",
     maxWidth: "575px",
     margin: "auto",
+    position: 'relative',
+    zIndex: 5000000,
+    overflow: 'hidden',
   },
   icon: { fontSize: "25px", "&>path": { color: "white !important" } },
   text: { fontSize: "13px", fontWeight: 500, color: zubgtext },
   stack: { alignItems: "end", justifyContent: "space-between" },
   nav: {
+    width: '20%',
+
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    height: "60px",
   },
 };

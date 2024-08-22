@@ -6,9 +6,9 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
 import { dailyBonusFn } from "../../../services/apicalling";
-import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 
 function DailyNonWorking() {
   const navigate = useNavigate();
@@ -22,8 +22,8 @@ function DailyNonWorking() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
   const res = data?.data?.data;
@@ -77,7 +77,7 @@ function DailyNonWorking() {
                 <div className="!w-full !flex !justify-between">
                   <span style={{ color: zubgtext }}>{i?.l01_transection_type}</span>
                   <span className="!text-green-800 !text-lg">
-                  ₹ {i?.l01_amount}
+                    ₹ {i?.l01_amount}
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
@@ -87,7 +87,7 @@ function DailyNonWorking() {
                     {moment(i?.l01_date)?.format("HH:mm:ss")}
                   </span>
                 </div>
-               
+
               </div>
             );
           })}

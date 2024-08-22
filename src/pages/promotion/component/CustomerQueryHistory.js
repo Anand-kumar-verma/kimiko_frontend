@@ -1,21 +1,15 @@
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
     Box,
-    Button,
     Container,
-    IconButton,
-    Stack,
-    Typography,
+    Typography
 } from "@mui/material";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
-import deposit from "../../../assets/images/list.png";
+import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
 import {
     CustomerFn
@@ -37,7 +31,7 @@ function CustomerQueryHistory() {
         }
     );
     const res = data?.data?.result || []
-   
+
     return (
         <Layout>
             <Container
@@ -63,67 +57,67 @@ function CustomerQueryHistory() {
 
                 <Box>
                     <Box
-                     className="!mx-10"
+                        className="!mx-10"
                     >
-                         {res?.map((i) => {
+                        {res?.map((i) => {
                             return (
                                 <Box >
-                                           <div className="w-full">
-                                         <p className=" !my-5  flex justify-center w-full !text-gray-600 !text-xs">
-                                         --------------- {moment(i?.date || Date.now()).format("DD-MM-YYYY")}---------------
-                
-                 
+                                    <div className="w-full">
+                                        <p className=" !my-5  flex justify-center w-full !text-gray-600 !text-xs">
+                                            --------------- {moment(i?.date || Date.now()).format("DD-MM-YYYY")}---------------
+
+
                                         </p>
                                     </div>
-                                  
+
                                     <div>
-                                         <p className="bg-blue-600 !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
+                                        <p className="bg-blue-600 !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
                                             Activity Type
                                         </p>
                                         <div className="w-full !flex !justify-end mt-5">
-                                        <p  className="bg-blue-600 !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600"> 
-                                            {i?.activity_type}
-                                        </p>
+                                            <p className="bg-blue-600 !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
+                                                {i?.activity_type}
+                                            </p>
                                         </div>
-                                        
+
                                     </div>
                                     <div>
-                                         <p className="bg-blue-600 !mt-10 justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
-                                         Transaction ID
+                                        <p className="bg-blue-600 !mt-10 justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
+                                            Transaction ID
                                         </p>
                                         <div className="w-full !flex !justify-end mt-10">
-                                        <p  className="bg-blue-600 !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600"> 
-                                            {i?.transaction_id}
-                                        </p>
+                                            <p className="bg-blue-600 !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
+                                                {i?.transaction_id}
+                                            </p>
                                         </div>
-                                        
+
                                     </div>
                                     <div>
-                                         <p className="bg-blue-600 !mt-10 justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
-                                         Image
+                                        <p className="bg-blue-600 !mt-10 justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
+                                            Image
                                         </p>
                                         <div className="w-full !flex !justify-end mt-10">
-                                        <p  className=" !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border "> 
-                                        {i && i.imgurl && i.images && i.images[0] &&
-                                                <img src={`${i.imgurl}/${i.images[0]}`} alt="images"
-                                                    className="!h-28 !w-28" />
-                                            }
-                                        </p>
+                                            <p className=" !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border ">
+                                                {i && i.imgurl && i.images && i.images[0] &&
+                                                    <img src={`${i.imgurl}/${i.images[0]}`} alt="images"
+                                                        className="!h-28 !w-28" />
+                                                }
+                                            </p>
                                         </div>
-                                        
+
                                     </div>
                                     <div>
-                                         <p className="bg-blue-600 !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
-                                         Description
+                                        <p className="bg-blue-600 !mt-10  justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
+                                            Description
                                         </p>
                                         <div className="w-full !flex !justify-end mt-10">
-                                        <p  className="bg-blue-600 !mt-10 !mb-10 justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600"> 
-                                        {i?.description}
-                                        </p>
+                                            <p className="bg-blue-600 !mt-10 !mb-10 justify-start w-fit !text-white p-1 px-4 rounded-full border border-blue-600">
+                                                {i?.description}
+                                            </p>
                                         </div>
-                                        
+
                                     </div>
-                                  
+
                                 </Box>
                             );
                         })}

@@ -17,7 +17,6 @@ import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import deposit from "../../../assets/images/list.png";
 import Layout from "../../../component/Layout/Layout";
-import gmbg from "../../../assets/images/gmbg.jpg";
 import {
   depositHistoryFunction
 } from "../../../services/apicalling";
@@ -33,8 +32,8 @@ function DepositeHistory() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
   const res = data?.data?.data || []

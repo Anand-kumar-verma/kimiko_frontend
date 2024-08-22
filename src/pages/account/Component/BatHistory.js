@@ -12,19 +12,17 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import CryptoJS from 'crypto-js';
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
-import colorpr from "../../../assets/images/colorpr (2).png";
-import Lottery from "../../../assets/images/lottery.png";
+import { zubgback, zubgbackgrad, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import aviator_game_image from "../../../assets/aviator_game_image.png";
 import Layout from "../../../component/Layout/Layout";
 import { MyHistoryFn, getAllBetsAviator } from "../../../services/apicalling";
 import { rupees } from "../../../services/urls";
-import aviator_game_image from "../../../assets/aviator_game_image.png";
-import CryptoJS from 'crypto-js'
 function BatHistorys() {
   const [selectedGame, setSelectedGame] = React.useState("Lottery");
   const [selectedGameOption, setselectedGameOption] = React.useState("");
@@ -55,8 +53,8 @@ function BatHistorys() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
 

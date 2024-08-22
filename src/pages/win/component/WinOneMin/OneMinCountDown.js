@@ -27,19 +27,18 @@ import howToPlay from "../../../../assets/images/user-guide.png";
 import {
   dummycounterFun,
   trx_game_history_data_function,
-  trx_my_history_data,
   trx_my_history_data_function,
-  updateNextCounter,
+  updateNextCounter
 } from "../../../../redux/slices/counterSlice";
+import { My_All_HistoryFn } from "../../../../services/apicalling";
 import { changeImages } from "../../../../services/schedular";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
-import {  My_All_HistoryFn } from "../../../../services/apicalling";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const OneMinCountDown = ({ fk ,setBetNumber }) => {
+const OneMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const client = useQueryClient();
   const [one_min_time, setOne_min_time] = useState(0);
@@ -147,10 +146,10 @@ const OneMinCountDown = ({ fk ,setBetNumber }) => {
     dispatch(trx_game_history_data_function(game_history?.data?.data));
   }, [game_history?.data?.data]);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history_data?.data?.data));
-    one_min_time>=58 ||one_min_time===0 &&  dispatch(dummycounterFun());
-  },[my_history_data?.data?.data])
+    one_min_time >= 58 || one_min_time === 0 && dispatch(dummycounterFun());
+  }, [my_history_data?.data?.data])
 
   const handlePlaySound = async () => {
     try {

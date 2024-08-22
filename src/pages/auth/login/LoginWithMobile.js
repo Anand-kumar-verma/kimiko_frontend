@@ -3,15 +3,12 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
   Box,
   Button,
-  Checkbox,
   FormControl,
-  FormControlLabel,
   IconButton,
   InputAdornment,
   OutlinedInput,
-  Stack,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -19,13 +16,13 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 // import * as uuid from "uuid";
+import { ArrowRightAltTwoTone } from "@mui/icons-material";
 import CryptoJS from 'crypto-js';
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { LoginMobileSchemaValidaton } from "../../../Shared/Validation";
-import { kidarkgreen, kigreen, kilightgreen, zubgmid, zubgtext } from "../../../Shared/color";
+import { kidarkgreen, kigreen, kilightgreen } from "../../../Shared/color";
 import { endpoint } from "../../../services/urls";
-import { ArrowRightAltTwoTone } from "@mui/icons-material";
 function LoginWithMobile() {
   // const device_id = uuid.v4();
   const [showPassword, setShowPassword] = React.useState(false);

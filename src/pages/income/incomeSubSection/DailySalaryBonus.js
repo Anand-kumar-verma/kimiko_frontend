@@ -12,8 +12,7 @@ import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
 import {
-  dailySalaryIncomeFn,
-  dailyWalletIncomeFn
+  dailySalaryIncomeFn
 } from "../../../services/apicalling";
 
 function DailySalaryBonus() {
@@ -28,8 +27,8 @@ function DailySalaryBonus() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
   const res = data?.data?.data;

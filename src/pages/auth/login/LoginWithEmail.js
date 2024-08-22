@@ -19,12 +19,12 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 // import * as uuid from "uuid";
+import CryptoJS from "crypto-js";
+import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { LoginEmailSchemaValidaton } from "../../../Shared/Validation";
 import { zubgmid, zubgtext } from "../../../Shared/color";
 import { endpoint } from "../../../services/urls";
-import { storeCookies } from "../../../Shared/CookieStorage";
-import CryptoJS from "crypto-js";
 function LoginWithEmail() {
   // const device_id = uuid.v4();
   const [loding, setloding] = useState(false);
@@ -212,7 +212,7 @@ function LoginWithEmail() {
         </FormControl>
       </Box>
       <Stack direction="row" className="loginbtnbox" mt={2}>
-      <Button
+        <Button
           type="submit"
           value="Submit"
           component={NavLink}
@@ -231,7 +231,7 @@ function LoginWithEmail() {
         >
           Register
         </Button>
-       
+
       </Stack>
       <CustomCircularProgress isLoading={loding} />
     </Box>

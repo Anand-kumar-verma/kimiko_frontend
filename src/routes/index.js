@@ -13,14 +13,12 @@ import FundTransfer from "../pages/account/Component/FundTransfer";
 import FundTransferHistory from "../pages/account/Component/FundTransferHistory";
 import GameNotification from "../pages/account/Component/GameNotification";
 import Gamestaticks from "../pages/account/Component/Gamestaticks";
-import Gift from "../pages/account/Component/Gift";
 import Income from "../pages/account/AccountSubSection/Income/IncomeSubParts/Income";
 import Languages from "../pages/account/Component/Language";
 import LoginPassword from "../pages/account/Component/LoginPassword";
 import Mail from "../pages/account/Component/Mail";
 import Notification from "../pages/account/Component/Notification";
 import SettingCenter from "../pages/account/Component/SettingCenter";
-import Activity from "../pages/activity/Activity";
 import Register from "../pages/auth/register/Register";
 import Dashboard from "../pages/dashboard/Dashboard";
 import FundRequest from "../pages/dashboard/FundRequest";
@@ -75,13 +73,13 @@ export const routes = [
     },
     {
         path: "/account/income-main/roi-income",
-        component: <ROI  />
+        component: <ROI />
     },
     {
         path: "/account/income-main/level-income",
         component: <Level />
     },
-   
+
     {
         path: "/menu",
         component: <Menu />
@@ -110,7 +108,7 @@ export const routes = [
         path: "/wallet/Recharge",
         component: <WalletRecharge />
     },
-   
+
     {
         path: "/wallet",
         component: <Wallet />
@@ -122,10 +120,6 @@ export const routes = [
     {
         path: "/notification",
         component: <Notification />
-    },
-    {
-        path: "/gift",
-        component: <Gift />
     },
     {
         path: "/gamestaticks",
@@ -168,12 +162,12 @@ export const routes = [
         component: <GameNotification />
     },
     {
-        path:"/services",
-        component:<Services/>
+        path: "/services",
+        component: <Services />
     },
     {
-        path:"/queries",
-        component:<CustomerQueryHistory/>
+        path: "/queries",
+        component: <CustomerQueryHistory />
     },
     {
         path: "/test",
@@ -187,10 +181,7 @@ export const routes = [
         path: "/dashboard",
         component: <Dashboard />
     },
-    {
-        path: "/activity",
-        component: <Activity />
-    },
+
     {
         path: "/win",
         component: <Win />
@@ -283,5 +274,5 @@ export const routes = [
         path: "/deposit/qr-screen",
         component: <QRScreen />
     },
-    
+
 ]

@@ -1,20 +1,22 @@
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
   Box,
   Container,
   Dialog,
   IconButton,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
+import axios from "axios";
+import CryptoJS from "crypto-js";
 import * as React from "react";
 import ReactApexChart from "react-apexcharts";
+import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
-  zubgback,
+  kidarkgreen,
   zubggray,
   zubgtext
 } from "../../Shared/color";
@@ -24,14 +26,11 @@ import wdhistory from "../../assets/images/list.png";
 import deposite from "../../assets/images/manuscript.png";
 import wallet from "../../assets/images/wallet (5).png";
 import withdrow from "../../assets/images/withdraw.png";
+import logo from "../../assets/logokimi.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { endpoint } from "../../services/urls";
-import axios from "axios";
-import toast from "react-hot-toast";
-import CryptoJS from "crypto-js";
-
 
 function Wallet() {
   const navigate = useNavigate();
@@ -119,22 +118,15 @@ function Wallet() {
       <Container
         className="no-scrollbar"
         sx={{
-          background: zubgback,
+          background: '#E7E7E7',
           width: "100%",
           height: "100vh",
           overflow: "auto",
         }}
       >
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={() => navigate(-1)}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Wallet
-          </Typography>
-          <Box component={NavLink} onClick={() => navigate(-1)}></Box>
-        </Box>
-
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
         {/*  */}
         <Box
           sx={{
@@ -170,7 +162,7 @@ function Wallet() {
               <Typography variant="h2" color="initial" sx={{ color: zubgtext }}>
                 ₹{" "}
                 {Number(
-                  Number(response?.main_balance || 0)||
+                  Number(response?.main_balance || 0) ||
                   0
                 )?.toFixed(2)}
               </Typography>
@@ -207,7 +199,7 @@ function Wallet() {
                 padding: 2,
               }}
             >
-                <Box sx={{ width: "50%", position: "relative" }}>
+              <Box sx={{ width: "50%", position: "relative" }}>
                 <Typography
                   variant="body1"
                   color="initial"
@@ -246,7 +238,7 @@ function Wallet() {
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                 Main Wallet 
+                    Main Wallet
                   </Typography>
                 </Box>
               </Box>
@@ -289,7 +281,7 @@ function Wallet() {
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                   Fund Wallet 
+                    Fund Wallet
                   </Typography>
                 </Box>
               </Box>
@@ -332,7 +324,7 @@ function Wallet() {
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                  Game  Wallet 
+                    Game  Wallet
                   </Typography>
                 </Box>
               </Box>
@@ -375,7 +367,7 @@ function Wallet() {
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                  Game  Winning 
+                    Game  Winning
                   </Typography>
                 </Box>
               </Box>

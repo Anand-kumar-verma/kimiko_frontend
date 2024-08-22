@@ -1,8 +1,9 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
+import { useFormik } from "formik";
 import * as React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
+import { zubgback, zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
 import pr0 from "../../../../assets/images/0.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
@@ -17,10 +18,7 @@ import ApplyBetDialogBox from "../ApplyBetDialogBox";
 import Chart from "./Chart";
 import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
-import OneMinCountDown from "./OneMinCountDown";
 import ThreeMinCountDown from "./ThreeMinCountDown";
-import TwoMinCountDown from "./TwoMinCountDown";
-import { useFormik } from "formik";
 
 function WinFiveMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
@@ -45,7 +43,7 @@ function WinFiveMin({ gid }) {
   return (
     <Box className="mainBox">
       {React.useMemo(() => {
-        return <ThreeMinCountDown fk={fk}  setBetNumber={setBetNumber}/>
+        return <ThreeMinCountDown fk={fk} setBetNumber={setBetNumber} />
       }, [])}
       {React.useMemo(() => {
         return (
@@ -284,13 +282,13 @@ function WinFiveMin({ gid }) {
             ?.split("_")?.[1]
             ?.padStart(2, "0")}`
         ) > 0.1 && (
-        <ApplyBetDialogBox
-          apply_bit_dialog_box={apply_bit_dialog_box}
-          setapply_bit_dialog_box={setapply_bit_dialog_box}
-          type={dialog_type}
-          gid={gid}
-        />
-      )}
+          <ApplyBetDialogBox
+            apply_bit_dialog_box={apply_bit_dialog_box}
+            setapply_bit_dialog_box={setapply_bit_dialog_box}
+            type={dialog_type}
+            gid={gid}
+          />
+        )}
     </Box>
   );
 }

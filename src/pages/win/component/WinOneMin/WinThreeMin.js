@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
+import { zubgback, zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
 import pr0 from "../../../../assets/images/0.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
@@ -24,7 +24,7 @@ function WinThreeMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
   const [apply_bit_dialog_box, setapply_bit_dialog_box] = React.useState(false);
   const [dialog_type, setdialog_type] = React.useState(0);
-  const [timing , setBetNumber] = useState(100)
+  const [timing, setBetNumber] = useState(100)
   // const [show_this_one_min_time,setshow_this_one_min_time] = useState()
 
   const initialValues = {
@@ -43,7 +43,7 @@ function WinThreeMin({ gid }) {
   return (
     <Box className="mainBox">
       {React.useMemo(() => {
-        return <TwoMinCountDown fk={fk} setBetNumber={setBetNumber}/>
+        return <TwoMinCountDown fk={fk} setBetNumber={setBetNumber} />
       }, [])}
       {React.useMemo(() => {
         return (
@@ -290,7 +290,7 @@ function WinThreeMin({ gid }) {
             setapply_bit_dialog_box={setapply_bit_dialog_box}
             type={dialog_type}
             gid={gid}
-          
+
           />
         )}
     </Box>

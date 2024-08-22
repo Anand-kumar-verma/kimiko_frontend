@@ -1,8 +1,7 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
   Box,
-  Container,
-  boxClasses
+  Container
 } from "@mui/material";
 import moment from "moment";
 import * as React from "react";
@@ -10,12 +9,11 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
 import {
-  depositBonusFn,
-  registrationBonusFn
+  depositBonusFn
 } from "../../../services/apicalling";
-import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 
 function DepositBonus() {
   const navigate = useNavigate();
@@ -29,8 +27,8 @@ function DepositBonus() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
   const res = data?.data?.data;

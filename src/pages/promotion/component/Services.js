@@ -1,18 +1,17 @@
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import { Box, Container, Stack, Typography, } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
+import axios from 'axios';
+import CryptoJS from 'crypto-js';
+import { useFormik } from 'formik';
 import * as React from 'react';
+import toast from 'react-hot-toast';
 import { NavLink, useNavigate } from 'react-router-dom';
+import CustomCircularProgress from '../../../Shared/CustomCircularProgress';
+import { servicesvalidationSchema } from '../../../Shared/Validation';
 import { zubgback, zubgtext } from '../../../Shared/color';
 import customer from '../../../assets/images/logo-2 (2).png';
 import Layout from '../../../component/Layout/Layout';
 import { endpoint } from "../../../services/urls";
-import CryptoJS from 'crypto-js';
-import { useFormik } from 'formik';
-import toast from 'react-hot-toast';
-import axios from 'axios';
-import { servicesvalidationSchema } from '../../../Shared/Validation';
-import CustomCircularProgress from '../../../Shared/CustomCircularProgress';
 
 function Services() {
   const login_data = localStorage.getItem("logindataen") && CryptoJS.AES.decrypt(localStorage.getItem("logindataen"), "anand")?.toString(CryptoJS.enc.Utf8) || null
@@ -29,7 +28,7 @@ function Services() {
     image: "",
     description: "",
   };
- 
+
   const fk = useFormik({
     initialValues: initialValues,
     validationSchema: servicesvalidationSchema,
@@ -41,30 +40,30 @@ function Services() {
       fd.append("image", fk.values.image);
       fd.append("description", fk.values.description);
       fd.append("user_id", user_id);
-       addservicesFunction(fd);
+      addservicesFunction(fd);
     },
-    
+
   });
 
 
   const addservicesFunction = async (fd) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${endpoint.add_services}`, fd); 
+      const response = await axios.post(`${endpoint.add_services}`, fd);
       if (response.data.error === false) {
-        toast.success(response.data.message); 
-        fk.handleReset(); 
-       setLoading(false)
+        toast.success(response.data.message);
+        fk.handleReset();
+        setLoading(false)
 
       } else {
-        toast.error(response.data.message); 
+        toast.error(response.data.message);
       }
     } catch (e) {
-      toast.error('Error submitting data. Please try again.'); 
+      toast.error('Error submitting data. Please try again.');
       console.error('Error submitting data:', e);
     }
   };
-  
+
   const handleFileChange = (e) => {
     const file = e.currentTarget.files[0];
     const reader = new FileReader();
@@ -120,7 +119,7 @@ function Services() {
               placeholder='Enter transaction id '
               onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
               className='!border !text-gray-600 !border-gray-600 rounded w-[100%] p-1' />
-                {fk.touched.transection_id && fk.errors.transection_id ? (
+            {fk.touched.transection_id && fk.errors.transection_id ? (
               <div className="text-green-500">{fk.errors.transection_id}</div>
             ) : null}
           </div>
@@ -150,12 +149,12 @@ function Services() {
                 e.preventDefault();
                 fk.handleSubmit();
               }}> Submit Application </button></div>
-         <div className="my-1  mb-16 w-[45%] bg-[#008000] text-white  text-center p-2">
-            <button className='w-[100%]' onClick={()=>navigate('/queries')}> Reviews Program Queries </button></div>
-            {isLoading && (
-                            <CustomCircularProgress isLoading={isLoading}/>
-                        )}
-           {/* <div className="my-1 mb-16 w-[45%] bg-[#008000] text-white  text-center p-2">
+          <div className="my-1  mb-16 w-[45%] bg-[#008000] text-white  text-center p-2">
+            <button className='w-[100%]' onClick={() => navigate('/queries')}> Reviews Program Queries </button></div>
+          {isLoading && (
+            <CustomCircularProgress isLoading={isLoading} />
+          )}
+          {/* <div className="my-1 mb-16 w-[45%] bg-[#008000] text-white  text-center p-2">
             <button className='w-[100%]'
             > Other Problems </button></div> */}
         </div>

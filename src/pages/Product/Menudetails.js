@@ -1,14 +1,15 @@
-import React from 'react';
-import Layout from '../../component/Layout/Layout';
-import { Box, Button, Container, Typography } from '@mui/material';
-import { useNavigate, NavLink, useParams } from 'react-router-dom';
-import { zubgback, zubgbackgrad, zubggray, zubgmid, zubgtext } from '../../Shared/color';
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { endpoint } from '../../services/urls';
-import toast from 'react-hot-toast';
+import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import axios from 'axios';
-import CustomCircularProgress from '../../Shared/CustomCircularProgress';
 import CryptoJS from "crypto-js";
+import React from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
+import logo from "../../assets/logokimi.png";
+import solar1 from "../../Kimassets/images/service-3.jpg";
+import Layout from '../../component/Layout/Layout';
+import { endpoint } from '../../services/urls';
+import { kidarkgreen, zubgbackgrad, zubggray, zubgmid, zubgtext } from '../../Shared/color';
+import CustomCircularProgress from '../../Shared/CustomCircularProgress';
 
 const imageMapping = {
     "m_pack_id1": "https://d91ztqmtx7u1k.cloudfront.net/ClientContent/Images/Medium/20230221085108-5a53cd1d-5208-4628-a6b5-612d28e9a77e.jpg",
@@ -63,27 +64,57 @@ const MenuDetails = () => {
     }, []);
 
     const imageUrl = imageMapping[m_pack_id] || "https://d91ztqmtx7u1k.cloudfront.net/ClientContent/Images/Medium/20230221085108-5a53cd1d-5208-4628-a6b5-612d28e9a77e.jpg";
-  
+
     return (
         <Layout>
             <Container
                 className="no-scrollbar"
                 sx={{
-                    background: zubgback,
+                    background: '#E7E7E7',
                     width: "100%",
                     height: "100vh",
                     overflow: "auto",
                 }}
             >
                 <CustomCircularProgress isLoading={loding} />
-                <Box sx={style.header}>
-                    <Box component={NavLink} onClick={() => navigate(-1)}>
-                        <KeyboardArrowLeftOutlinedIcon />
-                    </Box>
-                    <Typography variant="body1" color="initial">
-                        Product Details
-                    </Typography>
-                    <Box  >
+                <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+                    <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+                </div>
+                <Box className="w95" mt={2}>
+                    <Box sx={{ background: '#fff', padding: 2, borderRadius: '10px', mb: 2, }}>
+                        <Box component='img' src={solar1} sx={{ maxHeight: '35vh', width: '100%', borderRadius: "10px", mb: 2, }}></Box>
+                        <Typography variant="body1" sx={{ fontSize: '17px', fontWeight: 600, textAlign: 'center', }}>S-Coffee Machine-3800</Typography>
+                        <Box sx={{ background: 'white', borderRadius: '10px', padding: 2, }} >
+                            <Stack direction='row' className="flexb">
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Stock :</Typography>
+                                <Typography variant="body1" className='kip15'>75.7%</Typography>
+                            </Stack>
+                            <Stack direction='row' className="flexb">
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Limit : </Typography>
+                                <Typography variant="body1" className='kip15'> 0 / 2</Typography>
+                            </Stack>
+                            <Stack direction='row' className="flexb">
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}> Cycle :</Typography>
+                                <Typography variant="body1" className='kip15'> 5DAY</Typography>
+                            </Stack>
+                            <Stack direction='row' className="flexb">
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}> Rental Price :</Typography>
+                                <Typography variant="body1" className='kip15'> ₹3800</Typography>
+                            </Stack>
+                            <Stack direction='row' className="flexb">
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}> Total Income :</Typography>
+                                <Typography variant="body1" className='kip15'> ₹9120</Typography>
+                            </Stack>
+                            <Stack direction='row' className="flexb">
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Coffee Beans : </Typography>
+                                <Typography variant="body1" className='kip15'> 1140</Typography>
+                            </Stack>
+                        </Box>
+
+                        <Button sx={style.paytmbtn} onClick={handleBuyNow}
+                            className='!my-5'>
+                            Rent Now
+                        </Button>
                     </Box>
                 </Box>
                 <div className="p-4 mb-20">
@@ -160,7 +191,7 @@ const style = {
     },
     paytmbtn: {
         mb: 2,
-        background: zubgtext,
+        background: kidarkgreen,
         color: "white !important",
         width: "100%",
         border: "1px solid white",

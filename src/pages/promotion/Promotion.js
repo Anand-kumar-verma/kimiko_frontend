@@ -1,28 +1,27 @@
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import CloseIcon from "@mui/icons-material/Close";
 import EmojiPeopleOutlinedIcon from "@mui/icons-material/EmojiPeopleOutlined";
 import Groups2OutlinedIcon from "@mui/icons-material/Groups2Outlined";
 import { Box, Container, Dialog, IconButton, Stack, Typography } from "@mui/material";
 import copy from "clipboard-copy";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
-import { zubgback, zubgbackgrad, zubggray, zubgmid, zubgtext } from "../../Shared/color";
+import CustomCircularProgress from "../../Shared/CustomCircularProgress";
+import { zubgback, zubggray, zubgtext } from "../../Shared/color";
 import customer from "../../assets/images/24-hours-service.png";
-import copyIimage from "../../assets/images/copy.png";
 import bgms from "../../assets/images/bgs.jpg";
 import bgms1 from "../../assets/images/bgs1.jpg";
+import copyIimage from "../../assets/images/copy.png";
 import sort from "../../assets/images/data-flow.png";
 import donut from "../../assets/images/database.png";
 import book from "../../assets/images/rules.png";
 import money from "../../assets/images/salary.png";
-import coin from "../../assets/images/settings.png";
-import Layout from "../../component/Layout/Layout";
-import { MygetdataFn, MypromotionDataFn, walletamount } from "../../services/apicalling";
-import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { fron_end_main_domain } from "../../services/urls";
-import CloseIcon from "@mui/icons-material/Close";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
-import { useState } from "react";
+import Layout from "../../component/Layout/Layout";
+import { MygetdataFn, walletamount } from "../../services/apicalling";
+import { fron_end_main_domain } from "../../services/urls";
 
 function Promotion() {
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
@@ -37,11 +36,11 @@ function Promotion() {
     }
   );
   const result = data?.data?.data;
-  const {  data:amount } = useQuery(["walletamount"], () => walletamount(), {
+  const { data: amount } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: false,
-    refetchOnWindowFocus:false,
-    retryOnMount:false,
+    refetchOnWindowFocus: false,
+    retryOnMount: false,
 
   });
 
@@ -104,7 +103,7 @@ function Promotion() {
                   color="initial"
                   className="!text-white"
                 >
-                  {result?.filter(entry => entry.LEVEL === 1).length || 0 }
+                  {result?.filter(entry => entry.LEVEL === 1).length || 0}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -138,7 +137,7 @@ function Promotion() {
                   color="initial"
                   className="!text-white"
                 >
-                    {result?.filter((j)=>j?.LEVEL === 1)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0}
+                  {result?.filter((j) => j?.LEVEL === 1)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -149,13 +148,13 @@ function Promotion() {
                   Deposit amount
                 </Typography>
               </Box>
-           
+
             </Box>
 
             <Box sx={style.innerBoxStylestwo}>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" color="initial">
-                {result?.filter((j)=>j?.LEVEL !== 0)?.length|| 0 }
+                  {result?.filter((j) => j?.LEVEL !== 0)?.length || 0}
                 </Typography>
                 <Typography variant="body1" color="initial">
                   {" "}
@@ -164,7 +163,7 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" color="initial">
-            {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length|| 0}
+                  {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length || 0}
 
                 </Typography>
                 <Typography variant="body1" color="initial">
@@ -174,14 +173,14 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" color="initial">
-                {result?.filter((j)=>j?.LEVEL !== 0)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0}
+                  {result?.filter((j) => j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
                 </Typography>
                 <Typography variant="body1" color="initial">
                   {" "}
                   Deposit amount
                 </Typography>
               </Box>
-            
+
             </Box>
           </Box>
           <Box sx={style.invitebtn}>
@@ -270,7 +269,7 @@ function Promotion() {
               </Stack>
             </Box>
           </NavLink>
-         
+
           <Box sx={style.promotionBoxOuter}>
             <Box sx={style.promotionBox}>
               <Stack direction="row">
@@ -302,7 +301,7 @@ function Promotion() {
             <Stack direction="row">
               <Box>
                 <Typography variant="body1" color="initial">
-                {result?.filter(entry => entry.LEVEL === 1).length || 0 }
+                  {result?.filter(entry => entry.LEVEL === 1).length || 0}
                 </Typography>
                 <Typography variant="body1" color="initial">
                   Direct subordinate
@@ -310,7 +309,7 @@ function Promotion() {
               </Box>
               <Box>
                 <Typography variant="body1" color="initial">
-                {result?.filter((j)=>j?.LEVEL !== 0)?.length || 0}
+                  {result?.filter((j) => j?.LEVEL !== 0)?.length || 0}
                 </Typography>
                 <Typography variant="body1" color="initial">
                   Total number of <br />

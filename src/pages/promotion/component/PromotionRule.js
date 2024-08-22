@@ -1,12 +1,11 @@
-import * as React from 'react';
-import { Container, Typography, Box, Stack } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Box, Container, Stack, Typography } from '@mui/material';
+import * as React from 'react';
+import { NavLink } from 'react-router-dom';
+import Leval from '../../../assets/images/leval.png';
 import Layout from '../../../component/Layout/Layout';
-import Leval from '../../../assets/images/leval.png'
-import { gamename, iconcolorpink, zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
+import { gamename, zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
 
 
 

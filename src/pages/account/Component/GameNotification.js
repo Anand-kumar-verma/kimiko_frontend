@@ -1,11 +1,10 @@
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import { Box, Container, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { gamename, zubgback, zubgmid, zubgtext } from '../../../Shared/color';
+import { gamename, zubgback, zubgtext } from '../../../Shared/color';
+import promotion from '../../../assets/images/marketing (1).png';
 import Layout from '../../../component/Layout/Layout';
-import promotion from '../../../assets/images/marketing (1).png'
 
 function GameNotification() {
   const navigate = useNavigate();

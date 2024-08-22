@@ -1,18 +1,14 @@
 import {
   Box,
   Container,
-  Stack,
   Typography
 } from "@mui/material";
+import CryptoJS from 'crypto-js';
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logokimi.png";
-import poster from "../../../assets/images/poster3.jpg";
-import LoginWithEmail from "./LoginWithEmail";
-import LoginWithMobile from "./LoginWithMobile";
-import CryptoJS from 'crypto-js'
-import { useDispatch, useSelector } from "react-redux";
 import { kigrad } from "../../../Shared/color";
+import LoginWithMobile from "./LoginWithMobile";
 function Login() {
   const navigate = useNavigate()
   const [Nav, setNav] = useState(1);

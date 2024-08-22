@@ -1,17 +1,11 @@
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import Diversity2Icon from "@mui/icons-material/Diversity2";
 import LocalConvenienceStoreIcon from "@mui/icons-material/LocalConvenienceStore";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import RedeemIcon from "@mui/icons-material/Redeem";
-import StoreIcon from "@mui/icons-material/Store";
 import { Box, Container, Typography } from "@mui/material";
 import * as React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
-import Layout from "../../component/Layout/Layout";
-import { Balance } from "@mui/icons-material";
 function MainPageOFIncome() {
   const navigate = useNavigate();
   const goBack = () => {
@@ -111,66 +105,66 @@ function MainPageOFIncome() {
     // },
   ];
   return (
-   
-      <Container
+
+    <Container
+      sx={{
+        background: zubgback,
+        width: "100%",
+        // height: "100vh",
+        overflow: "auto",
+        mb: 5,
+      }}
+    >
+      <Box
+
         sx={{
-          background: zubgback,
-          width: "100%",
-          // height: "100vh",
-          overflow: "auto",
-          mb: 5,
+          width: "95%",
+          marginLeft: "2.5%",
+          borderRadius: "10px",
+          background: zubgtext,
+          padding: "10px",
+          mt: "20px",
+          "&>:nth-child(1)": {
+            color: "white",
+            fontSize: "15px",
+            fontWeight: "600",
+            mb: "25px",
+          },
         }}
       >
-        <Box
-      
-          sx={{
-            width: "95%",
-            marginLeft: "2.5%",
-            borderRadius: "10px",
-            background: zubgtext,
-            padding: "10px",
-            mt: "20px",
-            "&>:nth-child(1)": {
-              color: "white",
-              fontSize: "15px",
-              fontWeight: "600",
-              mb: "25px",
-            },
-          }}
-        >
-          <Typography variant="body1" color="initial">
-            Income
-          </Typography>
+        <Typography variant="body1" color="initial">
+          Income
+        </Typography>
 
-          <div className="!w-full !grid !grid-cols-3 !place-items-center">
-            {data_array?.map((i) => {
-              return (
-                <Box
-                  component={NavLink}
-                  to={i.to}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: "10px",
-                    "&>p": {
-                      color: "white",
-                      fontSize: "14px",
-                      fontWeight: "500",
-                      mt: "5px",
-                    },
-                  }}
-                >
-                  <p>{i?.logo}</p>
-                  <p className="lg:!whitespace-nowrap !text-center">{i.name}</p>
-                </Box>
-              );
-            })}
-          </div>
-        </Box>
-      </Container>
-   
+        <div className="!w-full !grid !grid-cols-3 !place-items-center">
+          {data_array?.map((i) => {
+            return (
+              <Box
+                component={NavLink}
+                to={i.to}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: "10px",
+                  "&>p": {
+                    color: "white",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    mt: "5px",
+                  },
+                }}
+              >
+                <p>{i?.logo}</p>
+                <p className="lg:!whitespace-nowrap !text-center">{i.name}</p>
+              </Box>
+            );
+          })}
+        </div>
+      </Box>
+    </Container>
+
   );
 }
 
