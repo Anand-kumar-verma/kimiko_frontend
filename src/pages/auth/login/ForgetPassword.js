@@ -13,12 +13,11 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import OtpInput from "react-otp-input";
 import { NavLink, useNavigate } from "react-router-dom";
-import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { ForgetPasswordSchemaValidation } from "../../../Shared/Validation";
 import logo from "../../../assets/logokimi.png";
-import poster from "../../../assets/images/poster3.jpg";
 import { endpoint } from "../../../services/urls";
 import { kigrad } from "../../../Shared/color";
+import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
+import { ForgetPasswordSchemaValidation } from "../../../Shared/Validation";
 function ForgetPassword() {
   const [loding, setloding] = useState(false);
   const navigate = useNavigate();

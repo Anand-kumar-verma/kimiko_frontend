@@ -22,7 +22,6 @@ import edit from "../../assets/images/banking.png";
 import buy from "../../assets/images/casino.png";
 // import customer from "../../assets/images/customer-service.png";
 import gift from "../../assets/images/gift-box-with-a-bow.png";
-import graph from "../../assets/images/graph (1).png";
 import hand from "../../assets/images/hand.png";
 import namer from "../../assets/images/namer.png";
 import notification from "../../assets/images/notification (1).png";
@@ -441,7 +440,7 @@ function Account() {
                 </IconButton>
               </p>
               <p>
-                <img src={sunlotteryhomebanner} />
+                <img src={sunlotteryhomebanner} alt="" />
               </p>
             </div>
           </Dialog>

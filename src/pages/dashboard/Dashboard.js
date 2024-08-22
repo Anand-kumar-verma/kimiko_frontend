@@ -17,7 +17,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { gray, kidarkgreen, kigrad, kigreen, kilightgreen, zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
+import { gray, kidarkgreen, kigreen, zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
 import aviator_game_image from "../../assets/aviator_game_image.png";
 import one from "../../assets/images/1.jpg";
 import three from "../../assets/images/123.png";
@@ -53,24 +53,23 @@ import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
-// kimiko imports
 
-import kislider1 from '../../assets/kiimages/slider1.jpg'
-import kislider2 from '../../assets/kiimages/slider2.jpg'
-import kislider3 from '../../assets/kiimages/slider3.jpg'
-import kislider4 from '../../assets/kiimages/slider4.jpg'
-import kislider5 from '../../assets/kiimages/slider5.jpg'
-import recharge from '../../assets/kiimages/mobile.png'
-import withdraw from '../../assets/kiimages/hand.png'
-import bonus from '../../assets/kiimages/bonus.png'
-import order from '../../assets/kiimages/order-now.png'
-import task from '../../assets/kiimages/clipboard.png'
-import news from '../../assets/kiimages/info.png'
-import about from '../../assets/kiimages/messages.png'
-import shop from '../../assets/kiimages/shop.png'
 import { CurrencyExchangeTwoTone, NavigateNextRounded } from "@mui/icons-material";
 import SwipeRightAltRoundedIcon from '@mui/icons-material/SwipeRightAltRounded';
-import coffeem1 from '../../assets/kiimages/coffeem1.jpg'
+import bonus from '../../assets/kiimages/bonus.png';
+import task from '../../assets/kiimages/clipboard.png';
+import coffeem1 from '../../assets/kiimages/coffeem1.jpg';
+import withdraw from '../../assets/kiimages/hand.png';
+import news from '../../assets/kiimages/info.png';
+import about from '../../assets/kiimages/messages.png';
+import recharge from '../../assets/kiimages/mobile.png';
+import order from '../../assets/kiimages/order-now.png';
+import shop from '../../assets/kiimages/shop.png';
+import kislider1 from '../../assets/kiimages/slider1.jpg';
+import kislider2 from '../../assets/kiimages/slider2.jpg';
+import kislider3 from '../../assets/kiimages/slider3.jpg';
+import kislider4 from '../../assets/kiimages/slider4.jpg';
+import kislider5 from '../../assets/kiimages/slider5.jpg';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -131,8 +130,7 @@ function Dashboard() {
   });
 
   const newdata = data?.data?.data || 0;
-
-
+  
   useEffect(() => {
     openbannerFunction();
     localStorage.removeItem("amount_set");
@@ -1227,7 +1225,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     width: "65%",
-    justifyContent: "space-around;",
+    // justifyContent: "space-around;",
     "&>img": {
       width: "80px",
       height: "40px",
@@ -1252,7 +1250,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "start",
     width: "35%",
-    justifyContent: "space-around;",
+    // justifyContent: "space-around;",
     "&>p": { color: zubgtext, ml: "10px", fontSize: "11px", fontWeight: "600" },
   },
   wininfoinner: {

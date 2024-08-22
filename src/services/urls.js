@@ -27,7 +27,7 @@ export const endpoint = {
   deposit_request: `${baseUrl}/api/insert_fund_request_vapayout`,
   panel_banner:`${baseUrl}/api/panel_banner`,
   get_balance:`${baseUrl}/api/get_balance`,
-  change_password :`${baseUrl}/api/change_password`,
+  change_password :`${baseUrl}/api/update_password`,
 
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,

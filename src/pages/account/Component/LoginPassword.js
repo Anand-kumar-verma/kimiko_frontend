@@ -1,16 +1,18 @@
-import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import { Box, Button, Container, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, TextField, Typography } from '@mui/material';
-import * as React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
-import Layout from '../../../component/Layout/Layout';
-import Giftimg from '../../../assets/images/gift-removebg-preview.png'
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import CryptoJS from "crypto-js";
-import toast from 'react-hot-toast';
-import { endpoint } from '../../../services/urls';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import { Box, Button, Container, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material';
 import axios from 'axios';
+import CryptoJS from "crypto-js";
 import { useFormik } from 'formik';
+import * as React from 'react';
+import toast from 'react-hot-toast';
+import { useQuery } from 'react-query';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Layout from '../../../component/Layout/Layout';
+import { MyProfileDataFn } from '../../../services/apicalling';
+import { endpoint } from '../../../services/urls';
+import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
+import CustomCircularProgress from '../../../Shared/CustomCircularProgress';
 
 function LoginPassword() {
   const navigate = useNavigate();
@@ -20,8 +22,7 @@ function LoginPassword() {
   };
   const [showoldPassword, setShowoldPassword] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
-  const [show_confirm_password, set_show_confirm_password] =
-    React.useState(false);
+  const [show_confirm_password, set_show_confirm_password] =React.useState(false);
   const [isLoading, setLoading] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -33,17 +34,18 @@ function LoginPassword() {
     event.preventDefault();
   };
 
-  // const {  data: profile } = useQuery(
-  //   ["myprofile"],
-  //   () => MyProfileDataFn(),
-  //   {
-  //     refetchOnMount: false,
-  //     refetchOnReconnect: false,
-  //     refetchOnWindowFocus: false
-  //   }
-  // );
+  const {  data: profile } = useQuery(
+    ["myprofile"],
+    () => MyProfileDataFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
 
-  // const result = profile?.data?.data || [];
+  const result = profile?.data?.data || [];
+  console.log(result?.password , "ghhdj")
 
   const login_data =
   (localStorage.getItem("logindataen") &&
@@ -57,36 +59,20 @@ const user_id = login_data && JSON.parse(login_data)?.UserID;
 
   const initialValue = {
     userid: "",
-    old_pass: "",
-    new_pass: "",
-    confirm_new_pass: "",
+    oldpassword: "",
+    newpassword: "",
+    confirmpassword: "",
   };
 
   const fk = useFormik({
     initialValues: initialValue,
     enableReinitialize: true,
     onSubmit: () => {
-      if (!fk.values.old_pass || !fk.values.new_pass || !fk.values.confirm_new_pass) {
-        toast.error("Please enter all fields");
-        return;
-      }
-      // if (fk.values.old_pass !== result?.password) {
-      //   toast.error("Old password is incorrect");
-      //   return;
-      // }
-      if (fk.values.old_pass === fk.values.new_pass) {
-        toast.error("New password must be different from old password");
-        return;
-      }
-      if (fk.values.new_pass !== fk.values.confirm_new_pass) {
-        toast.error("New password and confirm password do not match");
-        return;
-      }
       const reqbody = {
         userid: user_id,
-        old_pass: fk.values.old_pass,
-        new_pass: fk.values.new_pass,
-        confirm_new_pass: fk.values.confirm_new_pass,
+        oldpassword: fk.values.oldpassword,
+        newpassword: fk.values.newpassword,
+        confirmpassword: fk.values.confirmpassword,
       };
       changePassword(reqbody);
     },
@@ -103,7 +89,8 @@ const user_id = login_data && JSON.parse(login_data)?.UserID;
         },
       });
     toast.success(response?.data?.msg);
-      navigate("/account");
+      localStorage.clear();
+     navigate("/");
     } catch (error) {
       toast.error(error?.message);
       console.error(error);
@@ -122,7 +109,8 @@ const user_id = login_data && JSON.parse(login_data)?.UserID;
           <Typography variant="body1" color="initial"> </Typography>
         </Box>
         <Box sx={{ width: '95%', marginLeft: '2.5%', background: zubgback, borderRadius: '10px', padding: '10px', mt: '10px', }}>
-          <Box mt={2} component='form'>
+          <Box mt={2} component='form'
+           onSubmit={fk.handleSubmit}>
             <Box mt={2}>
 
               <FormControl fullWidth>
@@ -131,9 +119,12 @@ const user_id = login_data && JSON.parse(login_data)?.UserID;
                 </Stack>
                 <OutlinedInput
                   placeholder="Enter password"
-                  name="password"
+                  name="oldpassword"
+                  value={fk.values.oldpassword}
+                  onChange={fk.handleChange}
                   className="loginfieldspass"
-                  type={showPassword ? "text" : "password"}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  type={showoldPassword ? "text" : "password"}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -157,8 +148,11 @@ const user_id = login_data && JSON.parse(login_data)?.UserID;
                 </Stack>
                 <OutlinedInput
                   placeholder="Enter new password"
-                  name="password"
                   className="loginfieldspass"
+                  name="newpassword"
+                  value={fk.values.newpassword}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   type={showPassword ? "text" : "password"}
                   endAdornment={
                     <InputAdornment position="end">
@@ -181,8 +175,11 @@ const user_id = login_data && JSON.parse(login_data)?.UserID;
                   <Typography variant="h3">Confirm new password</Typography>
                 </Stack>
                 <OutlinedInput
+                 name="confirmpassword"
+                 value={fk.values.confirmpassword}
+                 onChange={fk.handleChange}
+                 onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   className="loginfieldspass"
-                  name="confirmed_password"
                   placeholder="Enter new confirm password"
                   type={show_confirm_password ? "text" : "password"}
                   endAdornment={
@@ -200,7 +197,10 @@ const user_id = login_data && JSON.parse(login_data)?.UserID;
                 />
               </FormControl>
             </Box>
-            <Button sx={style.paytmbtntwo}>Change Password </Button>
+            <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit} >Change Password </Button>
+              {isLoading && (
+                            <CustomCircularProgress isLoading={isLoading}/>
+                        )}
           </Box>
         </Box>
       </Container>
