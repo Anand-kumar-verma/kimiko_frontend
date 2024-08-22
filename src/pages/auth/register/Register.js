@@ -93,7 +93,6 @@ function Register() {
         headers: {
           "Content-Type": "multipart/form-data",
           "Access-Control-Allow-Origin": "*",
-          // Add any other headers you may need, such as authorization
         },
       });
 
