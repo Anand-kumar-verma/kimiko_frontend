@@ -44,17 +44,7 @@ function Register() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  // useEffect(() => {
-  //   const value =
-  //     url.searchParams.get("ref") &&
-  //     crypto.AES.decrypt(
-  //       url.searchParams.get("ref")?.split(" ")?.join("+"),
-  //       "anand"
-  //     )?.toString(crypto.enc.Utf8);
-  //   setrefParam(value);
-  // }, [url.searchParams.get("ref")]);
-
+  
   const initialValue = {
     email: "",
     mobile: "",
@@ -103,7 +93,6 @@ function Register() {
         headers: {
           "Content-Type": "multipart/form-data",
           "Access-Control-Allow-Origin": "*",
-          // Add any other headers you may need, such as authorization
         },
       });
 
@@ -131,7 +120,7 @@ function Register() {
     setloding(false);
   };
 
-  const { isLoading, data } = useQuery(
+  const { data } = useQuery(
     ["getname", fk.values.referral_code],
     () => CandidateNameFn({ reffral_id: fk.values.referral_code }),
     {

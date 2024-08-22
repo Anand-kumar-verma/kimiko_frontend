@@ -1,10 +1,25 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import { Box, Button, Container, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material';
+<<<<<<< HEAD
 import * as React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
 import Layout from '../../../component/Layout/Layout';
+=======
+import axios from 'axios';
+import CryptoJS from "crypto-js";
+import { useFormik } from 'formik';
+import * as React from 'react';
+import toast from 'react-hot-toast';
+import { useQuery } from 'react-query';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Layout from '../../../component/Layout/Layout';
+import { MyProfileDataFn } from '../../../services/apicalling';
+import { endpoint } from '../../../services/urls';
+import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
+import CustomCircularProgress from '../../../Shared/CustomCircularProgress';
+>>>>>>> 121c84a0598ab2f193c6b33dfb2282a828c300ef
 
 function LoginPassword() {
   const navigate = useNavigate();
@@ -14,9 +29,8 @@ function LoginPassword() {
   };
   const [showoldPassword, setShowoldPassword] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
-  const [show_confirm_password, set_show_confirm_password] =
-    React.useState(false);
-  const [agree, setAgree] = React.useState(false);
+  const [show_confirm_password, set_show_confirm_password] =React.useState(false);
+  const [isLoading, setLoading] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
@@ -26,6 +40,71 @@ function LoginPassword() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const {  data: profile } = useQuery(
+    ["myprofile"],
+    () => MyProfileDataFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
+
+  const result = profile?.data?.data || [];
+  console.log(result?.password , "ghhdj")
+
+  const login_data =
+  (localStorage.getItem("logindataen") &&
+    CryptoJS.AES.decrypt(
+      localStorage.getItem("logindataen"),
+      "anand"
+    )?.toString(CryptoJS.enc.Utf8)) ||
+  null;
+
+const user_id = login_data && JSON.parse(login_data)?.UserID;
+
+  const initialValue = {
+    userid: "",
+    oldpassword: "",
+    newpassword: "",
+    confirmpassword: "",
+  };
+
+  const fk = useFormik({
+    initialValues: initialValue,
+    enableReinitialize: true,
+    onSubmit: () => {
+      const reqbody = {
+        userid: user_id,
+        oldpassword: fk.values.oldpassword,
+        newpassword: fk.values.newpassword,
+        confirmpassword: fk.values.confirmpassword,
+      };
+      changePassword(reqbody);
+    },
+  });
+
+  const changePassword = async (reqbody) => {
+    setLoading(true);
+
+    try {
+      const response = await axios.post(endpoint.change_password, reqbody, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    toast.success(response?.data?.msg);
+      localStorage.clear();
+     navigate("/");
+    } catch (error) {
+      toast.error(error?.message);
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <Layout>
       <Container sx={style.container}>
@@ -33,11 +112,12 @@ function LoginPassword() {
           <Box component={NavLink} onClick={() => goBack()}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">Change login passwords</Typography>
+          <Typography variant="body1" color="initial">Change login password</Typography>
           <Typography variant="body1" color="initial"> </Typography>
         </Box>
         <Box sx={{ width: '95%', marginLeft: '2.5%', background: zubgback, borderRadius: '10px', padding: '10px', mt: '10px', }}>
-          <Box mt={2} component='form'>
+          <Box mt={2} component='form'
+           onSubmit={fk.handleSubmit}>
             <Box mt={2}>
 
               <FormControl fullWidth>
@@ -46,9 +126,12 @@ function LoginPassword() {
                 </Stack>
                 <OutlinedInput
                   placeholder="Enter password"
-                  name="password"
+                  name="oldpassword"
+                  value={fk.values.oldpassword}
+                  onChange={fk.handleChange}
                   className="loginfieldspass"
-                  type={showPassword ? "text" : "password"}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  type={showoldPassword ? "text" : "password"}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -72,8 +155,11 @@ function LoginPassword() {
                 </Stack>
                 <OutlinedInput
                   placeholder="Enter new password"
-                  name="password"
                   className="loginfieldspass"
+                  name="newpassword"
+                  value={fk.values.newpassword}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   type={showPassword ? "text" : "password"}
                   endAdornment={
                     <InputAdornment position="end">
@@ -96,8 +182,11 @@ function LoginPassword() {
                   <Typography variant="h3">Confirm new password</Typography>
                 </Stack>
                 <OutlinedInput
+                 name="confirmpassword"
+                 value={fk.values.confirmpassword}
+                 onChange={fk.handleChange}
+                 onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   className="loginfieldspass"
-                  name="confirmed_password"
                   placeholder="Enter new confirm password"
                   type={show_confirm_password ? "text" : "password"}
                   endAdornment={
@@ -115,7 +204,10 @@ function LoginPassword() {
                 />
               </FormControl>
             </Box>
-            <Button sx={style.paytmbtntwo}>Change Password </Button>
+            <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit} >Change Password </Button>
+              {isLoading && (
+                            <CustomCircularProgress isLoading={isLoading}/>
+                        )}
           </Box>
         </Box>
       </Container>

@@ -53,7 +53,6 @@ import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
-// kimiko imports
 
 import { CurrencyExchangeTwoTone, NavigateNextRounded } from "@mui/icons-material";
 import SwipeRightAltRoundedIcon from '@mui/icons-material/SwipeRightAltRounded';
@@ -131,8 +130,7 @@ function Dashboard() {
   });
 
   const newdata = data?.data?.data || 0;
-
-
+  
   useEffect(() => {
     openbannerFunction();
     localStorage.removeItem("amount_set");
@@ -1227,7 +1225,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     width: "65%",
-    justifyContent: "space-around;",
+    // justifyContent: "space-around;",
     "&>img": {
       width: "80px",
       height: "40px",
@@ -1252,7 +1250,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "start",
     width: "35%",
-    justifyContent: "space-around;",
+    // justifyContent: "space-around;",
     "&>p": { color: zubgtext, ml: "10px", fontSize: "11px", fontWeight: "600" },
   },
   wininfoinner: {
