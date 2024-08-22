@@ -1,19 +1,7 @@
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import {
-  Avatar,
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  Dialog,
-  DialogContent,
-  Slide,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, CircularProgress, Container, Dialog, DialogContent, Slide, Stack, TextField, Typography, } from "@mui/material";
 import axios from "axios";
 import copy from "clipboard-copy";
 import { useFormik } from "formik";
@@ -22,21 +10,14 @@ import toast from "react-hot-toast";
 import { RxCross2 } from "react-icons/rx";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import {
-  gray,
-  zubgback,
-  zubgmid,
-  zubgshadow,
-  zubgtext,
-  zubgwhite
-} from "../../Shared/color";
+import { gray, kidarkgreen, kigrad, kigreen, kilightgreen, zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
 import aviator_game_image from "../../assets/aviator_game_image.png";
 import one from "../../assets/images/1.jpg";
 import three from "../../assets/images/123.png";
@@ -72,6 +53,26 @@ import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
+// kimiko imports
+
+import kislider1 from '../../assets/kiimages/slider1.jpg'
+import kislider2 from '../../assets/kiimages/slider2.jpg'
+import kislider3 from '../../assets/kiimages/slider3.jpg'
+import kislider4 from '../../assets/kiimages/slider4.jpg'
+import kislider5 from '../../assets/kiimages/slider5.jpg'
+import recharge from '../../assets/kiimages/mobile.png'
+import withdraw from '../../assets/kiimages/hand.png'
+import bonus from '../../assets/kiimages/bonus.png'
+import order from '../../assets/kiimages/order-now.png'
+import task from '../../assets/kiimages/clipboard.png'
+import news from '../../assets/kiimages/info.png'
+import about from '../../assets/kiimages/messages.png'
+import shop from '../../assets/kiimages/shop.png'
+import { CurrencyExchangeTwoTone, NavigateNextRounded } from "@mui/icons-material";
+import SwipeRightAltRoundedIcon from '@mui/icons-material/SwipeRightAltRounded';
+import coffeem1 from '../../assets/kiimages/coffeem1.jpg'
+
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -87,7 +88,7 @@ function Dashboard() {
   const [poicy, setpoicy] = React.useState(false);
   const [type_of_game, settype_of_game] = React.useState("");
   const [winnner_data, setwinnerdata] = useState([]);
-  const [openbannerurl, setopenbannerurl] = useState(""); 
+  const [openbannerurl, setopenbannerurl] = useState("");
   const [loding, setloding] = useState(false);
   const [lodingBanner, setlodingBanner] = useState(false);
 
@@ -96,7 +97,7 @@ function Dashboard() {
     if (!checkTokenValidity()) {
       localStorage.clear();
       sessionStorage.clear();
-      window.location.href = "/"; 
+      window.location.href = "/";
     }
   }, []);
 
@@ -124,8 +125,8 @@ function Dashboard() {
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: false,
-    refetchOnWindowFocus:false,
-    retryOnMount:false,
+    refetchOnWindowFocus: false,
+    retryOnMount: false,
 
   });
 
@@ -151,7 +152,7 @@ function Dashboard() {
     setlodingBanner(false);
   };
   const initialValues = {
-    referrel_code: `${fron_end_main_domain}/register?ref=${newdata?.referral_code}`, 
+    referrel_code: `${fron_end_main_domain}/register?ref=${newdata?.referral_code}`,
   };
 
   const fk = useFormik({
@@ -218,28 +219,9 @@ function Dashboard() {
   return (
     <Layout>
       <Box sx={styles.root}>
-        <Container
-          className="!h-[100%] !overflow-auto no-scrollbar "
-         
-        >
-          <div
-           
-            className=" rounded-b-md !bg-gray-400"
-          >
-            <div className="px-2 py-2 flex justify-between">
-              <div
-                className="flex items-center gap-2 "
-                
-              >
-                <Box component="img" src={logo} sx={{ width: "60px" }}></Box>
-              </div>
-              {/* <div className="flex gap-1 items-center cursor-pointer">
-                <CloudDownloadIcon sx={{ color: zubgtext }} />
-                <span className="text-[12px]" style={{ color: zubgtext }}>
-                  Download App
-                </span>
-              </div> */}
-            </div>
+        <Container className="!h-[100%] !overflow-auto no-scrollbar " sx={{ background: '#e7e7e7' }}>
+          <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+            <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
           </div>
           <Box className="!px-2">
             <Swiper
@@ -249,7 +231,309 @@ function Dashboard() {
               pagination={{ clickable: true }}
               navigation={false}
               modules={[Autoplay, Pagination, Navigation]}
-              className="mySwiper !rounded-lg !mt-2"
+              className="mySwipertwo"
+            >
+              <SwiperSlide>
+                <Box
+                  component="img"
+                  src={kislider1}
+                  alt="Slide 1"
+                  sx={styles.kiswiperImage}
+
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box
+                  component="img"
+                  src={kislider2}
+                  alt="Slide 2"
+                  sx={styles.kiswiperImage}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box
+                  component="img"
+                  src={kislider3}
+                  alt="Slide 3"
+                  sx={styles.kiswiperImage}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box
+                  component="img"
+                  src={kislider4}
+                  alt="Slide 3"
+                  sx={styles.kiswiperImage}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box
+                  component="img"
+                  src={kislider5}
+                  alt="Slide 3"
+                  sx={styles.kiswiperImage}
+                />
+              </SwiperSlide>
+            </Swiper>
+          </Box>
+          <Box sx={{ px: 2, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', }}>
+            <Stack sx={styles.kiNavOuter} component={NavLink}>
+              <Box sx={styles.kiNavInner}>
+                <Box component='img' src={recharge} sx={styles.KiNavImg}></Box>
+              </Box>
+              <Box sx={{ padding: 1 }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Recharge</Typography>
+              </Box>
+            </Stack>
+            <Stack sx={styles.kiNavOuter} component={NavLink}>
+              <Box sx={styles.kiNavInner}>
+                <Box component='img' src={withdraw} sx={styles.KiNavImg}></Box>
+              </Box>
+              <Box sx={{ padding: 1 }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Withdraw</Typography>
+              </Box>
+            </Stack>
+            <Stack sx={styles.kiNavOuter} component={NavLink}>
+              <Box sx={styles.kiNavInner}>
+                <Box component='img' src={bonus} sx={styles.KiNavImg}></Box>
+              </Box>
+              <Box sx={{ padding: 1 }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Bonus</Typography>
+              </Box>
+            </Stack>
+            <Stack sx={styles.kiNavOuter} component={NavLink}>
+              <Box sx={styles.kiNavInner}>
+                <Box component='img' src={order} sx={styles.KiNavImg}></Box>
+              </Box>
+              <Box sx={{ padding: 1 }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Order</Typography>
+              </Box>
+            </Stack>
+            <Stack sx={styles.kiNavOuter} component={NavLink}>
+              <Box sx={styles.kiNavInner}>
+                <Box component='img' src={task} sx={styles.KiNavImg}></Box>
+              </Box>
+              <Box sx={{ padding: 1 }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Task</Typography>
+              </Box>
+            </Stack>
+            <Stack sx={styles.kiNavOuter} component={NavLink}>
+              <Box sx={styles.kiNavInner}>
+                <Box component='img' src={about} sx={styles.KiNavImg}></Box>
+              </Box>
+              <Box sx={{ padding: 1 }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>News</Typography>
+              </Box>
+            </Stack>
+            <Stack sx={styles.kiNavOuter} component={NavLink}>
+              <Box sx={styles.kiNavInner}>
+                <Box component='img' src={news} sx={styles.KiNavImg}></Box>
+              </Box>
+              <Box sx={{ padding: 1 }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>About</Typography>
+              </Box>
+            </Stack>
+            <Stack sx={styles.kiNavOuter} component={NavLink}>
+              <Box sx={styles.kiNavInner}>
+                <Box component='img' src={shop} sx={styles.KiNavImg}></Box>
+              </Box>
+              <Box sx={{ padding: 1 }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Shop</Typography>
+              </Box>
+            </Stack>
+          </Box>
+          <Button variant="outlined" sx={styles.kibutton1} startIcon={<CurrencyExchangeTwoTone />}>Coffee Beans Exchange</Button>
+
+          <Box sx={{ width: '95%', ml: '2.5%', padding: 2, borderRadius: '10px', background: kidarkgreen, mb: 2 }}>
+            <Typography variant="body1" sx={{ color: 'white', fontSize: '12px', mb: 1 }}>
+              You are already a <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>SHOP LEVEL 0 AGENT</span> You can withdraw cash <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>0 times </span> a day, with a maximum withdrawal amount of 3,000 Rs each time and a daily withdrawal limit of <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>₹0</span>
+            </Typography>
+            <Typography variant="body1" sx={{ color: 'white', fontSize: '12px', mb: 1 }}>
+              You can continue to purchase other SHOP agent products to improve your level. The higher the level, the more cash you can withdraw every day.
+            </Typography>
+          </Box>
+          <Typography variant="body1" color="initial" sx={styles.kiHeadline}><SwipeRightAltRoundedIcon /> Level Product</Typography>
+          <Box sx={{ width: '95%', ml: '2.5%', }}>
+            <Box sx={styles.kiproductbox}>
+              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
+                S-Coffee Machine-3800
+              </Typography>
+              <Stack direction={'row'} sx={styles.kiproflex}>
+                <Box sx={styles.kiimageBox}>
+                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
+                </Box>
+                <Box sx={{ width: '55%', mr: 2 }}>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
+                  </Stack>
+                </Box>
+              </Stack>
+              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={styles.kipercentageBox}>
+                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
+                  <Box sx={styles.kiprogressBar}></Box>
+                </Box>
+                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
+              </Stack>
+            </Box>
+            <Box sx={styles.kiproductbox}>
+              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
+                S-Coffee Machine-3800
+              </Typography>
+              <Stack direction={'row'} sx={styles.kiproflex}>
+                <Box sx={styles.kiimageBox}>
+                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
+                </Box>
+                <Box sx={{ width: '55%', mr: 2 }}>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
+                  </Stack>
+                </Box>
+              </Stack>
+              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={styles.kipercentageBox}>
+                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
+                  <Box sx={styles.kiprogressBar}></Box>
+                </Box>
+                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
+              </Stack>
+            </Box>
+            <Box sx={styles.kiproductbox}>
+              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
+                S-Coffee Machine-3800
+              </Typography>
+              <Stack direction={'row'} sx={styles.kiproflex}>
+                <Box sx={styles.kiimageBox}>
+                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
+                </Box>
+                <Box sx={{ width: '55%', mr: 2 }}>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
+                  </Stack>
+                </Box>
+              </Stack>
+              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={styles.kipercentageBox}>
+                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
+                  <Box sx={styles.kiprogressBar}></Box>
+                </Box>
+                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
+              </Stack>
+            </Box>
+            <Box sx={styles.kiproductbox}>
+              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
+                S-Coffee Machine-3800
+              </Typography>
+              <Stack direction={'row'} sx={styles.kiproflex}>
+                <Box sx={styles.kiimageBox}>
+                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
+                </Box>
+                <Box sx={{ width: '55%', mr: 2 }}>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
+                  </Stack>
+                </Box>
+              </Stack>
+              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={styles.kipercentageBox}>
+                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
+                  <Box sx={styles.kiprogressBar}></Box>
+                </Box>
+                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
+              </Stack>
+            </Box>
+            <Box sx={styles.kiproductbox}>
+              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
+                S-Coffee Machine-3800
+              </Typography>
+              <Stack direction={'row'} sx={styles.kiproflex}>
+                <Box sx={styles.kiimageBox}>
+                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
+                </Box>
+                <Box sx={{ width: '55%', mr: 2 }}>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
+                  </Stack>
+                  <Stack direction={'row'} sx={styles.kipriceStack}>
+                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
+                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
+                  </Stack>
+                </Box>
+              </Stack>
+              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={styles.kipercentageBox}>
+                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
+                  <Box sx={styles.kiprogressBar}></Box>
+                </Box>
+                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
+              </Stack>
+            </Box>
+          </Box >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <Box className="!px-2">
+            <Swiper
+              spaceBetween={30}
+              centeredSlides={true}
+              autoplay={{ delay: 2500, disableOnInteraction: false }}
+              pagination={{ clickable: true }}
+              navigation={false}
+              modules={[Autoplay, Pagination, Navigation]}
+              className="mySwiper"
             >
               <SwiperSlide>
                 <Box
@@ -278,7 +562,7 @@ function Dashboard() {
               </SwiperSlide>
             </Swiper>
           </Box>
-         
+
           <Box
             sx={{
               display: "flex",
@@ -454,7 +738,7 @@ function Dashboard() {
                         i.name === "Slots" ||
                         i.name === "Popular" ||
                         i.name === "Casino"
-                         
+
                       )
                         return toast("Comming Soon !");
                       scrollToSection("games");
@@ -500,76 +784,78 @@ function Dashboard() {
               {type_of_game === "Sports" && <Sports />}
             </div>
           </Box>
-          {loding ? (
-            <div className="w-[100%] flex justify-center">
-              <CircularProgress className="!text-#E71D1E" />
-            </div>
-          ) : (
-            <Box sx={styles.wininfoouter}>
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{
-                  color: zubgtext,
-                  fontWeight: "600",
-                  fontSize: "16px",
-                  mb: 2,
-                }}
-              >
-                Winning information
-              </Typography>
-              {winnner_data?.slice(3, 10)?.map((i, index) => {
-                return (
-                  <Stack
-                    key={index}
-                    direction="row"
-                    sx={{ ...styles.wininfoinner, mb: "10px" }}
-                  >
-                    <Stack direction="row" sx={styles.wininfoouterone}>
-                      <Avatar
-                        width={50}
-                        src={
-                          Math.floor(Math.random() * 5) + 1 === 1
-                            ? "https://mui.com/static/images/avatar/4.jpg"
-                            : Math.floor(Math.random() * 5) + 1 === 2
-                              ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                              : Math.floor(Math.random() * 5) + 1 === 3
-                                ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                                : Math.floor(Math.random() * 5) + 1 === 4
-                                  ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                                  : ""
-                        } // Close the src attribute here
-                        className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                          }`}
-                      >
-                        {i?.email?.split("@")[0]?.substring(0, 1)}
-                      </Avatar>
-                      <Typography variant="body1">
-                        {i?.email
-                          ? i.email.split("@")[0].substring(0, 2) +
-                          "**" +
-                          (i.email.split("@")[0].length > 2
-                            ? i.email.split("@")[0].substring(2, 4)
-                            : "")
-                          : "**"}
-                      </Typography>
-                    </Stack>
-                    <Stack direction="row" sx={styles.wininfooutertwo}>
-                      <Box component="img" src={winp4} />
-                      <Box>
-                        <Typography variant="body1" color="initial">
-                          Receive ₹{Number(i?.win || 0)?.toFixed(2)}
+          {
+            loding ? (
+              <div className="w-[100%] flex justify-center">
+                <CircularProgress className="!text-#E71D1E" />
+              </div>
+            ) : (
+              <Box sx={styles.wininfoouter}>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    color: zubgtext,
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    mb: 2,
+                  }}
+                >
+                  Winning information
+                </Typography>
+                {winnner_data?.slice(3, 10)?.map((i, index) => {
+                  return (
+                    <Stack
+                      key={index}
+                      direction="row"
+                      sx={{ ...styles.wininfoinner, mb: "10px" }}
+                    >
+                      <Stack direction="row" sx={styles.wininfoouterone}>
+                        <Avatar
+                          width={50}
+                          src={
+                            Math.floor(Math.random() * 5) + 1 === 1
+                              ? "https://mui.com/static/images/avatar/4.jpg"
+                              : Math.floor(Math.random() * 5) + 1 === 2
+                                ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
+                                : Math.floor(Math.random() * 5) + 1 === 3
+                                  ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
+                                  : Math.floor(Math.random() * 5) + 1 === 4
+                                    ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
+                                    : ""
+                          } // Close the src attribute here
+                          className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
+                            }`}
+                        >
+                          {i?.email?.split("@")[0]?.substring(0, 1)}
+                        </Avatar>
+                        <Typography variant="body1">
+                          {i?.email
+                            ? i.email.split("@")[0].substring(0, 2) +
+                            "**" +
+                            (i.email.split("@")[0].length > 2
+                              ? i.email.split("@")[0].substring(2, 4)
+                              : "")
+                            : "**"}
                         </Typography>
-                        <Typography variant="body1" color="initial">
-                          Winning amount
-                        </Typography>
-                      </Box>
+                      </Stack>
+                      <Stack direction="row" sx={styles.wininfooutertwo}>
+                        <Box component="img" src={winp4} />
+                        <Box>
+                          <Typography variant="body1" color="initial">
+                            Receive ₹{Number(i?.win || 0)?.toFixed(2)}
+                          </Typography>
+                          <Typography variant="body1" color="initial">
+                            Winning amount
+                          </Typography>
+                        </Box>
+                      </Stack>
                     </Stack>
-                  </Stack>
-                );
-              })}
-            </Box>
-          )}
+                  );
+                })}
+              </Box>
+            )
+          }
 
           {/* stage Podium */}
           <Box
@@ -646,113 +932,117 @@ function Dashboard() {
             </Box>
           </Box>
           {/* stage Podium end */}
-          {loding ? (
-            <div className="w-[100%] flex justify-center">
-              {" "}
-              <CircularProgress className="!text-#E71D1E" />
-            </div>
-          ) : (
-            <Box sx={{ ...styles.wininfoouter, mb: "40px" }}>
-              {winnner_data?.slice(0, 3)?.map((i, index) => {
-                return (
-                  <Stack
-                    key={index}
-                    direction="row"
-                    sx={{ ...styles.wininfoinner, mb: "10px" }}
-                  >
-                    <Stack direction="row" sx={styles.wininfoouterone}>
-                      <Avatar
-                        width={50}
-                        src={
-                          Math.floor(Math.random() * 5) + 1 === 1
-                            ? "https://mui.com/static/images/avatar/4.jpg"
-                            : Math.floor(Math.random() * 5) + 1 === 2
-                              ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                              : Math.floor(Math.random() * 5) + 1 === 3
-                                ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                                : Math.floor(Math.random() * 5) + 1 === 4
-                                  ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                                  : Math.floor(Math.random() * 5) + 1 === 5
-                                    ? "https://res.cloudinary.com/do7kimovl/image/upload/v1711806164/WhatsApp_Image_2024-03-30_at_6.53.33_PM_qo99n4.jpg"
-                                    : ""
-                        } // Close the src attribute here
-                        className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                          }`}
-                      >
-                        {i?.email?.split("@")[0]?.substring(0, 1)}
-                      </Avatar>
-                      <Typography variant="body1">
-                        {i?.email
-                          ? i.email.split("@")[0].substring(0, 2) +
-                          "**" +
-                          (i.email.split("@")[0].length > 2
-                            ? i.email.split("@")[0].substring(2, 4)
-                            : "")
-                          : "**"}
-                      </Typography>
-                    </Stack>
-                    <Stack direction="row" sx={styles.wininfooutertwo}>
-                      <Box component="img" src={winp4} />
-                      <Box>
-                        <Typography variant="body1" color="initial">
-                          Receive ₹{Number(i?.win || 0)?.toFixed(2)}
-                        </Typography>
-                        <Typography variant="body1" color="initial">
-                          Winning amount
-                        </Typography>
-                      </Box>
-                    </Stack>
-                  </Stack>
-                );
-              })}
-            </Box>
-          )}
-
-          {poicy && !lodingBanner && (
-            <Dialog
-              open={poicy}
-              TransitionComponent={Transition}
-              keepMounted
-              onClose={handleClosepolicy}
-              aria-describedby="alert-dialog-slide-description"
-              PaperProps={{ className: `!max-w-[500px] ${gray}` }}
-            >
-              <div
-                style={{
-                  background: "",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "15px",
-                }}
-              >
-                {!openbannerurl ||
-                  (openbannerurl === "" && (
-                    <p style={{ color: "white", fontSize: "14px" }}>
-                      Notification
-                    </p>
-                  ))}
-                <RxCross2
-                  style={{ color: "white" }}
-                  onClick={handleClosepolicy}
-                />
+          {
+            loding ? (
+              <div className="w-[100%] flex justify-center">
+                {" "}
+                <CircularProgress className="!text-#E71D1E" />
               </div>
-              <DialogContent style={{ background: zubgback }}>
-                {!openbannerurl ||
-                  openbannerurl === "" ? (
-                  <Notification handleClosepolicy={handleClosepolicy} />
-                ) : (
-                  <img src={openbannerurl} className="w-[100%] h-[100%]" alt="" />
-                )}
-              </DialogContent>
-            </Dialog>
-          )}
+            ) : (
+              <Box sx={{ ...styles.wininfoouter, mb: "40px" }}>
+                {winnner_data?.slice(0, 3)?.map((i, index) => {
+                  return (
+                    <Stack
+                      key={index}
+                      direction="row"
+                      sx={{ ...styles.wininfoinner, mb: "10px" }}
+                    >
+                      <Stack direction="row" sx={styles.wininfoouterone}>
+                        <Avatar
+                          width={50}
+                          src={
+                            Math.floor(Math.random() * 5) + 1 === 1
+                              ? "https://mui.com/static/images/avatar/4.jpg"
+                              : Math.floor(Math.random() * 5) + 1 === 2
+                                ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
+                                : Math.floor(Math.random() * 5) + 1 === 3
+                                  ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
+                                  : Math.floor(Math.random() * 5) + 1 === 4
+                                    ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
+                                    : Math.floor(Math.random() * 5) + 1 === 5
+                                      ? "https://res.cloudinary.com/do7kimovl/image/upload/v1711806164/WhatsApp_Image_2024-03-30_at_6.53.33_PM_qo99n4.jpg"
+                                      : ""
+                          } // Close the src attribute here
+                          className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
+                            }`}
+                        >
+                          {i?.email?.split("@")[0]?.substring(0, 1)}
+                        </Avatar>
+                        <Typography variant="body1">
+                          {i?.email
+                            ? i.email.split("@")[0].substring(0, 2) +
+                            "**" +
+                            (i.email.split("@")[0].length > 2
+                              ? i.email.split("@")[0].substring(2, 4)
+                              : "")
+                            : "**"}
+                        </Typography>
+                      </Stack>
+                      <Stack direction="row" sx={styles.wininfooutertwo}>
+                        <Box component="img" src={winp4} />
+                        <Box>
+                          <Typography variant="body1" color="initial">
+                            Receive ₹{Number(i?.win || 0)?.toFixed(2)}
+                          </Typography>
+                          <Typography variant="body1" color="initial">
+                            Winning amount
+                          </Typography>
+                        </Box>
+                      </Stack>
+                    </Stack>
+                  );
+                })}
+              </Box>
+            )
+          }
 
-       
-        </Container>
-      </Box>
+          {
+            poicy && !lodingBanner && (
+              <Dialog
+                open={poicy}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClosepolicy}
+                aria-describedby="alert-dialog-slide-description"
+                PaperProps={{ className: `!max-w-[500px] ${gray}` }}
+              >
+                <div
+                  style={{
+                    background: "",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "15px",
+                  }}
+                >
+                  {!openbannerurl ||
+                    (openbannerurl === "" && (
+                      <p style={{ color: "white", fontSize: "14px" }}>
+                        Notification
+                      </p>
+                    ))}
+                  <RxCross2
+                    style={{ color: "white" }}
+                    onClick={handleClosepolicy}
+                  />
+                </div>
+                <DialogContent style={{ background: zubgback }}>
+                  {!openbannerurl ||
+                    openbannerurl === "" ? (
+                    <Notification handleClosepolicy={handleClosepolicy} />
+                  ) : (
+                    <img src={openbannerurl} className="w-[100%] h-[100%]" alt="" />
+                  )}
+                </DialogContent>
+              </Dialog>
+            )
+          }
+
+
+        </Container >
+      </Box >
       <CustomCircularProgress isLoading={isLoading || isLoading} />
-    </Layout>
+    </Layout >
   );
 }
 
@@ -767,6 +1057,7 @@ const styles = {
     fontWeight: "500",
   },
   swiperImage: { width: "100%", height: "auto" },
+  kiswiperImage: { width: "100%", maxHeight: '30vh', height: "auto", borderRadius: '10px', my: 2 },
   depositWithdrawContainer: {
     alignItems: "center",
     justifyContent: "space-between",
@@ -1000,4 +1291,30 @@ const styles = {
     justifyContent: "center",
     flexDirection: "column",
   },
+
+  kiNavOuter: { width: '22%', borderRadius: 1, border: `1px solid ${kidarkgreen}`, maxWidth: '120px', mb: 2 },
+  kiNavInner: { padding: 1, background: kidarkgreen, },
+  KiNavImg: { width: '30px', margin: 'auto', },
+  kiNavText: { textAlign: 'center', fontSize: '12px', fontWeight: '600' },
+  kibutton1: { width: '95%', ml: '2.5%', py: '10px', mb: 2, background: kigreen, color: 'white', '&:hover': { background: kidarkgreen } },
+  kiHeadline: { color: kigreen, fontSize: '17px', fontWeight: '600', width: '95%', ml: '2.5%', mb: 2, },
+  kiproductbox: { padding: '16px 0px 0px 16px', borderRadius: '10px', background: '#fff', width: '100%', mb: 2, boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;' },
+  kiproflex: { alignItems: 'center', justifyContent: 'space-between' },
+  kiproductTitle: { fontSize: '14px', fontWeight: '500', mb: 2, },
+  kiimageBox: { width: '35%' },
+  kiimage: { width: '100%', borderRadius: '10px' },
+  kipriceStack: { alignItems: 'center', justifyContent: 'space-between', mb: 1 },
+  kipriceLabel: { fontSize: '13px', fontWeight: '500', color: 'gray' },
+  kipriceValue: { fontSize: '15px', fontWeight: '600', color: kigreen },
+  kipercentageBox: { height: '20px', background: '#d2cdcd', width: '49%', borderRadius: '10px', overflow: 'hidden', position: 'relative' },
+  kipercentageLabel: { textAlign: 'center', color: kidarkgreen, fontSize: '13px', fontWeight: '600', position: 'absolute', zIndex: 100, left: '45%', top: '1%' },
+  kiprogressBar: { height: '100%', background: kigreen, width: '40%', borderRadius: '0px 30px 30px 0px', position: 'absolute', top: 0, left: 0 },
+  kibutton: { width: '49%', borderRadius: '50px 0px 10px 0px', py: 1, px: 0, pl: 2, fontSize: '13px', '&>svg': { fontSize: '20px', mb: '3px' } },
+
 };
+
+
+
+
+
+

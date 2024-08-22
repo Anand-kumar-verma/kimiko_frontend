@@ -1470,3 +1470,7 @@ img {
 .loginfieldspass2>fieldset {
   border: none !important;
 }
+
+button {
+  text-transform: none !important;
+}
