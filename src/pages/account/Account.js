@@ -28,10 +28,7 @@ import hand from "../../assets/images/hand.png";
 import namer from "../../assets/images/namer.png";
 import notification from "../../assets/images/notification (1).png";
 import notification1 from "../../assets/images/notification.png";
-<<<<<<< HEAD
-=======
-import user2 from "../../assets/images/password (1).png";
->>>>>>> 121c84a0598ab2f193c6b33dfb2282a828c300ef
+// import user2 from "../../assets/images/password (1).png";
 import bgms from "../../assets/images/playgame.jpg";
 import dp1 from "../../assets/images/pr.png";
 import balance from "../../assets/images/send.png";
@@ -564,7 +561,7 @@ function Account() {
               {
                 to: "/SettingCenter/LoginPassword",
                 name: "Change Password",
-                logo: user2,
+                // logo: user2,
               },
               // {
               //   to: "/promotion/customerLine/",
