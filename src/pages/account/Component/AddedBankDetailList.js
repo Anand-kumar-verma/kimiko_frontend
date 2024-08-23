@@ -12,10 +12,13 @@ import {
 import * as React from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { kidarkgreen, kigrad, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import deposit from "../../../assets/images/banking.png";
 import Layout from "../../../component/Layout/Layout";
 import { BankListDetails } from "../../../services/apicalling";
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+
 function AddedBankDetailList() {
   const navigate = useNavigate();
   const goBack = () => {
@@ -31,8 +34,8 @@ function AddedBankDetailList() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
@@ -51,15 +54,10 @@ function AddedBankDetailList() {
         }}
         className="no-scrollbar"
       >
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={goBack}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Added Bank Details
-          </Typography>
-          <Box></Box>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} /> Added Bank Details</Box>
 
         <Box>
           <Box
@@ -68,30 +66,19 @@ function AddedBankDetailList() {
               width: "95%",
               margin: "auto",
               mt: 2,
-              background: zubgwhite,
-              boxShadow: zubgshadow,
+              background: kidarkgreen,
               borderRadius: "10px",
               mb: 5,
             }}
           >
             <div className="!flex !w-full !justify-between">
-              <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-                <Box component="img" src={deposit} width={30}></Box>
-                <Typography
-                  variant="body1"
-                  color="initial"
-                  sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
-                >
-                  Pre Added Banks
-                </Typography>
-              </Stack>
               <div
                 className="!flex !items-center !cursor-pointer"
                 onClick={() => navigate("/add-bank-details")}
               >
-                <span style={{ color: zubgtext }}>Add New</span>
+                <span style={{ color: 'white' }}>Add New</span>
                 <IconButton>
-                  <Add sx={{ color: zubgtext }} />
+                  <Add sx={{ color: 'white' }} />
                 </IconButton>
               </div>
             </div>

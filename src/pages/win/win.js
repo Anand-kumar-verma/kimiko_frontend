@@ -9,17 +9,18 @@ import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { zubgback, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
-import deposit from "../../assets/images/deposit (1).png";
-import Timeactive from "../../assets/images/fast-time (2).png";
+import { kidarkgreen, zubgback, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
+import deposit from "../../assets/kiimages/deposit.png";
+import Timeactive from "../../assets/kiimages/fast-time.png";
 import Timeinactive from "../../assets/images/fast-time.png";
-import cash from "../../assets/images/withdraw.png";
+import cash from "../../assets/kiimages/hand.png";
 import Layout from "../../component/Layout/Layout";
 import { endpoint } from "../../services/urls";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
+import logo from "../../assets/logokimi.png";
 
 function Win() {
   const navigate = useNavigate();
@@ -71,20 +72,20 @@ function Win() {
   }, [dummycounter]);
 
   return (
-    <Layout footer={false}>
+    <Layout footer={true}>
       <Container sx={styles.root}>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
         <Box sx={{ padding: 2 }}>
-          <KeyboardArrowLeftOutlinedIcon
-            className=" !cursor-pointer"
-            sx={{ color: zubgtext }}
-            onClick={() => navigate(-1)}
-          />
+
           <Stack direction="row" sx={styles.depositWithdrawContainer}>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
+
               }}
             >
               <Box className="serv-item cursor-pointer">
@@ -94,13 +95,14 @@ function Win() {
                   alt="Deposit"
                   sx={styles.depositWithdrawIcon}
                   onClick={() => navigate("/wallet/Recharge")}
+
                 />
               </Box>
               <Typography
                 variant="body1"
                 color="initial"
-                className="db-header"
-                sx={{ xolor: "white", textAlign: "center" }}
+                className="db-header kip13"
+                sx={{ color: kidarkgreen, textAlign: "center" }}
               >
                 Deposit
               </Typography>
@@ -110,19 +112,19 @@ function Win() {
                 variant="body1"
                 color="initial"
                 className="b-val"
-                sx={{ color: zubgtext }}
+                sx={{ color: kidarkgreen }}
               >
                 ₹{" "}
                 {Number(
                   Number(amount?.wallet || 0) + Number(amount?.winning || 0) ||
-                    0
+                  0
                 )?.toFixed(2)}
               </Typography>
               <Typography
                 variant="body1"
                 color="initial"
-                className="b-valp"
-                sx={{ color: zubgtext }}
+                className="b-valp kip15"
+                sx={{ color: kidarkgreen }}
               >
                 Available Balance
               </Typography>
@@ -144,7 +146,7 @@ function Win() {
                   className="!cursor-pointer"
                 />
               </Box>
-              <Typography variant="body1" color="initial" className="db-header">
+              <Typography variant="body1" color="initial" className="db-header kip13" style={{ color: kidarkgreen }}>
                 Withdraw
               </Typography>
             </Box>
@@ -152,7 +154,7 @@ function Win() {
         </Box>
         <Box
           sx={{
-            background: zubgwhite,
+            background: kidarkgreen,
             boxShadow: zubgshadow,
             width: "95%",
             marginLeft: "2.5%",
@@ -171,7 +173,7 @@ function Win() {
               ) : (
                 <Box component="img" src={Timeactive} width={50}></Box>
               )}
-              <Typography variant="h3" color="initial">
+              <Typography variant="h3" sx={{ color: kidarkgreen }}>
                 Win Go 1Min
               </Typography>
             </Box>
@@ -185,7 +187,7 @@ function Win() {
               ) : (
                 <Box component="img" src={Timeactive} width={50}></Box>
               )}
-              <Typography variant="h3" color="initial">
+              <Typography variant="h3" sx={{ color: kidarkgreen }}>
                 Win Go 3Min
               </Typography>
             </Box>
@@ -199,7 +201,7 @@ function Win() {
               ) : (
                 <Box component="img" src={Timeactive} width={50}></Box>
               )}
-              <Typography variant="h3" color="initial">
+              <Typography variant="h3" sx={{ color: kidarkgreen }}>
                 Win Go 5Min
               </Typography>
             </Box>
@@ -231,7 +233,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback },
+  root: { background: '#e7e7e7', },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",
@@ -242,9 +244,9 @@ const styles = {
   depositWithdrawContainer: {
     alignItems: "center",
     justifyContent: "space-between",
-    mt: 2,
+    // mt: 2,
   },
-  depositWithdrawIcon: { width: "30px", height: "30px" },
+  depositWithdrawIcon: { width: "30px", height: "30px", },
   referralLinkContainer: {
     background: "#3A3A3A",
     padding: "15px 15px",

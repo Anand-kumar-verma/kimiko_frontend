@@ -59,6 +59,19 @@ const Menu = () => {
     }
   ];
 
+  const product = [
+    { name: 'S-Solor-Energy-3800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 40, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-4800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 60, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-9800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 30, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-5800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 20, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-1800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 50, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-6800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 70, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-8800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 10, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-9800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 90, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-3800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 0, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-4800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 20, date: '00:23:50:21' },
+  ]
+
   return (
     <Layout>
       <Container
@@ -95,51 +108,12 @@ const Menu = () => {
         </Box> */}
 
         <Box sx={{ width: '100%', typography: 'body1', mt: '2px' }}>
-          <TabContext value={value}>
-            <Box sx={{ background: kigrad, }}>
-              <TabList
-                onChange={handleChange}
-                aria-label="lab API tabs example"
-                sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Tab
-                  label="Coffee Machine"
-                  value="1"
-                  sx={{
-                    padding: 0,
-                    fontSize: '13px',
-                    width: '33.33%',
-                    color: 'white !important',
-                    background: value == 1 ? `${kidarkgreen}` : '',
-                    // borderRadius: '0px 20px 20px 0px'
-                  }}
-                />
-                <Tab label=" Series" value="2"
-                  sx={{
-                    padding: 0,
-                    fontSize: '13px',
-                    width: '33.33%',
-                    color: 'white !important',
-                    background: value == 2 ? `${kidarkgreen}` : '',
-                    // borderRadius: '0px'
-                  }}
-                />
-                <Tab label="G Series" value="3"
-                  sx={{
-                    padding: 0,
-                    fontSize: '13px',
-                    width: '33.33%',
-                    color: 'white !important',
-                    background: value == 3 ? `${kidarkgreen}` : '',
-                    // borderRadius: '20px 0px 0px 20px'
-                  }}
-                />
-              </TabList>
-            </Box>
-            <TabPanel value="1" sx={{ border: 'none', padding: 0 }}>
-              <Box sx={{ width: '95%', ml: '2.5%', mt: 2 }}>
+          <Box sx={{ width: '95%', ml: '2.5%', mt: 2 }}>
+            {
+              product.map((item, value) => (
                 <Box sx={style.kiproductbox}>
                   <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                    S-Coffee Machine-3800
+                    {item.name}
                   </Typography>
                   <Stack direction={'row'} sx={style.kiproflex}>
                     <Box sx={style.kiimageBox}>
@@ -148,473 +122,33 @@ const Menu = () => {
                     <Box sx={{ width: '55%', mr: 2 }}>
                       <Stack direction={'row'} sx={style.kipriceStack}>
                         <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
+                        <Typography variant="body1" sx={style.kipriceValue}> {item.Price}</Typography>
                       </Stack>
                       <Stack direction={'row'} sx={style.kipriceStack}>
                         <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
+                        <Typography variant="body1" sx={style.kipriceValue}> {item.Cycle}</Typography>
                       </Stack>
                       <Stack direction={'row'} sx={style.kipriceStack}>
                         <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
+                        <Typography variant="body1" sx={style.kipriceValue}> {item.Total}</Typography>
                       </Stack>
                     </Box>
                   </Stack>
                   <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
                     <Box sx={style.kipercentageBox}>
-                      <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                      <Box sx={style.kiprogressBar}></Box>
+                      <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>{item.percentage}%</Typography>
+                      <Box sx={{ ...style.kiprogressBar, width: `${item.percentage}%` }}></Box>
                     </Box>
-                    <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
+                    <Button onClick={() => navigate(`/menu/menu-details/`)} sx={style.kibutton} variant="contained" > Buy {item.date} < NavigateNextRounded /></Button>
                   </Stack>
                 </Box>
-                <Box sx={style.kiproductbox}>
-                  <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                    S-Coffee Machine-3800
-                  </Typography>
-                  <Stack direction={'row'} sx={style.kiproflex}>
-                    <Box sx={style.kiimageBox}>
-                      <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                    </Box>
-                    <Box sx={{ width: '55%', mr: 2 }}>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                      </Stack>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                      </Stack>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                      </Stack>
-                    </Box>
-                  </Stack>
-                  <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Box sx={style.kipercentageBox}>
-                      <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                      <Box sx={style.kiprogressBar}></Box>
-                    </Box>
-                    <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                  </Stack>
-                </Box>
-                <Box sx={style.kiproductbox}>
-                  <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                    S-Coffee Machine-3800
-                  </Typography>
-                  <Stack direction={'row'} sx={style.kiproflex}>
-                    <Box sx={style.kiimageBox}>
-                      <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                    </Box>
-                    <Box sx={{ width: '55%', mr: 2 }}>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                      </Stack>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                      </Stack>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                      </Stack>
-                    </Box>
-                  </Stack>
-                  <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Box sx={style.kipercentageBox}>
-                      <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                      <Box sx={style.kiprogressBar}></Box>
-                    </Box>
-                    <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                  </Stack>
-                </Box>
-                <Box sx={style.kiproductbox}>
-                  <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                    S-Coffee Machine-3800
-                  </Typography>
-                  <Stack direction={'row'} sx={style.kiproflex}>
-                    <Box sx={style.kiimageBox}>
-                      <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                    </Box>
-                    <Box sx={{ width: '55%', mr: 2 }}>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                      </Stack>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                      </Stack>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                      </Stack>
-                    </Box>
-                  </Stack>
-                  <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Box sx={style.kipercentageBox}>
-                      <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                      <Box sx={style.kiprogressBar}></Box>
-                    </Box>
-                    <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                  </Stack>
-                </Box>
-                <Box sx={style.kiproductbox}>
-                  <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                    S-Coffee Machine-3800
-                  </Typography>
-                  <Stack direction={'row'} sx={style.kiproflex}>
-                    <Box sx={style.kiimageBox}>
-                      <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                    </Box>
-                    <Box sx={{ width: '55%', mr: 2 }}>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                      </Stack>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                      </Stack>
-                      <Stack direction={'row'} sx={style.kipriceStack}>
-                        <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                        <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                      </Stack>
-                    </Box>
-                  </Stack>
-                  <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Box sx={style.kipercentageBox}>
-                      <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                      <Box sx={style.kiprogressBar}></Box>
-                    </Box>
-                    <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                  </Stack>
-                </Box>
-              </Box >
-            </TabPanel>
-            <TabPanel value="2" sx={{ border: 'none', padding: 0 }}> <Box sx={{ width: '95%', ml: '2.5%', mt: 2 }}>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-            </Box >
-            </TabPanel>
-            <TabPanel value="3" sx={{ border: 'none', padding: 0 }}>  <Box sx={{ width: '95%', ml: '2.5%', mt: 2 }}>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-              <Box sx={style.kiproductbox}>
-                <Typography variant="body1" color="initial" sx={style.kiproductTitle}>
-                  S-Coffee Machine-3800
-                </Typography>
-                <Stack direction={'row'} sx={style.kiproflex}>
-                  <Box sx={style.kiimageBox}>
-                    <Box component={'img'} src={coffeem1} sx={style.kiimage}></Box>
-                  </Box>
-                  <Box sx={{ width: '55%', mr: 2 }}>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Price :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>3800 Rs</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Cycle :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>5 Days</Typography>
-                    </Stack>
-                    <Stack direction={'row'} sx={style.kipriceStack}>
-                      <Typography variant="body2" sx={style.kipriceLabel}>Total :</Typography>
-                      <Typography variant="body1" sx={style.kipriceValue}>19800 Rs</Typography>
-                    </Stack>
-                  </Box>
-                </Stack>
-                <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Box sx={style.kipercentageBox}>
-                    <Typography variant="body1" color="initial" sx={style.kipercentageLabel}>40%</Typography>
-                    <Box sx={style.kiprogressBar}></Box>
-                  </Box>
-                  <Button sx={style.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-                </Stack>
-              </Box>
-            </Box >
-            </TabPanel>
-          </TabContext>
+              ))
+            }
+          </Box >
         </Box>
 
 
-        <div className="p-4 mb-20">
+        {/* <div className="p-4 mb-20">
           <div className="grid grid-cols-1 gap-5 ">
             {products?.map((product, index) => (
               <div key={product?.m_pack_id} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
@@ -636,9 +170,9 @@ const Menu = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </Container>
-    </Layout>
+    </Layout >
   );
 }
 

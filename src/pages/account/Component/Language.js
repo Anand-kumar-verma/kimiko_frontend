@@ -3,10 +3,12 @@ import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeft
 import { Box, Container, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
+import { kidarkgreen, kigrad, zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
 import english from '../../../assets/images/enflag.png';
 import india from '../../../assets/images/inflag.webp';
 import Layout from '../../../component/Layout/Layout';
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 
 
 function Languages() {
@@ -23,13 +25,11 @@ function Languages() {
   return (
     <Layout>
       <Container sx={style.container}>
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={() => goBack()}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">Language</Typography>
-          <Typography variant="body1" color="initial"> </Typography>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} />Language</Box>
+
         <Box sx={{ mt: '10px', padding: '10px', width: '95%', marginLeft: '2.5%', borderRadius: '10px', background: zubgtext }}>
           <Stack direction={'row'} sx={{
             alignItems: 'center', justifyContent: 'space-between', marginTop: '10px', background: value === 1 ? zubgbackgrad : 'transparent',

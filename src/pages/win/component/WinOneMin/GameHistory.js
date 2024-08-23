@@ -11,7 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { zubgback, zubgtext } from "../../../../Shared/color";
-import history from '../../../../assets/images/list.png';
+import history from '../../../../assets/kiimages/data-transfer.png';
 
 const GameHistory = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -37,7 +37,7 @@ const GameHistory = ({ gid }) => {
   );
 
   return (
-    <Box>
+    <Box >
       <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: `${zubgtext} !important` }}>
           <Box component='img' src={history} width={25} sx={{ marginRight: '10px' }}></Box>
@@ -48,7 +48,7 @@ const GameHistory = ({ gid }) => {
               : "Five Go Record"}
         </Typography>
       </Stack>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ mb: 5 }}>
         <Table sx={{ maxWidth: 575, background: zubgback, color: "white" }} className="wintable" aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -173,8 +173,9 @@ const GameHistory = ({ gid }) => {
           </TableBody>
         </Table>
 
-        <Box className="paginationTable !w-full">
+        <Box className="paginationTable !w-full" >
           <TablePagination
+            className="kip13"
             sx={{ background: zubgtext, color: 'white', }}
             rowsPerPageOptions={[5, 10, 15]}
             component="div"

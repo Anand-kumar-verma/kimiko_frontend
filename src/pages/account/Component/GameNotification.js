@@ -2,9 +2,11 @@ import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeft
 import { Box, Container, Stack, Typography } from '@mui/material';
 import * as React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { gamename, zubgback, zubgtext } from '../../../Shared/color';
+import { gamename, kidarkgreen, kigrad, zubgback, zubgtext } from '../../../Shared/color';
 import promotion from '../../../assets/images/marketing (1).png';
 import Layout from '../../../component/Layout/Layout';
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 
 function GameNotification() {
   const navigate = useNavigate();
@@ -16,13 +18,11 @@ function GameNotification() {
   return (
     <Layout>
       <Container sx={style.container}>
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={() => goBack()}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">Notification</Typography>
-          <Typography variant="body1" color="initial"> </Typography>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} />Notification</Box>
+
         <Box sx={style.notificationBox}>
           <Stack direction='row' sx={style.notificationStack}>
             <Stack direction='row' sx={style.notificationStack}>

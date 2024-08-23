@@ -20,16 +20,19 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
+import logo from "../../assets/logokimi.png";
 import {
+  kidarkgreen,
+  kigrad,
   zubgback,
   zubgbackgrad,
   zubgmid,
   zubgshadow,
-  zubgtext,
+
   zubgwhite,
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import payment from "../../assets/images/deposit (2).png";
+import payment from "../../assets/kiimages/info.png";
 import playgame from "../../assets/images/playgame.jpg";
 import balance from "../../assets/images/send.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
@@ -234,7 +237,7 @@ function Withdrawl() {
       <Container
         className="no-scrollbar"
         sx={{
-          background: zubgback,
+          background: '#E7E7E7',
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -242,17 +245,9 @@ function Withdrawl() {
         }}
       >
         <CustomCircularProgress isLoading={isLoading || lodint} />
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={goBack}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Withdrawal
-          </Typography>
-          <Box component={NavLink} to="/withdravalHistory">
-            <HistoryIcon />
-          </Box>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
         <Box
           sx={{
             borderRadius: "10px",
@@ -260,23 +255,10 @@ function Withdrawl() {
             width: "95%",
             margin: "auto",
             position: "relative",
-            mt: 3,
+            background: kigrad,
+            mt: 2,
           }}
         >
-          <Box
-            component="img"
-            src={playgame}
-            sx={{
-              opacity: "0.9",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              borderRadius: "10px",
-              overflow: "hidden",
-            }}
-          ></Box>
           <Stack
             direction="row"
             sx={{
@@ -317,8 +299,8 @@ function Withdrawl() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                  )?.toFixed(2)}
+                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -369,10 +351,9 @@ function Withdrawl() {
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: zubgwhite,
-              boxShadow: zubgshadow,
+              background: kidarkgreen,
               borderRadius: "10px",
-              mb: 5,
+              mb: 2,
             }}
           >
             <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
@@ -380,17 +361,17 @@ function Withdrawl() {
               <Typography
                 variant="body1"
                 color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+                sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
               >
                 Withdrawal amount
               </Typography>
             </Stack>
             <Box mt={2} component="form" onSubmit={fk.handleSubmit}>
-             
+
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Enter amount <span className="!text-green-600">*</span>
+                  <Typography variant="h3" sx={{ color: 'white' }}>
+                    Enter amount <span style={{ color: 'white' }}>*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -410,8 +391,8 @@ function Withdrawl() {
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Select Bank <span className="!text-green-600">*</span>
+                  <Typography variant="h3" sx={{ color: 'white' }}>
+                    Select Bank <span style={{ color: 'white' }}>*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -425,10 +406,11 @@ function Withdrawl() {
                   InputProps={{
                     style: {
                       borderColor: "#ffffff",
-                      borderWidth: "1px",
-                      color: zubgtext,
-                      background: "#dcdcdc92",
-                      borderRadius: "10px",
+
+                      color: kidarkgreen,
+                      background: "#fff",
+                      borderRadius: "5px",
+
                     },
                   }}
                 >
@@ -448,8 +430,8 @@ function Withdrawl() {
               {/* withdrawl type */}
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Withdrawl Type <span className="!text-green-600">*</span>
+                  <Typography variant="h3" sx={{ color: 'white' }}>
+                    Withdrawl Type <span style={{ color: 'white' }}>*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -461,11 +443,11 @@ function Withdrawl() {
                   className="withdrawalfield"
                   InputProps={{
                     style: {
-                      borderColor: "#ffffff",
-                      borderWidth: "1px",
-                      color: zubgtext,
-                      background: "#dcdcdc92",
-                      borderRadius: "10px",
+
+
+                      color: kidarkgreen,
+                      background: "#fff",
+                      borderRadius: "5px",
                     },
                   }}
                 >
@@ -488,25 +470,21 @@ function Withdrawl() {
             </Box>
           </Box>
         </Box>
-        <Box
-          className="!my-10 !mx-5 "
-          sx={{ "&>p": { textAlign: "center", color: "red" } }}
-        >
+        <Box className="w95" sx={{ background: kidarkgreen, padding: 1, borderRadius: '10px', mb: 5, }}>
           <Box
-            className="mt-2 !py-4 border border-red-500  rounded-lg"
-            sx={{ "&>p": { color: "", fontSize: "12px" } }}
+            sx={{ "&>p": { color: "white", fontSize: "12px", } }}
           >
-           
+
             <p className="  !text-green-600 !m-1">
               ⭐️ Withdraw time 10:00-5:59{" "}
             </p>
-           
+
             <p className="  !text-green-600 !m-1">
               ⭐️ Withdrawal minimum amount range ₹ 199.00
             </p>
             <p className="  !text-green-600 !m-1">
               ⭐️ Please confirm your beneficial account information before
-              withdrawing. 
+              withdrawing.
             </p>
             <p className="  !text-green-600 !m-1">
               ⭐️ If your information is incorrect, our company will
@@ -536,8 +514,8 @@ function Withdrawl() {
             </p>
           </div>
         </Dialog>
-      </Container>
-    </Layout>
+      </Container >
+    </Layout >
   );
 }
 
@@ -546,7 +524,7 @@ export default Withdrawl;
 const style = {
   header: {
     padding: "15px 8px",
-    background: zubgtext,
+    background: 'white',
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -613,13 +591,13 @@ const style = {
     borderRadius: "5px",
     textTransform: "capitalize",
     mb: 2,
-    background: zubgtext,
-    color: "white !important",
+    background: kigrad,
+    color: kidarkgreen,
     width: "100%",
     mt: "20px",
     border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
+    "&:hover": { background: kigrad, border: "1px solid transparent" },
   },
   rechargeinstext: {
     mb: "10px",

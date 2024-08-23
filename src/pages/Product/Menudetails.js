@@ -83,7 +83,7 @@ const MenuDetails = () => {
                 <Box className="w95" mt={2}>
                     <Box sx={{ background: '#fff', padding: 2, borderRadius: '10px', mb: 2, }}>
                         <Box component='img' src={solar1} sx={{ maxHeight: '35vh', width: '100%', borderRadius: "10px", mb: 2, }}></Box>
-                        <Typography variant="body1" sx={{ fontSize: '17px', fontWeight: 600, textAlign: 'center', }}>S-Coffee Machine-3800</Typography>
+                        <Typography variant="body1" sx={{ fontSize: '17px', fontWeight: 600, textAlign: 'center', }}>S-Solor Energy-3800</Typography>
                         <Box sx={{ background: 'white', borderRadius: '10px', padding: 2, }} >
                             <Stack direction='row' className="flexb">
                                 <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Stock :</Typography>
@@ -106,7 +106,7 @@ const MenuDetails = () => {
                                 <Typography variant="body1" className='kip15'> ₹9120</Typography>
                             </Stack>
                             <Stack direction='row' className="flexb">
-                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Coffee Beans : </Typography>
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Solor Beans : </Typography>
                                 <Typography variant="body1" className='kip15'> 1140</Typography>
                             </Stack>
                         </Box>
@@ -117,7 +117,7 @@ const MenuDetails = () => {
                         </Button>
                     </Box>
                 </Box>
-                <div className="p-4 mb-20">
+                {/* <div className="p-4 mb-20">
                     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
                         <img src={imageUrl} alt={`Pack ${m_pack_id}`} style={{ width: '100%', height: 'auto' }} />
                         <div className="p-4 flex-col gap-5 ">
@@ -151,7 +151,7 @@ const MenuDetails = () => {
                             </Button>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </Container>
         </Layout>
 

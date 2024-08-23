@@ -9,10 +9,14 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubggray, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { kidarkgreen, kigrad, zubgback, zubggray, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
 import { MygetdataFn } from "../../../services/apicalling";
 import { rupees } from "../../../services/urls";
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+
+
 function TeamData() {
   const { isLoading, data } = useQuery(
     ["get_level"],
@@ -37,27 +41,20 @@ function TeamData() {
         }}
       >
         <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Box component={NavLink} to="/promotion/">
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Team data
-          </Typography>
-          <Typography variant="body1" color="initial">
-            {" "}
-          </Typography>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} />  Team data</Box>
+
         {
 
           <Accordion className="!rounded-lg">
             <AccordionSummary
-              expandIcon={<Star className="!text-white" />}
               aria-controls="panel1-content"
               id="panel1-header"
               sx={{ background: zubgtext, color: "white" }}
             >
-              <div className="w-full grid grid-cols-3 pr-2">
+              <div className="flexb" style={{ width: '100%' }}>
                 <span className="">Levels</span>
                 <p className="">Members</p>
                 <p className="">Recharge Amount</p>
@@ -73,7 +70,7 @@ function TeamData() {
                   expandIcon={<ArrowDownwardIcon className="!text-white" />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: zubggray, color: "white", borderRadius: '5px' }}
+                  sx={{ background: kidarkgreen, color: "white", borderRadius: '5px' }}
                 >
                   <div className="w-full grid grid-cols-3 pr-2">
                     <span className="">Level: {i}</span>
@@ -87,24 +84,24 @@ function TeamData() {
                     </p>
                   </div>
                 </AccordionSummary>
-                <AccordionDetails sx={{ background: zubgwhite, boxShadow: zubgshadow, color: "white" }}>
+                <AccordionDetails sx={{ color: "white", background: '' }}>
                   <Box >
                     <Box sx={style.accordian}>
-                      <div style={{ color: 'white', borderBottom: '2px solid red', padding: '10px', borderBottom: '2px solid red', padding: '10px', }} className="!grid !grid-cols-3    ">
-                        <span>S.No.</span>
-                        <span>User Id</span>
-                        <span className="">Name</span>
+                      <div className="flexb" style={{ width: '100%', color: 'white', borderBottom: `2px solid ${kidarkgreen}`, padding: '10px 0px', }}>
+                        <span style={{ display: 'inline-block', width: '20%', color: kidarkgreen, }} >S.No.</span>
+                        <span style={{ display: 'inline-block', width: '30%', color: kidarkgreen, }}  >User Id</span>
+                        <span style={{ display: 'inline-block', width: '50%', color: kidarkgreen, }} >Name</span>
 
                       </div>
                       <div className="h-[2px] w-full "></div>
                       {result?.filter((j) => j?.LEVEL === i)?.map((i, index) => {
                         return (
-                          <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
-                            <span>{index + 1}</span>
-                            <span className=" ">
+                          <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', width: "100%" }} >
+                            <span style={{ display: 'inline-block', width: '20%' }}>{index + 1}</span>
+                            <span style={{ display: 'inline-block', width: '30%' }} className=" ">
                               {i?.username || "No data found"}
                             </span>
-                            <span className=" ">
+                            <span style={{ display: 'inline-block', width: '50%' }}>
                               {i?.full_name || "No data found"}
                             </span>
 
@@ -144,7 +141,7 @@ const style = {
     },
   },
   accordian: {
-    backgroundColor: zubgwhite,
+
     "&>div": { mb: 1 },
     "&>div>div:nth-child(1)": {
       borderRight: "1px solid black",
@@ -152,7 +149,7 @@ const style = {
     "&>div>div:nth-child(2)": {
     },
     "&>div>div>p": {
-      color: "white",
+      color: kidarkgreen,
       fontSize: "14px",
       fontWeight: 500,
     },

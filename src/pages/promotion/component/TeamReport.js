@@ -8,9 +8,11 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { kidarkgreen, kigrad, zubgback, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
 import { MygetdataFn } from "../../../services/apicalling";
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 
 function TeamReports() {
   const { isLoading, data } = useQuery(
@@ -35,24 +37,17 @@ function TeamReports() {
         }}
       >
         <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Box component={NavLink} to="/promotion/">
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Subordinate data
-          </Typography>
-          <Typography variant="body1" color="initial">
-            {" "}
-          </Typography>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} />Team Report</Box>
+
         <Box sx={{ paddingTop: 2 }}>
           <Box
+            className="w95"
             sx={{
-              background: zubgwhite,
-              boxShadow: zubgshadow,
+              background: '$E7E7E7',
               borderRadius: "10px",
-              padding: "30px 20px",
               "&>div": { mb: 1 },
               "&>div>div:nth-child(1)": {
                 borderRight: "1px solid black",
@@ -67,22 +62,22 @@ function TeamReports() {
               },
             }}
           >
-            <div style={{ color: 'white', background: zubgtext, padding: '10px', borderRadius: '5px' }} className="!grid !grid-cols-5   !place-items-center ">
-              <span className="">S.No.</span>
-              <span className="">User Id</span>
-              <span className="">Name</span>
-              <span className="">Mobile No</span>
-              <span className="">Recharge</span>
+            <div style={{ color: 'white', background: zubgtext, padding: '10px', borderRadius: '5px', width: '100%' }} >
+              <span style={{ display: 'inline-block', width: '10%' }} className="kip13">S.No.</span>
+              <span style={{ display: 'inline-block', width: '20%' }} className="kip13">User Id</span>
+              <span style={{ display: 'inline-block', width: '30%' }} className="kip13">Name</span>
+              <span style={{ display: 'inline-block', width: '30%' }} className="kip13">Mobile No</span>
+              <span style={{ display: 'inline-block', width: '10%' }} className="kip13">Recharge</span>
 
             </div>
-            {result?.filter((j)=>j?.LEVEL === 1)?.map((i, index) => {
+            {result?.filter((j) => j?.LEVEL === 1)?.map((i, index) => {
               return (
-                <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-5 !text-sm !place-items-center">
-                  <span className="!items-start" >{index + 1}</span>
-                  <span className="">{i?.username}</span>
-                  <span className="!text-center ">{i?.full_name || "No data found"}</span>
-                  <span className="">{i?.mobile || "987654210"}</span>
-                  <span className="">{i?.recharge_amount || "0"}</span>
+                <div style={{ color: 'white', background: kidarkgreen, borderRadius: '5px', padding: '10px 20px', width: '100%' }} >
+                  <span style={{ display: 'inline-block', width: '10%' }} className="!items-start kip13" >{index + 1}</span>
+                  <span style={{ display: 'inline-block', width: '20%' }} className="kip13">{i?.username}</span>
+                  <span style={{ display: 'inline-block', width: '30%' }} className="!text-center kip13">{i?.full_name || "No data found"}</span>
+                  <span style={{ display: 'inline-block', width: '30%' }} className="kip13">{i?.mobile || "987654210"}</span>
+                  <span style={{ display: 'inline-block', width: '10%' }} className="kip13">{i?.recharge_amount || "0"}</span>
 
                 </div>
               );

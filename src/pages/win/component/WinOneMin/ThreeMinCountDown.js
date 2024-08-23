@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
-import { zubgmid } from "../../../../Shared/color";
+import { kidarkgreen, zubgmid } from "../../../../Shared/color";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
 import pr0 from "../../../../assets/images/0.png";
@@ -197,7 +197,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
   };
 
   return (
-    <Box className="countdownbg" sx={{ background: zubgmid }}>
+    <Box className="countdownbg" sx={{ background: kidarkgreen }}>
       {React.useMemo(() => {
         return (
           <>
@@ -239,7 +239,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
                 <Box
                   component="img"
                   src={circle}
-                  sx={{ width: "15px !important", height: "15px !important" }}
+                  sx={{ width: "15px !important", height: "15px !important", filter: 'hue-rotate(161deg)', }}
                 ></Box>
               </Box>
             );

@@ -18,6 +18,7 @@ function Footer() {
         bottom: "0px",
         width: "100%",
         backgroundColor: "transparent",
+        zIndex: '10000000000000000000000000000',
       }}
     >
       <Box sx={style.root}>
@@ -56,17 +57,6 @@ function Footer() {
               Promotion
             </Typography>
           </Box>
-          <Box onClick={() => navigate("/wallet")} sx={{ ...style.nav, background: location.pathname == "/wallet" ? kigreen : '' }} >
-            {location.pathname == "/wallet" && (
-              <WalletRoundedIcon sx={{ color: kidarkgreen }} />
-            )}
-            {location.pathname !== "/wallet" && (
-              <WalletRoundedIcon sx={{ color: 'white' }} />
-            )}
-            <Typography variant="body1" className="kip13" sx={{ color: 'white' }}>
-              Wallet
-            </Typography>
-          </Box>
           <Box sx={{ ...style.nav, background: location.pathname == "/account" ? kigreen : '' }} onClick={() => navigate("/account")}>
             {location.pathname == "/account" && (
               <MenuOpenRoundedIcon sx={{ color: kidarkgreen }} />
@@ -102,7 +92,7 @@ const style = {
   text: { fontSize: "13px", fontWeight: 500, color: zubgtext },
   stack: { alignItems: "end", justifyContent: "space-between" },
   nav: {
-    width: '20%',
+    width: '25%',
 
     display: "flex",
     flexDirection: "column",

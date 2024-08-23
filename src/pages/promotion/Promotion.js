@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { zubgback, zubggray, zubgtext } from "../../Shared/color";
+import { kidarkgreen, kigreen, zubgback, zubggray, zubgtext } from "../../Shared/color";
 import customer from "../../assets/images/24-hours-service.png";
 import bgms from "../../assets/images/bgs.jpg";
 import bgms1 from "../../assets/images/bgs1.jpg";
@@ -22,6 +22,7 @@ import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { MygetdataFn, walletamount } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
+import logo from "../../assets/logokimi.png";
 
 function Promotion() {
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
@@ -53,20 +54,13 @@ function Promotion() {
   };
   return (
     <Layout>
-      <Container>
+      <Container sx={{ background: '#E7E7E7' }}>
         <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Typography variant="body1" color="initial">
-            {" "}
-          </Typography>
-          <Typography variant="body1" color="initial" className="!text-white">
-            Agency
-          </Typography>
-          <Box component={NavLink} to="/promotion/TeamReport/">
-            <Box component="img" src={sort} width={30}></Box>
-          </Box>
-        </Box>
-        <Box sx={style.commitionboxOuter}>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+
+        {/* <Box sx={style.commitionboxOuter}>
           <Box sx={style.commitionbox}>
             <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
               {newdata?.total_turnover}
@@ -78,8 +72,10 @@ function Promotion() {
               Upgrade the level to increase turnover
             </Typography>
           </Box>
-        </Box>
-        <Box sx={style.subcordinateBox}>
+        </Box> */}
+
+
+        <Box sx={style.subcordinateBox} className='w95'>
           <Stack direction="row" sx={{ width: "100%" }}>
             <Box sx={style.subordinatesleft}>
               <EmojiPeopleOutlinedIcon />
@@ -241,13 +237,13 @@ function Promotion() {
               </Stack>
             </Box>
           </NavLink>
-          <NavLink to="/promotion/PromotionRule">
+          <NavLink to="/promotion/TeamReport/">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={invite_reg}></Box> */}
-                <Box component="img" src={book}></Box>
+                {/* <Box component='img' src={team_port}></Box> */}
+                <Box component="img" src={sort}></Box>
                 <Typography variant="body1" color="initial">
-                  Invitation rules
+                  Team Report
                 </Typography>
               </Stack>
               <Stack direction="row">
@@ -255,13 +251,18 @@ function Promotion() {
               </Stack>
             </Box>
           </NavLink>
-          <NavLink to="/promotion/customerLine/">
+
+
+
+
+
+          <NavLink to="/promotion/PromotionRule">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={server}></Box> */}
-                <Box component="img" src={customer}></Box>
+                {/* <Box component='img' src={invite_reg}></Box> */}
+                <Box component="img" src={book}></Box>
                 <Typography variant="body1" color="initial">
-                  Agent line customer service
+                  Invitation rules
                 </Typography>
               </Stack>
               <Stack direction="row">
@@ -389,9 +390,9 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: zubgtext,
+    background: kidarkgreen,
     borderTopLeftRadius: "10px",
-    borderRight: "2px solid black",
+    borderRight: "2px solid white",
     "&>svg": { color: "white", fontSize: "25px", marginRight: "10px" },
     "&>p": { color: "white", fontSize: "14px", fontWeight: "500" },
   },
@@ -402,46 +403,43 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: zubgtext,
+    background: kidarkgreen,
     borderTopRightRadius: "10px",
     "&>svg": { color: "white", fontSize: "25px", marginRight: "10px" },
     "&>p": { color: "white", fontSize: "14px", fontWeight: "500" },
   },
   boxStyles: {
-    backgroundImage: `url(${bgms1})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 100%',
+    background: kigreen,
     padding: "30px 15px",
     display: "flex",
     borderRadius: " 0px 0px 10px 10px",
   },
   innerBoxStyles: {
     width: "50%",
-    borderRight: "1px solid black",
+    borderRight: "1px solid white",
     borderBottomLeftRadius: "10px",
     padding: "0px 0px",
   },
   innerBoxStylestwo: { width: "50%", padding: "0px 0px" },
   subcordinatelist: {
     textAlign: "center",
-    "&>p": { color: "black !important", fontSize: "13px" },
+    "&>p": { color: "white !important", fontSize: "13px" },
     mb: 1,
   },
   subcordinateBox: {
     width: "100%",
-    padding: "20px 10px",
-    background: zubgback,
+    mt: 2,
   },
   invitebutton: {
     width: "100%",
-    background: zubgback,
+    background: '#E7E7E7',
+    mt: 2,
   },
   invitebtn: {
-    mt: "20px",
+    mt: 2,
     "&>a>p": {
-      width: "80%",
-      marginLeft: "10%",
-      borderRadius: "20px",
+      width: "100%",
+      borderRadius: "5px",
       textAlign: "center",
       padding: "10px",
       background: zubgtext,
@@ -452,7 +450,7 @@ const style = {
   },
   invitbox: {
     width: "95%",
-    background: zubggray,
+    background: kidarkgreen,
     padding: "10px",
     mb: "20px",
     borderRadius: "10px",
@@ -527,7 +525,7 @@ const style = {
   },
   promotionBoxOutertwo: {
     width: "90%",
-    background: zubgback,
+    background: '#e7e7e7',
     padding: "10px",
     borderRadius: "5px",
     marginLeft: "5%",

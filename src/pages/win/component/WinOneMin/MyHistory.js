@@ -6,7 +6,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import moment from "moment";
 import * as React from "react";
 import { useSelector } from "react-redux";
-import history from "../../../../assets/images/list.png";
+import history from '../../../../assets/kiimages/data-transfer.png';
 import { zubgback, zubgtext } from "../../../../Shared/color";
 
 import { rupees } from "../../../../services/urls";
@@ -69,10 +69,10 @@ const MyHistory = ({ gid }) => {
                     <p style={{ color: zubgtext }}>{i?.gamesno}</p>
                     <p
                       className={`${i?.status === "0"
-                          ? "!text-green-600"
-                          : i?.status === "1"
-                            ? "!text-red-400"
-                            : "!text-red-600"
+                        ? "!text-green-600"
+                        : i?.status === "1"
+                          ? "!text-red-400"
+                          : "!text-red-600"
                         }`}
                     >
                       {i?.status === "0"
@@ -83,10 +83,10 @@ const MyHistory = ({ gid }) => {
                     </p>
                     <span
                       className={`${i?.status === "0"
-                          ? "!text-green-600"
-                          : i?.status === "1"
-                            ? "!text-green-400"
-                            : "!text-green-600"
+                        ? "!text-green-600"
+                        : i?.status === "1"
+                          ? "!text-green-400"
+                          : "!text-green-600"
                         }`}
                     >
                       {" "}
@@ -211,10 +211,10 @@ const MyHistory = ({ gid }) => {
                     <span className=" !bg-opacity-10 py-1 px-2">Status</span>
                     <span
                       className={`${i?.status === "0"
-                          ? "!text-green-600"
-                          : i?.status === "1"
-                            ? "!text-green-400"
-                            : "!text-green-600"
+                        ? "!text-green-600"
+                        : i?.status === "1"
+                          ? "!text-green-400"
+                          : "!text-green-600"
                         }  !bg-opacity-10 py-1 px-2`}
                     >
                       {i?.status === "0"
@@ -245,7 +245,7 @@ const MyHistory = ({ gid }) => {
         })}
       </div>
 
-      <Box className="paginationTable">
+      <Box className="paginationTable" sx={{ mb: 5 }}>
         <TablePagination
           sx={{
             background: zubgtext,

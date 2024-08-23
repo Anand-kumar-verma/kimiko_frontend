@@ -14,12 +14,14 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { kidarkgreen, kigrad, kigreen, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import deposit from "../../../assets/images/list.png";
 import Layout from "../../../component/Layout/Layout";
 import {
   withdrawlHistoryFunction
 } from "../../../services/apicalling";
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 
 function WithdravalHistory() {
   const navigate = useNavigate();
@@ -32,8 +34,8 @@ function WithdravalHistory() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
 
@@ -52,36 +54,23 @@ function WithdravalHistory() {
         className="no-scrollbar"
       >
         <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={goBack}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Withdrawal history
-          </Typography>
-          <Box></Box>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} /> Withdrawal history</Box>
+
 
         <Box>
           <Box
             sx={{
               padding: "10px",
-              background: zubgwhite,
+              background: '#E7E7E7',
               boxShadow: zubgshadow,
-              borderRadius: "10px",
+              borderRadius: "0px",
               mb: 5,
-              mt: 3,
             }}
           >
             <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-              <Box component="img" src={deposit} width={30}></Box>
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
-              >
-                Withdrawal history
-              </Typography>
             </Stack>
             {res?.map((i) => {
               return (
@@ -91,9 +80,8 @@ function WithdravalHistory() {
                     padding: "15px",
                     borderRadius: "10px",
                     border: "1px solid white",
-                    background: zubgback,
+                    background: kigreen,
                     boxShadow: zubgshadow,
-                    border: `1px solid #ff00422b`,
                   }}
                 >
                   <Stack
@@ -108,7 +96,7 @@ function WithdravalHistory() {
                     <Box>
                       <Button
                         sx={{
-                          background: zubgmid,
+                          background: kidarkgreen,
                           color: "white",
                           textTransform: "capitalize",
                         }}
@@ -127,7 +115,7 @@ function WithdravalHistory() {
                         {i?.status}
                       </Button>
                       <IconButton>
-                        <ArrowForwardIcon sx={{ color: zubgtext }} />
+                        <ArrowForwardIcon sx={{ color: 'white' }} />
                       </IconButton>
                     </Box>
                   </Stack>
@@ -136,15 +124,16 @@ function WithdravalHistory() {
                     direction="row"
                     sx={{
                       mb: "10px",
+                      mt: '10px',
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Balance
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       ₹ {i?.amount}
                     </Typography>
                   </Stack>
@@ -154,13 +143,13 @@ function WithdravalHistory() {
                       mb: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Date/Time
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       {moment(i?.date)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.date)?.format("HH:mm:ss")}
                     </Typography>
@@ -171,13 +160,13 @@ function WithdravalHistory() {
                       mb: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Status
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       {i?.status}{" "}
                     </Typography>
                   </Stack>
@@ -187,10 +176,10 @@ function WithdravalHistory() {
                       mb: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Success Date/Time
                     </Typography>
                     <Typography variant="body1" color="initial" className="!text-green-500">
@@ -204,26 +193,26 @@ function WithdravalHistory() {
                       mb: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Trans number
                     </Typography>
                     <Stack
                       direction="row"
                       sx={{
-                        mb: "10px",
+
                         alignItems: "center",
                         justifyContent: "space-between",
-                        "&>p": { color: zubgtext },
+                        "&>p": { color: 'white' },
                       }}
                     >
-                      <Typography variant="body1" color="initial">
+                      <Typography variant="body1" className="kip13">
                         {i?.tran_id}
                       </Typography>
                       <IconButton>
-                        <ContentCopyIcon sx={{ color: zubgtext }} />
+                        <ContentCopyIcon sx={{ color: 'white' }} />
                       </IconButton>
                     </Stack>
                   </Stack>
@@ -243,7 +232,7 @@ export default WithdravalHistory;
 const style = {
   header: {
     padding: "15px 8px",
-    background: zubgtext,
+    background: 'white',
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",

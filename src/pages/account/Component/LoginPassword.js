@@ -11,8 +11,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Layout from '../../../component/Layout/Layout';
 import { MyProfileDataFn } from '../../../services/apicalling';
 import { endpoint } from '../../../services/urls';
-import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
+import { kidarkgreen, kigrad, zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
 import CustomCircularProgress from '../../../Shared/CustomCircularProgress';
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 
 function LoginPassword() {
   const navigate = useNavigate();
@@ -101,13 +103,10 @@ function LoginPassword() {
   return (
     <Layout>
       <Container sx={style.container}>
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={() => goBack()}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">Change login password</Typography>
-          <Typography variant="body1" color="initial"> </Typography>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} /> Change login password</Box>
         <Box sx={{ width: '95%', marginLeft: '2.5%', background: zubgback, borderRadius: '10px', padding: '10px', mt: '10px', }}>
           <Box mt={2} component='form'
             onSubmit={fk.handleSubmit}>
@@ -237,6 +236,6 @@ export const style = {
     '&>div>div>svg': { color: 'white', fontSize: '24px', }, '&>div>svg': { color: 'white', fontSize: '24px', },
   },
   notificationStack: { alignItems: 'center', justifyContent: 'space-between', },
-  paytmbtntwo: { borderRadius: '5px', textTransform: 'capitalize', mb: 2, background: zubgtext, color: 'white !important', width: '100%', mt: '20px', border: "1px solid white", padding: '10px', '&:hover': { background: zubgbackgrad, border: "1px solid transparent", } },
+  paytmbtntwo: { borderRadius: '5px', textTransform: 'capitalize', mb: 2, background: kidarkgreen, color: 'white !important', width: '100%', mt: '20px', border: "1px solid white", padding: '10px', '&:hover': { background: zubgbackgrad, border: "1px solid transparent", } },
 
 };

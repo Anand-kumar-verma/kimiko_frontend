@@ -3,6 +3,8 @@ import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import TranslateIcon from '@mui/icons-material/Translate';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import {
   Box,
   Button,
@@ -44,23 +46,25 @@ import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
+import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 
 
 function Account() {
   const menuItems = [
-    { icon: <CreditCard />, text: "Link Bank Account" },
-    { icon: <Description />, text: "Terms of Partnership" },
-    { icon: <Shield />, text: "Compliance Statement" },
-    { icon: <ShoppingCart />, text: "My Order" },
-    { icon: <LocalOffer />, text: "My Coupon" },
-    { icon: <Receipt />, text: "Bill Record" },
-    { icon: <Spa />, text: "Coffee Beans" },
-    { icon: <Spa />, text: "Coffee Beans Record" },
-    { icon: <Calculate />, text: "Income Calculator" },
-    { icon: <Lock />, text: "Reset Password" },
-    { icon: <Support />, text: "Customer Service" },
-    { icon: <Download />, text: "APP Download" },
+    { path: '/add-bank-details', icon: <CreditCard />, text: "Link Bank Account" },
+    { path: '/add-bank-details/pre-added-bank-details', icon: <Description />, text: "Bank Account" },
+    { path: '#', icon: <Shield />, text: "Compliance Statement" },
+    { path: '/rent', icon: <ShoppingCart />, text: "My Order" },
+    { path: '#', icon: <LocalOffer />, text: "My Coupon" },
+    { path: '/Language', icon: <TranslateIcon />, text: "Language" },
+    { path: '/gameNotification', icon: <Receipt />, text: "Notification" },
+    { path: '/notification', icon: <NotificationsActiveIcon />, text: "Game Notification" },
+    { path: '#', icon: <Calculate />, text: "Income Calculator" },
+    { path: '/SettingCenter/LoginPassword', icon: <Lock />, text: "Reset Password" },
+    { path: '#', icon: <Support />, text: "Customer Service" },
+    { path: '#', icon: <Download />, text: "APP Download" },
   ];
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const transactionId = searchParams?.get("order_id");
@@ -141,7 +145,7 @@ function Account() {
           <Box sx={{ ml: 5 }}>
             <Typography variant="body1" className="kip13" mb={1}>ID : 333962</Typography>
             <Typography variant="body1" className="kip13" mb={1}><PhoneAndroid className="kip13" /> : +915896587458</Typography>
-            <Typography variant="body1" className="kip13" mb={1}><Coffee className="kip13" /> : 0 Coffee Beans</Typography>
+            <Typography variant="body1" className="kip13" mb={1}><EnergySavingsLeafIcon className="kip13" /> : 0 Solor Energy </Typography>
 
           </Box>
         </Box>
@@ -155,7 +159,7 @@ function Account() {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
-          <Button component={NavLink} sx={{
+          <Button component={NavLink} to='/Withdrawal' sx={{
             width: '49.8%', p: '10px', background: kidarkgreen, color: 'white', '&:hover': {
               backgroundColor: kigreen,
             }, borderRadius: '5px 0px 0px 5px', '&>p': { textAlign: 'center', ml: 2, }, '&>h6': { textAlign: 'center' }
@@ -163,7 +167,7 @@ function Account() {
             <Box component='img' src={withdraw} sx={{ width: '30px' }}></Box>
             <Typography variant="body1" className="kip13"> Withdraw</Typography>
           </Button>
-          <Button component={NavLink} sx={{
+          <Button component={NavLink} to='/wallet/Recharge' sx={{
             width: '49.8%', p: '10px', background: kidarkgreen, color: 'white', '&:hover': {
               backgroundColor: kigreen,
             }, borderRadius: '0px 5px 5px 0px', '&>p': { textAlign: 'center', ml: 2, }, '&>h6': { textAlign: 'center' }
@@ -258,16 +262,18 @@ function Account() {
           <List>
             {menuItems.map((item, index) => (
               <>
-                <ListItem sx={{ padding: '8px', display: 'flex', justifyContent: 'space-between', color: kidarkgreen, }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <ListItemIcon sx={{ color: kidarkgreen, minWidth: '35px !important', }}>
-                      {item.icon}
-                    </ListItemIcon>
-                    <Typography variant="body1" className="kip13">{item.text} </Typography>
-                  </Box>
-                  <ListItemIcon sx={{ color: kidarkgreen }}>➔</ListItemIcon>
-                </ListItem>
-                {index < menuItems.length - 1 && <Divider />}
+                <NavLink to={`${item.path}`}>
+                  <ListItem sx={{ padding: '8px', display: 'flex', justifyContent: 'space-between', color: kidarkgreen, }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <ListItemIcon sx={{ color: kidarkgreen, minWidth: '35px !important', }}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <Typography variant="body1" className="kip13">{item.text} </Typography>
+                    </Box>
+                    <ListItemIcon sx={{ color: kidarkgreen }}>➔</ListItemIcon>
+                  </ListItem>
+                  {index < menuItems.length - 1 && <Divider />}
+                </NavLink >
               </>
             ))}
           </List>
@@ -276,6 +282,10 @@ function Account() {
         <Button
           variant="contained"
           className="w95"
+          onClick={() => {
+            localStorage.clear();
+            navigate("/");
+          }}
           sx={{
             width: '100%',
             padding: '8px 0',
@@ -284,11 +294,12 @@ function Account() {
             fontWeight: 'bold',
             borderRadius: 1,
             mt: 2,
+            mb: 3
           }}
         >
           LOGOUT
         </Button>
-
+        {/* 
         <Stack direction="row" sx={style.header}>
           <Box sx={style.profileBox}>
             <Box
@@ -374,9 +385,9 @@ function Account() {
               Add Bank
             </Typography>
           </Box>
-        </Box>
+        </Box> */}
 
-        <Box sx={style.actionContainertwo}>
+        {/* <Box sx={style.actionContainertwo}>
           <Stack
             sx={{
               padding: "10px",
@@ -448,7 +459,7 @@ function Account() {
                 />
               </Box>
             </Stack>
-            {/* <Stack
+            <Stack
               component={NavLink}
               to="/gamestaticks"
               direction="row"
@@ -479,7 +490,7 @@ function Account() {
                   sx={{ color: zubgtext, fontSize: "23px", fontWeight: "600" }}
                 />
               </Box>
-            </Stack> */}
+            </Stack> 
             <Stack
               component={NavLink}
               to="/Language"
@@ -515,8 +526,8 @@ function Account() {
               </Box>
             </Stack>
           </Stack>
-        </Box>
-        <Box
+        </Box> */}
+        {/* <Box
           sx={{
             width: "95%",
             marginLeft: "2.5%",
@@ -538,21 +549,11 @@ function Account() {
 
           <div className="!w-full !grid !grid-cols-3 !place-items-center">
             {[
-              // {
-              //   to: "/fund",
-              //   name: "Fund Transfer",
-              //   logo: balance,
-              // },
               {
                 to: "/activity",
                 name: "Report",
                 logo: hand,
               },
-              // {
-              //   to: "/SettingCenter",
-              //   name: "Setting",
-              //   logo: setting,
-              // },
               {
                 to: "/gameNotification",
                 name: "Notification",
@@ -561,13 +562,8 @@ function Account() {
               {
                 to: "/SettingCenter/LoginPassword",
                 name: "Change Password",
-                // logo: user2,
               },
-              // {
-              //   to: "/promotion/customerLine/",
-              //   name: "Customer service",
-              //   logo: customer,
-              // },
+
 
             ]?.map((i) => {
               return (
@@ -599,33 +595,8 @@ function Account() {
               );
             })}
           </div>
-        </Box>
-        <Box
-          sx={{
-            width: "95%",
-            marginLeft: "2.5%",
-            borderRadius: "10px",
-            mt: "20px",
-            pb: 5,
-          }}
-        >
-          <Button
-            sx={{
-              background: zubgtext,
-              width: "100%",
-              color: "white",
-              borderRadius: "10px",
-              padding: 1.5,
-            }}
-            onClick={() => {
-              localStorage.clear();
-              navigate("/");
-            }}
-          >
-            Logout
-          </Button>
-        </Box>
-        {openDialogBoxHomeBanner && (
+        </Box> */}
+        {/* {openDialogBoxHomeBanner && (
           <Dialog
             PaperProps={{ width: "500px", height: "500px" }}
             open={openDialogBoxHomeBanner}
@@ -641,10 +612,10 @@ function Account() {
               </p>
             </div>
           </Dialog>
-        )}
+        )} */}
         <CustomCircularProgress isLoading={isLoading} />
       </Container>
-    </Layout>
+    </Layout >
   );
 }
 

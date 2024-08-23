@@ -1,6 +1,7 @@
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import TelegramIcon from "@mui/icons-material/Telegram";
+import StartIcon from '@mui/icons-material/ArrowRightAlt';
 import { Avatar, Box, Button, CircularProgress, Container, Dialog, DialogContent, Slide, Stack, TextField, Typography, } from "@mui/material";
 import axios from "axios";
 import copy from "clipboard-copy";
@@ -17,7 +18,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { gray, kidarkgreen, kigreen, zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
+import { gray, kidarkgreen, kigrad, kigreen, kilightgreen, zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
 import aviator_game_image from "../../assets/aviator_game_image.png";
 import one from "../../assets/images/1.jpg";
 import three from "../../assets/images/123.png";
@@ -28,6 +29,7 @@ import winp4 from "../../assets/images/jacpot.jpg";
 import cash from "../../assets/images/money.png";
 import stage from "../../assets/images/pod2.png";
 import position2 from "../../assets/images/positio2.png";
+
 import position3 from "../../assets/images/position3.png";
 import position1 from "../../assets/images/positoin1.png";
 import deposit from "../../assets/images/security-box.png";
@@ -59,17 +61,19 @@ import SwipeRightAltRoundedIcon from '@mui/icons-material/SwipeRightAltRounded';
 import bonus from '../../assets/kiimages/bonus.png';
 import task from '../../assets/kiimages/clipboard.png';
 import coffeem1 from '../../assets/kiimages/coffeem1.jpg';
+import solor from '../../Kimassets/images/service-5.jpg';
 import withdraw from '../../assets/kiimages/hand.png';
 import news from '../../assets/kiimages/info.png';
 import about from '../../assets/kiimages/messages.png';
 import recharge from '../../assets/kiimages/mobile.png';
 import order from '../../assets/kiimages/order-now.png';
-import shop from '../../assets/kiimages/shop.png';
-import kislider1 from '../../assets/kiimages/slider1.jpg';
-import kislider2 from '../../assets/kiimages/slider2.jpg';
-import kislider3 from '../../assets/kiimages/slider3.jpg';
-import kislider4 from '../../assets/kiimages/slider4.jpg';
-import kislider5 from '../../assets/kiimages/slider5.jpg';
+import dpsthistory from '../../assets/kiimages/transaction-history.png';
+import wdrlhistory from '../../assets/kiimages/order-history.png';
+import kislider1 from '../../assets/kiimages/banner1.jpg';
+import kislider2 from '../../assets/kiimages/banner2.jpg';
+import kislider3 from '../../assets/kiimages/banner3.jpg';
+import wingo from '../../assets/kiimages/wingo.png';
+
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -130,7 +134,7 @@ function Dashboard() {
   });
 
   const newdata = data?.data?.data || 0;
-  
+
   useEffect(() => {
     openbannerFunction();
     localStorage.removeItem("amount_set");
@@ -214,6 +218,20 @@ function Dashboard() {
       img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_20240110061909hwqs.png",
     },
   ];
+
+  const product = [
+    { name: 'S-Solor-Energy-3800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 40, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-4800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 60, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-9800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 30, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-5800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 20, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-1800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 50, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-6800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 70, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-8800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 10, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-9800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 90, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-3800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 0, date: '00:23:50:21' },
+    { name: 'S-Solor-Energy-4800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 20, date: '00:23:50:21' },
+  ]
+
   return (
     <Layout>
       <Box sx={styles.root}>
@@ -221,11 +239,11 @@ function Dashboard() {
           <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
             <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
           </div>
-          <Box className="!px-2">
+          <Box className="w95">
             <Swiper
               spaceBetween={30}
               centeredSlides={true}
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
+              autoplay={{ delay: 25000, disableOnInteraction: false }}
               pagination={{ clickable: true }}
               navigation={false}
               modules={[Autoplay, Pagination, Navigation]}
@@ -256,38 +274,22 @@ function Dashboard() {
                   sx={styles.kiswiperImage}
                 />
               </SwiperSlide>
-              <SwiperSlide>
-                <Box
-                  component="img"
-                  src={kislider4}
-                  alt="Slide 3"
-                  sx={styles.kiswiperImage}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Box
-                  component="img"
-                  src={kislider5}
-                  alt="Slide 3"
-                  sx={styles.kiswiperImage}
-                />
-              </SwiperSlide>
             </Swiper>
           </Box>
           <Box sx={{ px: 2, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', }}>
-            <Stack sx={styles.kiNavOuter} component={NavLink}>
+            <Stack sx={styles.kiNavOuter} component={NavLink} to='/wallet/Recharge'>
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={recharge} sx={styles.KiNavImg}></Box>
               </Box>
-              <Box sx={{ padding: 1 }}>
+              <Box sx={{ padding: '8px 0px' }}>
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>Recharge</Typography>
               </Box>
             </Stack>
-            <Stack sx={styles.kiNavOuter} component={NavLink}>
+            <Stack sx={styles.kiNavOuter} component={NavLink} to='/Withdrawal'>
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={withdraw} sx={styles.KiNavImg}></Box>
               </Box>
-              <Box sx={{ padding: 1 }}>
+              <Box sx={{ padding: '8px 0px' }}>
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>Withdraw</Typography>
               </Box>
             </Stack>
@@ -295,15 +297,15 @@ function Dashboard() {
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={bonus} sx={styles.KiNavImg}></Box>
               </Box>
-              <Box sx={{ padding: 1 }}>
+              <Box sx={{ padding: '8px 0px' }}>
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>Bonus</Typography>
               </Box>
             </Stack>
-            <Stack sx={styles.kiNavOuter} component={NavLink}>
+            <Stack sx={styles.kiNavOuter} component={NavLink} to='/rent'>
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={order} sx={styles.KiNavImg}></Box>
               </Box>
-              <Box sx={{ padding: 1 }}>
+              <Box sx={{ padding: '8px 0px' }}>
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>Order</Typography>
               </Box>
             </Stack>
@@ -311,7 +313,7 @@ function Dashboard() {
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={task} sx={styles.KiNavImg}></Box>
               </Box>
-              <Box sx={{ padding: 1 }}>
+              <Box sx={{ padding: '8px 0px' }}>
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>Task</Typography>
               </Box>
             </Stack>
@@ -319,29 +321,120 @@ function Dashboard() {
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={about} sx={styles.KiNavImg}></Box>
               </Box>
-              <Box sx={{ padding: 1 }}>
+              <Box sx={{ padding: '8px 0px' }}>
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>News</Typography>
               </Box>
             </Stack>
-            <Stack sx={styles.kiNavOuter} component={NavLink}>
+            <Stack sx={styles.kiNavOuter} component={NavLink} to="/depositHistory">
               <Box sx={styles.kiNavInner}>
-                <Box component='img' src={news} sx={styles.KiNavImg}></Box>
+                <Box component='img' src={dpsthistory} sx={styles.KiNavImg}></Box>
               </Box>
-              <Box sx={{ padding: 1 }}>
-                <Typography variant="body1" color="initial" sx={styles.kiNavText}>About</Typography>
+              <Box sx={{ padding: '8px 0px' }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>DPST HTRY</Typography>
               </Box>
             </Stack>
-            <Stack sx={styles.kiNavOuter} component={NavLink}>
+            <Stack sx={styles.kiNavOuter} component={NavLink} to="/withdravalHistory">
               <Box sx={styles.kiNavInner}>
-                <Box component='img' src={shop} sx={styles.KiNavImg}></Box>
+                <Box component='img' src={wdrlhistory} sx={styles.KiNavImg}></Box>
               </Box>
-              <Box sx={{ padding: 1 }}>
-                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Shop</Typography>
+              <Box sx={{ padding: '8px 0px' }}>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>WDRL HTRY</Typography>
               </Box>
             </Stack>
           </Box>
-          <Button variant="outlined" sx={styles.kibutton1} startIcon={<CurrencyExchangeTwoTone />}>Coffee Beans Exchange</Button>
+          <Button variant="outlined" sx={styles.kibutton1} startIcon={<CurrencyExchangeTwoTone />}>Solor Energy Exchange</Button>
+          <Box sx={styles.referralLinkContainer}>
+            <Typography variant="body1" sx={styles.referralLinkTitle}>
+              Referral Link
+            </Typography>
+            <Stack direction="row" sx={styles.referralLinkInputContainer}>
+              <TextField
+                className="dbinput"
+                fullWidth
+                id="referrel_code"
+                name="referrel_code"
+                value={fk.values.referrel_code}
+                // onChange={fk.handleChange}
+                sx={styles.referralLinkInput}
+              />
+              <Button
+                variant="contained"
+                sx={styles.referralLinkButton}
+                onClick={() => functionTOCopy(fk.values.referrel_code)}
+              >
+                Copy
+              </Button>
+            </Stack>
+            <Stack direction="row" sx={styles.socialButtonsContainer}>
+              <Button
+                className="telegrambtn"
+                sx={styles.telegramButton}
+                onClick={() => window.open(`${telegram_url}`, "_blank")}
+              >
+                <Stack>
+                  <Box sx={styles.socialButtonIcon}>
+                    <TelegramIcon sx={styles.socialIcon} />
+                  </Box>
+                  <Box sx={styles.socialButtonText}>Telegram</Box>
+                </Stack>
+              </Button>
 
+              <Button className="supportbtn" sx={styles.supportButton}>
+                <a href={`mailto:${support_mail}`}>
+                  <Stack>
+                    <HelpOutlineIcon sx={styles.socialIconinfo} />
+                    <Box sx={styles.socialButtonText}>Support</Box>
+                  </Stack>
+                </a>
+              </Button>
+            </Stack>
+          </Box>
+          <Box sx={{ ...styles.flexbetween, ...styles.gamemenubox }} className="w95">
+            <Box sx={{ ...styles.gameimgbox }}>
+              <Box component='img' src={solor} sx={{ ...styles.gameimg }}></Box>
+            </Box>
+            <Box sx={{ ...styles.gamenamebox }}>
+              <Box sx={{ ...styles.flexbetween }}>
+                <Typography variant="h6" sx={{ fontWeight: '700', color: 'white' }} >Solor Energy</Typography>
+              </Box>
+              <Box sx={{ ...styles.flexbetween, my: 1, ...styles.maxwin }}>
+                <Typography variant="body2" className="kip13" SX={{ textAlign: 'center' }}>The Highest Income in History</Typography>
+                <Typography variant="body2" className="kip15" sx={{ color: 'white', fontWeight: '600', textAlign: 'center' }}>9856.66</Typography>
+              </Box>
+            </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              className="blinking-button"
+              sx={{ ...styles.playbutton }}
+              onClick={() => navigate('/menu')}
+            >
+              Rent Now <StartIcon ml={2} />
+            </Button>
+          </Box>
+          <Box sx={{ ...styles.flexbetween, ...styles.gamemenubox }} className="w95">
+            <Box sx={{ ...styles.gameimgbox }}>
+              <Box component='img' src={wingo} sx={{ ...styles.gameimg }}></Box>
+            </Box>
+            <Box sx={{ ...styles.gamenamebox }}>
+              <Box sx={{ ...styles.flexbetween }}>
+                <Typography variant="h6" sx={{ fontWeight: '700', color: 'white' }} >Win Go</Typography>
+              </Box>
+              <Box sx={{ ...styles.flexbetween, my: 1, ...styles.maxwin }}>
+                <Typography variant="body2" className="kip13" SX={{ textAlign: 'center' }}>The Highest Bonus in History</Typography>
+                <Typography variant="body2" className="kip15" sx={{ color: 'white', fontWeight: '600', textAlign: 'center' }}>98456.66</Typography>
+              </Box>
+            </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              className="blinking-button"
+              sx={{ ...styles.playbutton }}
+              onClick={() => navigate('/win')}
+            >
+              Play Now <StartIcon ml={2} />
+            </Button>
+          </Box>
           <Box sx={{ width: '95%', ml: '2.5%', padding: 2, borderRadius: '10px', background: kidarkgreen, mb: 2 }}>
             <Typography variant="body1" sx={{ color: 'white', fontSize: '12px', mb: 1 }}>
               You are already a <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>SHOP LEVEL 0 AGENT</span> You can withdraw cash <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>0 times </span> a day, with a maximum withdrawal amount of 3,000 Rs each time and a daily withdrawal limit of <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>₹0</span>
@@ -351,179 +444,44 @@ function Dashboard() {
             </Typography>
           </Box>
           <Typography variant="body1" color="initial" sx={styles.kiHeadline}><SwipeRightAltRoundedIcon /> Level Product</Typography>
-          <Box sx={{ width: '95%', ml: '2.5%', }}>
-            <Box sx={styles.kiproductbox}>
-              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
-                S-Coffee Machine-3800
-              </Typography>
-              <Stack direction={'row'} sx={styles.kiproflex}>
-                <Box sx={styles.kiimageBox}>
-                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
-                </Box>
-                <Box sx={{ width: '55%', mr: 2 }}>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
+          <Box sx={{ width: '95%', ml: '2.5%', mb: 5 }}>
+            {
+              product.map((item, value) => (
+                <Box sx={styles.kiproductbox}>
+                  <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
+                    {item.name}
+                  </Typography>
+                  <Stack direction={'row'} sx={styles.kiproflex}>
+                    <Box sx={styles.kiimageBox}>
+                      <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
+                    </Box>
+                    <Box sx={{ width: '55%', mr: 2 }}>
+                      <Stack direction={'row'} sx={styles.kipriceStack}>
+                        <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
+                        <Typography variant="body1" sx={styles.kipriceValue}> {item.Price}</Typography>
+                      </Stack>
+                      <Stack direction={'row'} sx={styles.kipriceStack}>
+                        <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
+                        <Typography variant="body1" sx={styles.kipriceValue}> {item.Cycle}</Typography>
+                      </Stack>
+                      <Stack direction={'row'} sx={styles.kipriceStack}>
+                        <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
+                        <Typography variant="body1" sx={styles.kipriceValue}> {item.Total}</Typography>
+                      </Stack>
+                    </Box>
                   </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
-                  </Stack>
-                </Box>
-              </Stack>
-              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                <Box sx={styles.kipercentageBox}>
-                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
-                  <Box sx={styles.kiprogressBar}></Box>
-                </Box>
-                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-              </Stack>
-            </Box>
-            <Box sx={styles.kiproductbox}>
-              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
-                S-Coffee Machine-3800
-              </Typography>
-              <Stack direction={'row'} sx={styles.kiproflex}>
-                <Box sx={styles.kiimageBox}>
-                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
-                </Box>
-                <Box sx={{ width: '55%', mr: 2 }}>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
+                  <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Box sx={styles.kipercentageBox}>
+                      <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>{item.percentage}%</Typography>
+                      <Box sx={{ ...styles.kiprogressBar, width: `${item.percentage}%` }}></Box>
+                    </Box>
+                    <Button onClick={() => navigate(`/menu/menu-details/`)} sx={styles.kibutton} variant="contained">Buy {item.date} <NavigateNextRounded /></Button>
                   </Stack>
                 </Box>
-              </Stack>
-              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                <Box sx={styles.kipercentageBox}>
-                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
-                  <Box sx={styles.kiprogressBar}></Box>
-                </Box>
-                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-              </Stack>
-            </Box>
-            <Box sx={styles.kiproductbox}>
-              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
-                S-Coffee Machine-3800
-              </Typography>
-              <Stack direction={'row'} sx={styles.kiproflex}>
-                <Box sx={styles.kiimageBox}>
-                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
-                </Box>
-                <Box sx={{ width: '55%', mr: 2 }}>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
-                  </Stack>
-                </Box>
-              </Stack>
-              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                <Box sx={styles.kipercentageBox}>
-                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
-                  <Box sx={styles.kiprogressBar}></Box>
-                </Box>
-                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-              </Stack>
-            </Box>
-            <Box sx={styles.kiproductbox}>
-              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
-                S-Coffee Machine-3800
-              </Typography>
-              <Stack direction={'row'} sx={styles.kiproflex}>
-                <Box sx={styles.kiimageBox}>
-                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
-                </Box>
-                <Box sx={{ width: '55%', mr: 2 }}>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
-                  </Stack>
-                </Box>
-              </Stack>
-              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                <Box sx={styles.kipercentageBox}>
-                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
-                  <Box sx={styles.kiprogressBar}></Box>
-                </Box>
-                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-              </Stack>
-            </Box>
-            <Box sx={styles.kiproductbox}>
-              <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
-                S-Coffee Machine-3800
-              </Typography>
-              <Stack direction={'row'} sx={styles.kiproflex}>
-                <Box sx={styles.kiimageBox}>
-                  <Box component={'img'} src={coffeem1} sx={styles.kiimage}></Box>
-                </Box>
-                <Box sx={{ width: '55%', mr: 2 }}>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>3800 Rs</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>5 Days</Typography>
-                  </Stack>
-                  <Stack direction={'row'} sx={styles.kipriceStack}>
-                    <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
-                    <Typography variant="body1" sx={styles.kipriceValue}>19800 Rs</Typography>
-                  </Stack>
-                </Box>
-              </Stack>
-              <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-                <Box sx={styles.kipercentageBox}>
-                  <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>40%</Typography>
-                  <Box sx={styles.kiprogressBar}></Box>
-                </Box>
-                <Button sx={styles.kibutton} variant="contained">Buy 00:23:50:26 <NavigateNextRounded /></Button>
-              </Stack>
-            </Box>
+              ))
+            }
           </Box >
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <Box className="!px-2">
+          {/* <Box className="!px-2">
             <Swiper
               spaceBetween={30}
               centeredSlides={true}
@@ -559,9 +517,9 @@ function Dashboard() {
                 />
               </SwiperSlide>
             </Swiper>
-          </Box>
+          </Box> */}
 
-          <Box
+          {/* <Box
             sx={{
               display: "flex",
               alignItems: "start",
@@ -589,8 +547,8 @@ function Dashboard() {
                 sure everything is set up correctly.
               </Typography>
             </Box>
-          </Box>
-
+          </Box> */}
+          {/* 
           <Stack direction="row" sx={styles.depositWithdrawContainer}>
             <Box
               sx={{
@@ -664,54 +622,9 @@ function Dashboard() {
                 Withdraw
               </Typography>
             </Box>
-          </Stack>
-          <Box sx={styles.referralLinkContainer}>
-            <Typography variant="body1" sx={styles.referralLinkTitle}>
-              Referral Link
-            </Typography>
-            <Stack direction="row" sx={styles.referralLinkInputContainer}>
-              <TextField
-                className="dbinput"
-                fullWidth
-                id="referrel_code"
-                name="referrel_code"
-                value={fk.values.referrel_code}
-                // onChange={fk.handleChange}
-                sx={styles.referralLinkInput}
-              />
-              <Button
-                variant="contained"
-                sx={styles.referralLinkButton}
-                onClick={() => functionTOCopy(fk.values.referrel_code)}
-              >
-                Copy
-              </Button>
-            </Stack>
-            <Stack direction="row" sx={styles.socialButtonsContainer}>
-              <Button
-                className="telegrambtn"
-                sx={styles.telegramButton}
-                onClick={() => window.open(`${telegram_url}`, "_blank")}
-              >
-                <Stack>
-                  <Box sx={styles.socialButtonIcon}>
-                    <TelegramIcon sx={styles.socialIcon} />
-                  </Box>
-                  <Box sx={styles.socialButtonText}>Telegram</Box>
-                </Stack>
-              </Button>
+          </Stack> */}
 
-              <Button className="supportbtn" sx={styles.supportButton}>
-                <a href={`mailto:${support_mail}`}>
-                  <Stack>
-                    <HelpOutlineIcon sx={styles.socialIconinfo} />
-                    <Box sx={styles.socialButtonText}>Support</Box>
-                  </Stack>
-                </a>
-              </Button>
-            </Stack>
-          </Box>
-          <div
+          {/* <div
             className="mt-2 w-full grid grid-cols-3 gap-[2%] o"
             style={{
               width: "95%",
@@ -770,8 +683,8 @@ function Dashboard() {
                 </Box>
               );
             })}
-          </div>
-          <Box id="games">
+          </div> */}
+          {/* <Box id="games">
             <div id="game_lottery">
               {type_of_game === "Lottery" && <Lottery />}
             </div>
@@ -781,8 +694,8 @@ function Dashboard() {
             <div id="game_sports">
               {type_of_game === "Sports" && <Sports />}
             </div>
-          </Box>
-          {
+          </Box> */}
+          {/* {
             loding ? (
               <div className="w-[100%] flex justify-center">
                 <CircularProgress className="!text-#E71D1E" />
@@ -853,10 +766,10 @@ function Dashboard() {
                 })}
               </Box>
             )
-          }
+          } */}
 
           {/* stage Podium */}
-          <Box
+          {/* <Box
             sx={{
               width: "95%",
               marginLeft: "2.5%",
@@ -928,9 +841,9 @@ function Dashboard() {
                 sx={{ width: "60px", height: "15px" }}
               ></Box>
             </Box>
-          </Box>
+          </Box> */}
           {/* stage Podium end */}
-          {
+          {/* {
             loding ? (
               <div className="w-[100%] flex justify-center">
                 {" "}
@@ -992,8 +905,8 @@ function Dashboard() {
                 })}
               </Box>
             )
-          }
-
+          } */}
+          {/* 
           {
             poicy && !lodingBanner && (
               <Dialog
@@ -1034,7 +947,7 @@ function Dashboard() {
                 </DialogContent>
               </Dialog>
             )
-          }
+          } */}
 
 
         </Container >
@@ -1065,16 +978,16 @@ const styles = {
   },
   depositWithdrawIcon: { width: "30px", height: "30px" },
   referralLinkContainer: {
-    background: zubgwhite,
+    background: kigreen,
     boxShadow: zubgshadow,
     padding: "15px 15px",
     borderRadius: "5px",
-    mt: 4,
+    mb: 2,
     width: "95%",
     marginLeft: "2.5%",
   },
   referralLinkTitle: {
-    color: zubgtext,
+    color: 'white',
     fontSize: "14px",
     fontWeight: "500 !important",
     mb: 1,
@@ -1082,12 +995,12 @@ const styles = {
   referralLinkInputContainer: { alignItems: "center" },
   referralLinkInput: {
     width: "100%",
-    background: "#eae8e8",
+    background: "#E7E7E7",
     boxShadow: zubgshadow,
     borderRadius: "5px",
-    "&>div>input": { color: zubgtext },
+    "&>div>input": { color: kidarkgreen },
   },
-  referralLinkButton: { marginLeft: 2, background: zubgtext },
+  referralLinkButton: { marginLeft: 2, background: kidarkgreen },
   socialButtonsContainer: {
     alignItems: "center",
     justifyContent: "space-between",
@@ -1098,15 +1011,16 @@ const styles = {
     color: "white !important",
     textTransform: "capitalize",
     fontWeight: "400",
-    background: zubgtext,
-    "&:hover": { background: zubgtext },
+    background: kidarkgreen,
+    "&:hover": { background: kigrad },
   },
   supportButton: {
     fontSize: "14px",
     color: "white !important",
     textTransform: "capitalize",
     fontWeight: "400",
-    background: zubgtext,
+    background: kidarkgreen,
+    "&:hover": { background: kigrad },
   },
   socialButtonIcon: {
     margin: "auto",
@@ -1289,7 +1203,39 @@ const styles = {
     justifyContent: "center",
     flexDirection: "column",
   },
-
+  flexbetween: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between;',
+  },
+  headertitle: { color: 'red' },
+  winbox: {
+    background: "#e9e9e9",
+    borderRadius: "20px",
+    height: "160px",
+    marginBottom: "30px",
+    position: "relative",
+    boxShadow: "0 0.05333rem 0.10667rem #c5c5da42",
+  },
+  positiongame: {
+    position: "absolute",
+    top: "10px",
+    left: "20px",
+    "&>div>p": { fontSize: "12px", fontWeight: 400, color: "white" },
+  },
+  flexbetween: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between;',
+    flexWrap: 'wrap',
+  },
+  gameheading: { fontSize: "20px", fontWeight: 700, color: "white" },
+  gamemenubox: { padding: '8px 5px', background: kidarkgreen, mt: 2, mb: 2, borderRadius: '10px', width: '100%' },
+  gameimgbox: { width: '25%', borderRadius: '10px', },
+  gameimg: { width: '120px', maxHeight: '120px', borderRadius: '10px' },
+  gamenamebox: { width: '70%', },
+  playbutton: { background: kigrad, color: 'white', fontWeight: '600', fontSize: "15px", padding: '5px 30px', width: '100%', mt: 1, },
+  maxwin: { background: kigrad, padding: '2px 5px 2px 5px', borderRadius: '5px' },
   kiNavOuter: { width: '22%', borderRadius: 1, border: `1px solid ${kidarkgreen}`, maxWidth: '120px', mb: 2 },
   kiNavInner: { padding: 1, background: kidarkgreen, },
   KiNavImg: { width: '30px', margin: 'auto', },
@@ -1306,7 +1252,7 @@ const styles = {
   kipriceValue: { fontSize: '15px', fontWeight: '600', color: kigreen },
   kipercentageBox: { height: '20px', background: '#d2cdcd', width: '49%', borderRadius: '10px', overflow: 'hidden', position: 'relative' },
   kipercentageLabel: { textAlign: 'center', color: kidarkgreen, fontSize: '13px', fontWeight: '600', position: 'absolute', zIndex: 100, left: '45%', top: '1%' },
-  kiprogressBar: { height: '100%', background: kigreen, width: '40%', borderRadius: '0px 30px 30px 0px', position: 'absolute', top: 0, left: 0 },
+  kiprogressBar: { height: '100%', background: kigreen, borderRadius: '0px 30px 30px 0px', position: 'absolute', top: 0, left: 0 },
   kibutton: { width: '49%', borderRadius: '50px 0px 10px 0px', py: 1, px: 0, pl: 2, fontSize: '13px', '&>svg': { fontSize: '20px', mb: '3px' } },
 };
 

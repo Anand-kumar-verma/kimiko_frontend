@@ -88,8 +88,12 @@ export const routes = [
         path: "/rent",
         component: <RentNow />
     },
+    // {
+    //     path: "/menu/menu-details/:m_pack_id",
+    //     component: <MenuDetails />
+    // },
     {
-        path: "/menu/menu-details/:m_pack_id",
+        path: "/menu/menu-details/",
         component: <MenuDetails />
     },
     {

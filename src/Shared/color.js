@@ -6,10 +6,10 @@ export const menhdi = "#8f5206"
 
 
 // aviator color
-export const gray = "!bg-[#151617]"
-export const graydark = "!bg-[#1F2937]"
-export const graymedium = "!bg-gray-500"
-export const red = "#BC0319"
+export const gray = "#163300"
+export const graydark = "#163300"
+export const graymedium = "#163300"
+export const red = "#163300"
 
 
 
