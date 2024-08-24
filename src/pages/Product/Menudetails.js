@@ -5,18 +5,12 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import logo from "../../assets/logokimi.png";
-import solar1 from "../../Kimassets/images/service-3.jpg";
 import Layout from '../../component/Layout/Layout';
+import solar1 from "../../Kimassets/images/service-3.jpg";
 import { endpoint } from '../../services/urls';
 import { kidarkgreen, zubgbackgrad, zubggray, zubgmid, zubgtext } from '../../Shared/color';
 import CustomCircularProgress from '../../Shared/CustomCircularProgress';
 
-const imageMapping = {
-    "m_pack_id1": "https://d91ztqmtx7u1k.cloudfront.net/ClientContent/Images/Medium/20230221085108-5a53cd1d-5208-4628-a6b5-612d28e9a77e.jpg",
-    "m_pack_id2": "https://d91ztqmtx7u1k.cloudfront.net/ClientContent/Images/Medium/5-kw-solar-power-system-for-h-20240403172102928.jpg",
-    "m_pack_id3": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcS8AX7u2xWs1LFKtZJrQfAvFEJjB42BqLo8SfR_nUE_4zBKAjrS4r88DVNuU6qEuWcVM5_3nmBk3akVD2G7J_LrndFMAtacqM5N8JpvBFuPeR8xN5O4tR8x2ORbMH3KuULgCPvOIdMjUaY&usqp=CAc",
-    "m_pack_id5": "https://www.solaredge.com/us/sites/nam/files/2023-01/Power%20optimizer%20Residential_Cable-01.png",
-};
 const MenuDetails = () => {
     const { m_pack_id } = useParams()
     const navigate = useNavigate()
@@ -63,8 +57,6 @@ const MenuDetails = () => {
         product_details();
     }, []);
 
-    const imageUrl = imageMapping[m_pack_id] || "https://d91ztqmtx7u1k.cloudfront.net/ClientContent/Images/Medium/20230221085108-5a53cd1d-5208-4628-a6b5-612d28e9a77e.jpg";
-
     return (
         <Layout>
             <Container
@@ -81,33 +73,31 @@ const MenuDetails = () => {
                     <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
                 </div>
                 <Box className="w95" mt={2}>
-                    <Box sx={{ background: '#fff', padding: 2, borderRadius: '10px', mb: 2, }}>
+                    <Box sx={{ background: '#fff', padding: 2, borderRadius: '10px', mb: 12, }}>
                         <Box component='img' src={solar1} sx={{ maxHeight: '35vh', width: '100%', borderRadius: "10px", mb: 2, }}></Box>
-                        <Typography variant="body1" sx={{ fontSize: '17px', fontWeight: 600, textAlign: 'center', }}>S-Solor Energy-3800</Typography>
+                        <Typography variant="body1" sx={{ fontSize: '17px', fontWeight: 600, textAlign: 'center', }}>{data?.m_pack_name || "Solar"}</Typography>
                         <Box sx={{ background: 'white', borderRadius: '10px', padding: 2, }} >
-                            <Stack direction='row' className="flexb">
-                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Stock :</Typography>
-                                <Typography variant="body1" className='kip15'>75.7%</Typography>
-                            </Stack>
-                            <Stack direction='row' className="flexb">
-                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Limit : </Typography>
-                                <Typography variant="body1" className='kip15'> 0 / 2</Typography>
-                            </Stack>
+                          
+                           
                             <Stack direction='row' className="flexb">
                                 <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}> Cycle :</Typography>
-                                <Typography variant="body1" className='kip15'> 5DAY</Typography>
+                                <Typography variant="body1" className='kip15'> {data?.m_pack_roi_days || 0} DAY</Typography>
                             </Stack>
                             <Stack direction='row' className="flexb">
                                 <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}> Rental Price :</Typography>
-                                <Typography variant="body1" className='kip15'> ₹3800</Typography>
+                                <Typography variant="body1" className='kip15'>₹ {data?.m_pack_fee || 0}</Typography>
                             </Stack>
                             <Stack direction='row' className="flexb">
-                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}> Total Income :</Typography>
-                                <Typography variant="body1" className='kip15'> ₹9120</Typography>
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}> Daily Income :</Typography>
+                                <Typography variant="body1" className='kip15'>₹ {data?.m_pack_roi_income}</Typography>
                             </Stack>
                             <Stack direction='row' className="flexb">
-                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Solor Beans : </Typography>
-                                <Typography variant="body1" className='kip15'> 1140</Typography>
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Cashback Income : </Typography>
+                                <Typography variant="body1" className='kip15'>₹ {data?.m_pack_growth_amt} </Typography>
+                            </Stack>
+                            <Stack direction='row' className="flexb">
+                                <Typography variant="body1" className='kip13' sx={{ mb: '10px' }}>Direct Income : </Typography>
+                                <Typography variant="body1" className='kip15'>₹ {data?.m_pack_direct_amt} </Typography>
                             </Stack>
                         </Box>
 
@@ -117,41 +107,7 @@ const MenuDetails = () => {
                         </Button>
                     </Box>
                 </Box>
-                {/* <div className="p-4 mb-20">
-                    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg">
-                        <img src={imageUrl} alt={`Pack ${m_pack_id}`} style={{ width: '100%', height: 'auto' }} />
-                        <div className="p-4 flex-col gap-5 ">
-                            <p className="text-red-800 !text-center !font-bold mb-2">{data?.m_pack_name || "Solar"}</p>
-                            <p className="text-black !text-center !font-bold mb-2">₹ {data?.m_pack_fee || 0}</p>
-                            <div className=''>
-                                <div className="flex justify-between my-2" >
-                                    <p className="text-gray-600 font-semibold">Daily income: </p>
-                                    <span className='!font-bold  ml-5 !text-black'> ₹ {data?.m_pack_roi_income || 0}</span>
-                                </div>
-                                <div className="flex justify-between my-2" >
-                                    <p className="text-gray-600 font-semibold">Validity Period: </p>
-                                    <span className='!font-bold  ml-5 !text-black'>  {data?.m_pack_roi_days || 0} Days</span>
-                                </div>
-                                <div className="flex justify-between my-2"  >
-                                    <p className="text-gray-600 font-semibold">Cashback income: </p>
-                                    <span className='!font-bold  ml-5 !text-black'> ₹ {data?.m_pack_growth_amt || 0}</span>
-                                </div>
-
-                                <p className='!text-center !my-5 font-bold border-b-2 '>  🌟{data?.m_pack_name || "Solar"}🌟</p>
-                                <p className='my-2 !font-bold'> Daily Income: <span className='!font-bold  !text-purple-700'>{data?.m_pack_roi_income}💰</span></p>
-                                <p className='my-2 !font-bold'> Cycle:  <span className='!font-bold  !text-purple-700'>{data?.m_pack_roi_days || 0} days</span></p>
-                                <p className='my-2 !font-bold'> Cashback income:  <span className='!font-bold  !text-purple-700'>{data?.m_pack_growth_amt || 0} cashback on every purchase.</span></p>
-                                <p className='my-2 !font-bold'> Direct income:<span className='!font-bold  !text-purple-700'> {data?.m_pack_direct_amt} on get every refferal ID </span></p>
-                                <p className='my-2 !font-bold'>💰Purchase Bonus:  <span className='!font-bold  !text-purple-700'>0</span></p>
-
-                            </div>
-                            <Button sx={style.paytmbtn} onClick={handleBuyNow}
-                                className='!my-5'>
-                                Rent Now
-                            </Button>
-                        </div>
-                    </div>
-                </div> */}
+               
             </Container>
         </Layout>
 

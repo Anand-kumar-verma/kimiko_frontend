@@ -24,15 +24,6 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import FundRequest from "../pages/dashboard/FundRequest";
 import Withdrawl from "../pages/dashboard/Withdrawl";
 import MainPageOFIncome from "../pages/income/MainPageOFIncome";
-import DailyCashBackBonus from "../pages/income/incomeSubSection/DailyCashBackBonus";
-import DailyNonWorking from "../pages/income/incomeSubSection/DailyNonWorkingBonus";
-import DailySalaryBonus from "../pages/income/incomeSubSection/DailySalaryBonus";
-import DepositBonus from "../pages/income/incomeSubSection/DepositBonus";
-import ReferralBonus from "../pages/income/incomeSubSection/ReferralBonus";
-import RegistrationBonus from "../pages/income/incomeSubSection/RegistrationBonus";
-import SelfTradingBonus from "../pages/income/incomeSubSection/SelfTradingBonus";
-import TeamRewardBonus from "../pages/income/incomeSubSection/TeamRewardBonus";
-import TeamTradingBonus from "../pages/income/incomeSubSection/TeamTradingBonus";
 import Promotion from "../pages/promotion/Promotion";
 import CustomerLine from "../pages/promotion/component/CustomerLine";
 import CustomerQueryHistory from "../pages/promotion/component/CustomerQueryHistory";
@@ -53,6 +44,8 @@ import Win from "../pages/win/win";
 import Cashback from "../pages/account/AccountSubSection/Income/IncomeSubParts/Cashback";
 import ROI from "../pages/account/AccountSubSection/Income/IncomeSubParts/RoiIncome";
 import Level from "../pages/account/AccountSubSection/Income/IncomeSubParts/LevelBonus";
+import Bonus from "../pages/Bonus/Bonus";
+import CreditReport from "../pages/wallet/component/CreditReport";
 
 export const routes = [
     {
@@ -76,6 +69,10 @@ export const routes = [
         component: <ROI />
     },
     {
+        path: "/income",
+        component: <Bonus />
+    },
+    {
         path: "/account/income-main/level-income",
         component: <Level />
     },
@@ -93,7 +90,7 @@ export const routes = [
     //     component: <MenuDetails />
     // },
     {
-        path: "/menu/menu-details/",
+        path: "/menu/menu-details/:m_pack_id",
         component: <MenuDetails />
     },
     {
@@ -191,6 +188,10 @@ export const routes = [
         component: <Win />
     },
     {
+        path: "/credit",
+        component: <CreditReport />
+    },
+    {
         path: "/promotion",
         component: <Promotion />
     },
@@ -230,42 +231,7 @@ export const routes = [
         path: "/account/income-main",
         component: <MainPageOFIncome />
     },
-    {
-        path: "/account/income-main/registration-bonus",
-        component: <RegistrationBonus />
-    },
-    {
-        path: "/account/income-main/deposit-bonus",
-        component: <DepositBonus />
-    },
-    {
-        path: "/account/income-main/referral-bonus",
-        component: <ReferralBonus />
-    },
-    {
-        path: "/account/income-main/daily-cash-back-bonus",
-        component: <DailyCashBackBonus />
-    },
-    {
-        path: "/account/income-main/daily-salary-bonus",
-        component: <DailySalaryBonus />
-    },
-    {
-        path: "/account/income-main/self-trading-bonus",
-        component: <SelfTradingBonus />
-    },
-    {
-        path: "/account/income-main/team-trading-bonus",
-        component: <TeamTradingBonus />
-    },
-    {
-        path: "/account/income-main/team-reward-bonus",
-        component: <TeamRewardBonus />
-    },
-    {
-        path: "/account/income-main/daily-non-working",
-        component: <DailyNonWorking />
-    },
+   
     {
         path: "/add-bank-details",
         component: <AddBankDetails />

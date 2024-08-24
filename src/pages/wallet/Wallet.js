@@ -127,7 +127,6 @@ function Wallet() {
         <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
           <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
         </div>
-        {/*  */}
         <Box
           sx={{
             pt: 2,

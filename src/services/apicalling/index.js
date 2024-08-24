@@ -380,3 +380,26 @@ export const GetPanelBanner = async ()=>{
     console.log(e)
   }
 }
+export const CreditFn = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.credit_report}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+
+export  const SelIncomefFn = async ()=>{
+  try{
+    const response = await axios.get(
+      `${endpoint.self_income}?userid=${user_id}`
+    )
+    return response ;
+  } catch (e) {
+    toast (e?.message);
+    console.log(e)
+  }
+}

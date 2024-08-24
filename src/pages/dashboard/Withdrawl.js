@@ -75,6 +75,29 @@ function Withdrawl() {
     navigate(-1);
   };
 
+  const { data: wllet } = useQuery(["wallet_a"], () => main_wallet_functoin(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retryOnMount: false,
+    refetchOnWindowFocus: false
+  })
+
+  const response = wllet || []
+  const main_wallet_functoin = async () => {
+    const reqbody = {
+      userid: user_id || "",
+      type: 1,
+    };
+
+    try {
+      const response = await axios.post(`${endpoint.get_balance}`, reqbody);
+      return response?.data;
+    } catch (e) {
+      toast.error(e?.message || 'An error occurred');
+      return { data: [] };
+    }
+  };
+
   const walletamountFn = async () => {
     try {
       const response = await axios.get(
@@ -107,13 +130,7 @@ function Withdrawl() {
 
   const initialValues = {
     amount: "",
-    // email: "",
-    // mobile: "",
     description: "",
-    // bank_name: "",
-    // name: "",
-    // ifsc: "",
-    // account_number: "",
     withdrawl_type: "Withdrawl Type",
     bank_id: "Select Bank",
   };
@@ -146,10 +163,6 @@ function Withdrawl() {
       fd.append("Amount", fk.values.amount);
       fd.append("Mobile", data?.mobile);
       fd.append("user_id", user_id);
-
-      // return toast(
-      //   "We are upgrading for smooth and fast payout please wait..."
-      // );
 
       if (fk.values.withdrawl_type === "game_withdrawl")
         withdraw_payment_Function(fd);
@@ -309,6 +322,60 @@ function Withdrawl() {
                 zIndex: 10,
               }}
             />
+          </Stack>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              justifyContent: "start",
+            
+              position: "relative",
+              zIndex: 10,
+              color: "white",
+            }}
+          >
+          Main Wallet  :
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={{
+                fontSize: "14px ",
+                fontWeight: "600",
+                color: "white",
+                ml: "10px",
+                position: "relative",
+                zIndex: 10,
+              }}
+            >
+           {Number(response?.main_balance || 0)}
+            </Typography>
+          </Stack>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              justifyContent: "start",
+            
+              position: "relative",
+              zIndex: 10,
+              color: "white",
+            }}
+          >
+          Fund Wallet  :
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={{
+                fontSize: "14px ",
+                fontWeight: "600",
+                color: "white",
+                ml: "10px",
+                position: "relative",
+                zIndex: 10,
+              }}
+            >
+           {Number(response?.fund_balance || 0)}
+            </Typography>
           </Stack>
           <Stack
             direction="row"

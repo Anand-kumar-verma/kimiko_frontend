@@ -44,7 +44,7 @@ import profile from "../../assets/kiimages/profile.png";
 import logo from "../../assets/logokimi.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { walletamount } from "../../services/apicalling";
+import { MyProfileDataFn, SelIncomefFn, walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 
@@ -53,13 +53,13 @@ function Account() {
   const menuItems = [
     { path: '/add-bank-details', icon: <CreditCard />, text: "Link Bank Account" },
     { path: '/add-bank-details/pre-added-bank-details', icon: <Description />, text: "Bank Account" },
-    { path: '#', icon: <Shield />, text: "Compliance Statement" },
+    // { path: '#', icon: <Shield />, text: "Compliance Statement" },
     { path: '/rent', icon: <ShoppingCart />, text: "My Order" },
-    { path: '#', icon: <LocalOffer />, text: "My Coupon" },
+    // { path: '#', icon: <LocalOffer />, text: "My Coupon" },
     { path: '/Language', icon: <TranslateIcon />, text: "Language" },
-    { path: '/gameNotification', icon: <Receipt />, text: "Notification" },
-    { path: '/notification', icon: <NotificationsActiveIcon />, text: "Game Notification" },
-    { path: '#', icon: <Calculate />, text: "Income Calculator" },
+    { path: '/gameNotification',icon: <NotificationsActiveIcon /> , text: "Notification" },
+    // { path: '/notification', icon: <Receipt />, text: "Game Notification" },
+    // { path: '#', icon: <Calculate />, text: "Income Calculator" },
     { path: '/SettingCenter/LoginPassword', icon: <Lock />, text: "Reset Password" },
     { path: '#', icon: <Support />, text: "Customer Service" },
     { path: '#', icon: <Download />, text: "APP Download" },
@@ -70,7 +70,6 @@ function Account() {
   const transactionId = searchParams?.get("order_id");
   const client = useQueryClient();
   const navigate = useNavigate();
-  const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
@@ -101,6 +100,30 @@ function Account() {
     }
   }, []);
 
+  const { data: profiled } = useQuery(
+    ["myprofile"],
+    () => MyProfileDataFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
+
+  const result = profiled?.data?.data || [];
+
+
+  const { data: self } = useQuery(
+    ["selfincome"],
+    () => SelIncomefFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
+
+  const income = self?.data?.data || [];
 
   return (
     <Layout>
@@ -108,44 +131,49 @@ function Account() {
         <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
           <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
         </div>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
+        <Box sx={{ display: 'flex', gap:"10px" ,alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹0 </Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {income?.total_deposit  || 0}</Typography>
             <Typography variant="body1" className="kip13">Recharge Balance</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹0</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {income?.self_total_income  || 0} </Typography>
+            <Typography variant="body1" className="kip13">Self Total Income</Typography>
+          </Box>
+          <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {income?.total_withdrawl  || 0}</Typography>
             <Typography variant="body1" className="kip13">Withdraw Balance</Typography>
           </Box>
         </Box>
         <Box sx={{ flexWrap: 'wrap', background: 'white', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
           <Box sx={{ width: '49%', p: 1, '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹0 </Typography>
-            <Typography variant="body1" className="kip13">Teams Income</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {income?.team_total_income  || 0}</Typography>
+            <Typography variant="body1" className="kip13">Team Total Income</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹0</Typography>
-            <Typography variant="body1" className="kip13">Today Income</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}> ₹ {Number(income?.team_total_income_today)?.toFixed(0, 2) || '0.00'}</Typography>
+            <Typography variant="body1" className="kip13">Team Total Income Today </Typography>
           </Box>
-          <Box sx={{ width: '49%', p: 1, '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹0 </Typography>
-            <Typography variant="body1" className="kip13">Total Income</Typography>
+         </Box>
+        <Box sx={{ flexWrap: 'wrap', background: 'white', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
+         
+          <Box sx={{ width: '100%', p: 1, '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {income?.self_total_income_today  || 0}</Typography>
+            <Typography variant="body1" className="kip13">Self Total Income Today</Typography>
           </Box>
-          <Box sx={{ width: '49%', p: 1, '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹0</Typography>
-            <Typography variant="body1" className="kip13">Teams Income</Typography>
-          </Box>
+        
         </Box>
-        <Typography variant="body1" className="kip15" mt={2} sx={{ textAlign: 'center' }}>SHOP LEVEL 0 AGENT</Typography>
+      
+        <Typography variant="body1" className="kip15" mt={2} sx={{ textAlign: 'center' }}>{result?.full_name}</Typography>
         <Box sx={{ mt: 1 }} className="w95 flexs">
 
           <Box sx={{}}>
             <Box sx={{ width: '80px ', height: '80px', objectFit: 'cover', borderRadius: '50%', }} component='img' src={profile}></Box>
           </Box>
           <Box sx={{ ml: 5 }}>
-            <Typography variant="body1" className="kip13" mb={1}>ID : 333962</Typography>
-            <Typography variant="body1" className="kip13" mb={1}><PhoneAndroid className="kip13" /> : +915896587458</Typography>
-            <Typography variant="body1" className="kip13" mb={1}><EnergySavingsLeafIcon className="kip13" /> : 0 Solor Energy </Typography>
+            <Typography variant="body1" className="kip13" mb={1}>ID : {result?.custid}</Typography>
+            <Typography variant="body1" className="kip13" mb={1}><PhoneAndroid className="kip13" /> : +91{result?.mobile}</Typography>
+            <Typography variant="body1" className="kip13" mb={1}><EnergySavingsLeafIcon className="kip13" /> : {result?.email}</Typography>
 
           </Box>
         </Box>
@@ -177,76 +205,7 @@ function Account() {
           </Button>
         </Box>
 
-        <Box
-          className='w95'
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: 2,
-          }}
-        >
-          <Box
-            sx={{
-              border: `1px solid ${kigreen}`,
-              borderRadius: '5px',
-              padding: 1,
-              backgroundColor: '#fff',
-              textAlign: 'center',
-              width: '49%',
-            }}
-          >
-            <Typography variant="h6" className="kip15">
-              ₹0
-            </Typography>
-            <Typography variant="body2" className="kip13" mb={1}>
-              Today's Product Income
-            </Typography>
-            <Button
-              variant="contained"
-              style={{
-                backgroundColor: kidarkgreen,
-                color: '#fff',
-                borderRadius: '5px',
-                padding: '7px 0',
-                width: '100%',
-                fontWeight: 'bold',
-              }}
-            >
-              OBTAIN
-            </Button>
-          </Box>
-
-          <Box
-            sx={{
-              border: `1px solid ${kigreen}`,
-              borderRadius: '5px',
-              padding: 1,
-              backgroundColor: '#fff',
-              textAlign: 'center',
-              width: '49%',
-            }}
-          >
-            <Typography variant="h6" className="kip15">
-              ₹0
-            </Typography>
-            <Typography variant="body2" className="kip13" mb={1}>
-              This Month’s Dividends
-            </Typography>
-            <Button
-              variant="contained"
-              style={{
-                backgroundColor: kidarkgreen,
-                color: '#fff',
-                borderRadius: '5px',
-                padding: '7px 0',
-                width: '100%',
-                fontWeight: 'bold',
-              }}
-            >
-              OBTAIN
-            </Button>
-          </Box>
-        </Box>
+      
 
 
         <Box

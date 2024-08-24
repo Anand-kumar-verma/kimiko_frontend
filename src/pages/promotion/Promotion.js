@@ -59,23 +59,7 @@ function Promotion() {
         <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
           <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
         </div>
-
-        {/* <Box sx={style.commitionboxOuter}>
-          <Box sx={style.commitionbox}>
-            <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
-              {newdata?.total_turnover}
-            </Typography>
-            <Typography variant="body1" color="initial" sx={{ color: 'white' }}>
-              Total Turnover
-            </Typography>
-            <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
-              Upgrade the level to increase turnover
-            </Typography>
-          </Box>
-        </Box> */}
-
-
-        <Box sx={style.subcordinateBox} className='w95'>
+ <Box sx={style.subcordinateBox} className='w95'>
           <Stack direction="row" sx={{ width: "100%" }}>
             <Box sx={style.subordinatesleft}>
               <EmojiPeopleOutlinedIcon />
@@ -181,7 +165,6 @@ function Promotion() {
           </Box>
           <Box sx={style.invitebtn}>
             <NavLink
-              //  to="/promotion/PromotionShare"
               onClick={() => functionTOCopy(`${fron_end_main_domain}/register?ref=${newdata?.referral_code}`)}
             >
               <Typography sx={{}}>INVITATION LINK</Typography>
@@ -191,7 +174,6 @@ function Promotion() {
         <Box sx={style.invitebutton} className="invitebutton">
           <Box sx={style.invitbox}>
             <Stack direction="row">
-              {/* <Box component='img' src={copycode}></Box> */}
               <Box
                 component="img"
                 src={copyIimage}
@@ -212,7 +194,6 @@ function Promotion() {
           <NavLink to="/promotion/TeamReport">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={team_port}></Box> */}
                 <Box component="img" src={donut}></Box>
                 <Typography variant="body1" color="initial">
                   Subordinate data
@@ -226,7 +207,6 @@ function Promotion() {
           <NavLink to="/promotion/TeamReport/data">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={team_port}></Box> */}
                 <Box component="img" src={donut}></Box>
                 <Typography variant="body1" color="initial">
                   Team data
@@ -240,7 +220,6 @@ function Promotion() {
           <NavLink to="/promotion/TeamReport/">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={team_port}></Box> */}
                 <Box component="img" src={sort}></Box>
                 <Typography variant="body1" color="initial">
                   Team Report
@@ -259,7 +238,6 @@ function Promotion() {
           <NavLink to="/promotion/PromotionRule">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={invite_reg}></Box> */}
                 <Box component="img" src={book}></Box>
                 <Typography variant="body1" color="initial">
                   Invitation rules
@@ -281,24 +259,7 @@ function Promotion() {
                 </Typography>
               </Stack>
             </Box>
-            <Stack direction="row">
-              <Box>
-                <Typography variant="body1" color="initial">
-                  {Number(newdata?.total_turnover || 0)?.toFixed(2)}
-                </Typography>
-                <Typography variant="body1" color="initial">
-                  Total Turnover
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="body1" color="initial">
-                  {result?.commission || 0}
-                </Typography>
-                <Typography variant="body1" color="initial">
-                  Total Commission
-                </Typography>
-              </Box>
-            </Stack>
+           
             <Stack direction="row">
               <Box>
                 <Typography variant="body1" color="initial">

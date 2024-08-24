@@ -3,7 +3,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { GetPanelBanner } from "../../services/apicalling";
 
-const Notification = () => {
+const Notification = ({handleClosepolicy}) => {
 
   const {data } = useQuery(["pannel_banner"], () => GetPanelBanner(), {
     refetchOnMount: false,
@@ -19,16 +19,19 @@ const Notification = () => {
     <Box sx={{ "&>p": { textAlign: "center", color: "red" } }}>
       {res?.map((item) => {
         return (
-          <Box
+         <>
+         <Box
             className="mt-2"
             sx={{ "&>p": { color: "white", fontSize: "12px" } }}
           >
-            <img src={`https://admin.kimiko.biz/public/${item?.image}`} alt="" className="!w-64" />
+            <img src={`https://admin.kimiko.biz/public/${item?.image}`} alt="" className="" />
           </Box>
+           <p onClick={handleClosepolicy} className="mt-2 !text-green-800 font-bold !text-center bg-white ">ok </p></>
         )
       })}
-
     </Box>
+   
+    
   );
 };
 

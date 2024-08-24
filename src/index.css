@@ -6,7 +6,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
+/* .MuiSvgIcon-root{
+  color: white !important;
+} */
 .input-err {
   border: 1px solid red;
 }

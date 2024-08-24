@@ -94,7 +94,7 @@ function Win() {
                   src={deposit}
                   alt="Deposit"
                   sx={styles.depositWithdrawIcon}
-                  onClick={() => navigate("/wallet/Recharge")}
+                  onClick={() => navigate("/credit")}
 
                 />
               </Box>
@@ -104,7 +104,7 @@ function Win() {
                 className="db-header kip13"
                 sx={{ color: kidarkgreen, textAlign: "center" }}
               >
-                Deposit
+               Credit <br/> Report
               </Typography>
             </Box>
             <Box>

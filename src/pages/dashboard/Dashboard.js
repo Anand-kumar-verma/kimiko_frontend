@@ -1,14 +1,12 @@
-import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
+import StartIcon from '@mui/icons-material/ArrowRightAlt';
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import StartIcon from '@mui/icons-material/ArrowRightAlt';
-import { Avatar, Box, Button, CircularProgress, Container, Dialog, DialogContent, Slide, Stack, TextField, Typography, } from "@mui/material";
+import { Box, Button, Container, Dialog, DialogContent, Slide, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import copy from "clipboard-copy";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { RxCross2 } from "react-icons/rx";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -18,24 +16,10 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { gray, kidarkgreen, kigrad, kigreen, kilightgreen, zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
-import aviator_game_image from "../../assets/aviator_game_image.png";
-import one from "../../assets/images/1.jpg";
-import three from "../../assets/images/123.png";
-import two from "../../assets/images/2.jpg";
-import bgms from "../../assets/images/bgms1.png";
+import { gray, kidarkgreen, kigrad, kigreen, zubgback, zubgshadow, zubgtext } from "../../Shared/color";
 import gmbg from "../../assets/images/gmbg.jpg";
-import winp4 from "../../assets/images/jacpot.jpg";
-import cash from "../../assets/images/money.png";
-import stage from "../../assets/images/pod2.png";
-import position2 from "../../assets/images/positio2.png";
 
-import position3 from "../../assets/images/position3.png";
-import position1 from "../../assets/images/positoin1.png";
-import deposit from "../../assets/images/security-box.png";
 import logo from "../../assets/logokimi.png";
-import sajid from "../../assets/sajid.PNG";
-import tanveer from "../../assets/tanveer.PNG";
 import Layout from "../../component/Layout/Layout";
 import {
   please_reconnect_the_serverFun,
@@ -43,6 +27,7 @@ import {
 } from "../../redux/slices/counterSlice";
 import {
   get_user_data_fn,
+  GetProductListFn,
   walletamount
 } from "../../services/apicalling";
 import {
@@ -51,28 +36,24 @@ import {
   support_mail,
   telegram_url
 } from "../../services/urls";
-import Lottery from "./DashboadSubcomponent/Lottery";
-import Original from "./DashboadSubcomponent/Original";
-import Sports from "./DashboadSubcomponent/Sports";
-import Notification from "./Notification";
 
-import { CurrencyExchangeTwoTone, NavigateNextRounded } from "@mui/icons-material";
+import { Close, CurrencyExchangeTwoTone, NavigateNextRounded } from "@mui/icons-material";
 import SwipeRightAltRoundedIcon from '@mui/icons-material/SwipeRightAltRounded';
-import bonus from '../../assets/kiimages/bonus.png';
-import task from '../../assets/kiimages/clipboard.png';
-import coffeem1 from '../../assets/kiimages/coffeem1.jpg';
 import solor from '../../Kimassets/images/service-5.jpg';
-import withdraw from '../../assets/kiimages/hand.png';
-import news from '../../assets/kiimages/info.png';
-import about from '../../assets/kiimages/messages.png';
-import recharge from '../../assets/kiimages/mobile.png';
-import order from '../../assets/kiimages/order-now.png';
-import dpsthistory from '../../assets/kiimages/transaction-history.png';
-import wdrlhistory from '../../assets/kiimages/order-history.png';
 import kislider1 from '../../assets/kiimages/banner1.jpg';
 import kislider2 from '../../assets/kiimages/banner2.jpg';
 import kislider3 from '../../assets/kiimages/banner3.jpg';
+import bonus from '../../assets/kiimages/bonus.png';
+import task from '../../assets/kiimages/clipboard.png';
+import coffeem1 from '../../assets/kiimages/coffeem1.jpg';
+import withdraw from '../../assets/kiimages/hand.png';
+import about from '../../assets/kiimages/messages.png';
+import recharge from '../../assets/kiimages/mobile.png';
+import wdrlhistory from '../../assets/kiimages/order-history.png';
+import order from '../../assets/kiimages/order-now.png';
+import dpsthistory from '../../assets/kiimages/transaction-history.png';
 import wingo from '../../assets/kiimages/wingo.png';
+import Notification from './Notification';
 
 
 
@@ -192,45 +173,17 @@ function Dashboard() {
   }, []);
 
 
-  const game_data = [
+  const {data:product } = useQuery(
+    ["product_list"],
+    () => GetProductListFn(),
     {
-      name: "Lottery",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_202401100619315n2k.png",
-    },
-    {
-      name: "Aviator",
-      img: aviator_game_image,
-    },
-    {
-      name: "Sports",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_20240110061915xrqy.png",
-    },
-    {
-      name: "Slots",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_20240110061937gbid.png",
-    },
-    {
-      name: "Popular",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_202401100619464x51.png",
-    },
-    {
-      name: "Casino",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_20240110061909hwqs.png",
-    },
-  ];
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+    }
+  );
 
-  const product = [
-    { name: 'S-Solor-Energy-3800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 40, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-4800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 60, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-9800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 30, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-5800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 20, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-1800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 50, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-6800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 70, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-8800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 10, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-9800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 90, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-3800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 0, date: '00:23:50:21' },
-    { name: 'S-Solor-Energy-4800', img: coffeem1, Price: '3800 Rs', Cycle: '5 Days', Total: '19800 Rs', percentage: 20, date: '00:23:50:21' },
-  ]
+  const products = product?.data?.data || [];
+
 
   return (
     <Layout>
@@ -293,7 +246,7 @@ function Dashboard() {
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>Withdraw</Typography>
               </Box>
             </Stack>
-            <Stack sx={styles.kiNavOuter} component={NavLink}>
+            <Stack sx={styles.kiNavOuter} component={NavLink} to='/income'>
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={bonus} sx={styles.KiNavImg}></Box>
               </Box>
@@ -301,6 +254,8 @@ function Dashboard() {
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>Bonus</Typography>
               </Box>
             </Stack>
+            </Box>
+            <Box sx={{ px: 2, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', }}>
             <Stack sx={styles.kiNavOuter} component={NavLink} to='/rent'>
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={order} sx={styles.KiNavImg}></Box>
@@ -309,23 +264,7 @@ function Dashboard() {
                 <Typography variant="body1" color="initial" sx={styles.kiNavText}>Order</Typography>
               </Box>
             </Stack>
-            <Stack sx={styles.kiNavOuter} component={NavLink}>
-              <Box sx={styles.kiNavInner}>
-                <Box component='img' src={task} sx={styles.KiNavImg}></Box>
-              </Box>
-              <Box sx={{ padding: '8px 0px' }}>
-                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Task</Typography>
-              </Box>
-            </Stack>
-            <Stack sx={styles.kiNavOuter} component={NavLink}>
-              <Box sx={styles.kiNavInner}>
-                <Box component='img' src={about} sx={styles.KiNavImg}></Box>
-              </Box>
-              <Box sx={{ padding: '8px 0px' }}>
-                <Typography variant="body1" color="initial" sx={styles.kiNavText}>News</Typography>
-              </Box>
-            </Stack>
-            <Stack sx={styles.kiNavOuter} component={NavLink} to="/depositHistory">
+        <Stack sx={styles.kiNavOuter} component={NavLink} to="/depositHistory">
               <Box sx={styles.kiNavInner}>
                 <Box component='img' src={dpsthistory} sx={styles.KiNavImg}></Box>
               </Box>
@@ -354,7 +293,6 @@ function Dashboard() {
                 id="referrel_code"
                 name="referrel_code"
                 value={fk.values.referrel_code}
-                // onChange={fk.handleChange}
                 sx={styles.referralLinkInput}
               />
               <Button
@@ -446,10 +384,10 @@ function Dashboard() {
           <Typography variant="body1" color="initial" sx={styles.kiHeadline}><SwipeRightAltRoundedIcon /> Level Product</Typography>
           <Box sx={{ width: '95%', ml: '2.5%', mb: 5 }}>
             {
-              product.map((item, value) => (
+              products?.map((item) => (
                 <Box sx={styles.kiproductbox}>
                   <Typography variant="body1" color="initial" sx={styles.kiproductTitle}>
-                    {item.name}
+                    {item?.m_pack_name}
                   </Typography>
                   <Stack direction={'row'} sx={styles.kiproflex}>
                     <Box sx={styles.kiimageBox}>
@@ -458,455 +396,31 @@ function Dashboard() {
                     <Box sx={{ width: '55%', mr: 2 }}>
                       <Stack direction={'row'} sx={styles.kipriceStack}>
                         <Typography variant="body2" sx={styles.kipriceLabel}>Price :</Typography>
-                        <Typography variant="body1" sx={styles.kipriceValue}> {item.Price}</Typography>
+                        <Typography variant="body1" sx={styles.kipriceValue}> ₹ {item?.m_pack_fee || 0}</Typography>
                       </Stack>
                       <Stack direction={'row'} sx={styles.kipriceStack}>
                         <Typography variant="body2" sx={styles.kipriceLabel}>Cycle :</Typography>
-                        <Typography variant="body1" sx={styles.kipriceValue}> {item.Cycle}</Typography>
+                        <Typography variant="body1" sx={styles.kipriceValue}> {item?.m_pack_roi_days || 0} Days</Typography>
                       </Stack>
                       <Stack direction={'row'} sx={styles.kipriceStack}>
                         <Typography variant="body2" sx={styles.kipriceLabel}>Total :</Typography>
-                        <Typography variant="body1" sx={styles.kipriceValue}> {item.Total}</Typography>
+                        <Typography variant="body1" sx={styles.kipriceValue}>₹ {item?.m_total_income || 0}  </Typography>
                       </Stack>
                     </Box>
                   </Stack>
                   <Stack direction={'row'} sx={{ mt: 2, alignItems: 'center', justifyContent: 'space-between' }}>
                     <Box sx={styles.kipercentageBox}>
-                      <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}>{item.percentage}%</Typography>
-                      <Box sx={{ ...styles.kiprogressBar, width: `${item.percentage}%` }}></Box>
+                      <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}></Typography>
+                      <Box sx={{ ...styles.kiprogressBar }}></Box>
                     </Box>
-                    <Button onClick={() => navigate(`/menu/menu-details/`)} sx={styles.kibutton} variant="contained">Buy {item.date} <NavigateNextRounded /></Button>
+                    <Button onClick={() => navigate(`/menu/menu-details/${item?.m_pack_id}`)} sx={styles.kibutton} variant="contained">Buy {item.date} <NavigateNextRounded /></Button>
                   </Stack>
                 </Box>
               ))
             }
           </Box >
-          {/* <Box className="!px-2">
-            <Swiper
-              spaceBetween={30}
-              centeredSlides={true}
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
-              pagination={{ clickable: true }}
-              navigation={false}
-              modules={[Autoplay, Pagination, Navigation]}
-              className="mySwiper"
-            >
-              <SwiperSlide>
-                <Box
-                  component="img"
-                  src={one}
-                  alt="Slide 1"
-                  sx={styles.swiperImage}
-                  className="!rounded-lg"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Box
-                  component="img"
-                  src={two}
-                  alt="Slide 2"
-                  sx={styles.swiperImage}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Box
-                  component="img"
-                  src={three}
-                  alt="Slide 3"
-                  sx={styles.swiperImage}
-                />
-              </SwiperSlide>
-            </Swiper>
-          </Box> */}
-
-          {/* <Box
-            sx={{
-              display: "flex",
-              alignItems: "start",
-              justifyContent: "space-between",
-              width: "95%",
-              marginLeft: "2.5%",
-              background: zubgwhite,
-              boxShadow: zubgshadow,
-              borderRadius: "10px",
-              mt: "20px",
-              padding: "10px 10px",
-            }}
-          >
-            <Box sx={{ width: "10%" }}>
-              <CampaignOutlinedIcon sx={{ color: zubgtext }} />
-            </Box>
-            <Box
-              sx={{
-                width: "90%",
-                "&>p": { fontSize: "13px", color: zubgtext },
-              }}
-            >
-              <Typography variant="body1">
-                See the Installation page for additional docs about how to make
-                sure everything is set up correctly.
-              </Typography>
-            </Box>
-          </Box> */}
-          {/* 
-          <Stack direction="row" sx={styles.depositWithdrawContainer}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Box className="serv-item cursor-pointer">
-                <Box
-                  component="img"
-                  src={deposit}
-                  alt="Deposit"
-                  sx={styles.depositWithdrawIcon}
-                  onClick={() => navigate("/wallet/Recharge")}
-                />
-              </Box>
-              <Typography
-                variant="body1"
-                color="initial"
-                className="db-header"
-                sx={{ color: zubgtext, textAlign: "center" }}
-              >
-                Deposit
-              </Typography>
-            </Box>
-            <Box sx={{ textAlign: "center" }}>
-              <Typography
-                variant="body1"
-                color="initial"
-                className="b-val "
-                sx={{ color: zubgtext }}
-              >
-                ₹{" "}
-                {Number(
-                  Number(newdata?.wallet || 0) + Number(newdata?.winning || 0)
-                )?.toFixed(2)}
-              </Typography>
-              <Typography
-                variant="body1"
-                color="initial"
-                className="b-valp"
-                sx={{ color: zubgtext }}
-              >
-                Available Balance
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Box className="serv-item">
-                <Box
-                  onClick={() => navigate("/Withdrawal")}
-                  component="img"
-                  src={cash}
-                  alt="Withdraw"
-                  sx={styles.depositWithdrawIcon}
-                  className="!cursor-pointer"
-                />
-              </Box>
-              <Typography
-                variant="body1"
-                color="initial"
-                className="db-header"
-                sx={{ color: zubgtext }}
-              >
-                Withdraw
-              </Typography>
-            </Box>
-          </Stack> */}
-
-          {/* <div
-            className="mt-2 w-full grid grid-cols-3 gap-[2%] o"
-            style={{
-              width: "95%",
-              marginLeft: "2.5%",
-              marginTop: "20px",
-              mb: "20px",
-            }}
-          >
-            {game_data?.map((i) => {
-              return (
-                <Box
-                  sx={{
-                    marginBottom: "10px",
-                    width: "95%",
-                    borderRadius: "7px 7px 7px 7px !important",
-                    overflow: "hidden",
-                  }}
-                >
-                  <a
-                    onClick={() => {
-                      if (
-                        i.name === "Slots" ||
-                        i.name === "Popular" ||
-                        i.name === "Casino"
-
-                      )
-                        return toast("Comming Soon !");
-                      scrollToSection("games");
-                      settype_of_game(i?.name);
-                    }}
-                    href={`#${i?.name}`}
-                    style={{
-                      backgroundImage: `url(${bgms})`,
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "100% 100%",
-                      padding: "5px 15px 30px 15px",
-                      borderRadius: "7px 7px 0px 0px !important",
-                    }}
-                    className="cursor-pointer   flex flex-col items-center justify-center"
-                  >
-                    <img className="w-[90px] h-[90px] " src={i?.img} alt="" />
-                  </a>
-                  <p
-                    className="!text-sm font-bold"
-                    style={{
-                      color: "white",
-                      background: zubgtext,
-                      width: "100%",
-                      textAlign: "center",
-                      padding: "5px 0px",
-                      borderRadius: "0px 0px 7px 7px !important",
-                    }}
-                  >
-                    {i?.name}
-                  </p>
-                </Box>
-              );
-            })}
-          </div> */}
-          {/* <Box id="games">
-            <div id="game_lottery">
-              {type_of_game === "Lottery" && <Lottery />}
-            </div>
-            <div id="game_original">
-              {type_of_game === "Aviator" && <Original />}
-            </div>
-            <div id="game_sports">
-              {type_of_game === "Sports" && <Sports />}
-            </div>
-          </Box> */}
-          {/* {
-            loding ? (
-              <div className="w-[100%] flex justify-center">
-                <CircularProgress className="!text-#E71D1E" />
-              </div>
-            ) : (
-              <Box sx={styles.wininfoouter}>
-                <Typography
-                  variant="body1"
-                  color="initial"
-                  sx={{
-                    color: zubgtext,
-                    fontWeight: "600",
-                    fontSize: "16px",
-                    mb: 2,
-                  }}
-                >
-                  Winning information
-                </Typography>
-                {winnner_data?.slice(3, 10)?.map((i, index) => {
-                  return (
-                    <Stack
-                      key={index}
-                      direction="row"
-                      sx={{ ...styles.wininfoinner, mb: "10px" }}
-                    >
-                      <Stack direction="row" sx={styles.wininfoouterone}>
-                        <Avatar
-                          width={50}
-                          src={
-                            Math.floor(Math.random() * 5) + 1 === 1
-                              ? "https://mui.com/static/images/avatar/4.jpg"
-                              : Math.floor(Math.random() * 5) + 1 === 2
-                                ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                                : Math.floor(Math.random() * 5) + 1 === 3
-                                  ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                                  : Math.floor(Math.random() * 5) + 1 === 4
-                                    ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                                    : ""
-                          } // Close the src attribute here
-                          className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                            }`}
-                        >
-                          {i?.email?.split("@")[0]?.substring(0, 1)}
-                        </Avatar>
-                        <Typography variant="body1">
-                          {i?.email
-                            ? i.email.split("@")[0].substring(0, 2) +
-                            "**" +
-                            (i.email.split("@")[0].length > 2
-                              ? i.email.split("@")[0].substring(2, 4)
-                              : "")
-                            : "**"}
-                        </Typography>
-                      </Stack>
-                      <Stack direction="row" sx={styles.wininfooutertwo}>
-                        <Box component="img" src={winp4} />
-                        <Box>
-                          <Typography variant="body1" color="initial">
-                            Receive ₹{Number(i?.win || 0)?.toFixed(2)}
-                          </Typography>
-                          <Typography variant="body1" color="initial">
-                            Winning amount
-                          </Typography>
-                        </Box>
-                      </Stack>
-                    </Stack>
-                  );
-                })}
-              </Box>
-            )
-          } */}
-
-          {/* stage Podium */}
-          {/* <Box
-            sx={{
-              width: "95%",
-              marginLeft: "2.5%",
-              borderRadius: "10px",
-              mt: "20px",
-              mb: "20px",
-              height: "40vh",
-              backgroundImage: `url(${stage})`,
-              backgroundSize: "100% 100%",
-              position: "relative",
-            }}
-          >
-            <Box sx={styles.winner1}>
-              <Box
-                component="img"
-                // src={pro1c}
-                src={sajid}
-                sx={{
-                  width: "60px",
-                  borderRadius: "50%",
-                  border: `3px solid ${zubgmid}`,
-                  height: "60px",
-                  objectPosition: "top",
-                }}
-              ></Box>
-              <Box
-                component="img"
-                src={position1}
-                sx={{ width: "70px", height: "20px" }}
-              ></Box>
-            </Box>
-            <Box sx={styles.winner2}>
-              <Box
-                component="img"
-                // src={pro1c}
-                src={tanveer}
-                sx={{
-                  width: "50px",
-                  borderRadius: "50%",
-                  border: `3px solid ${zubgmid}`,
-                  height: "50px",
-                  objectPosition: "top",
-                }}
-              ></Box>
-              <Box
-                component="img"
-                src={position2}
-                sx={{ width: "60px", height: "15px" }}
-              ></Box>
-            </Box>
-            <Box sx={styles.winner3}>
-              <Box
-                component="img"
-                // src={pro1c}
-                src={
-                  "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                }
-                sx={{
-                  width: "50px",
-                  borderRadius: "50%",
-                  border: `3px solid ${zubgmid}`,
-                  height: "50px",
-                  objectPosition: "top",
-                }}
-              ></Box>
-              <Box
-                component="img"
-                src={position3}
-                sx={{ width: "60px", height: "15px" }}
-              ></Box>
-            </Box>
-          </Box> */}
-          {/* stage Podium end */}
-          {/* {
-            loding ? (
-              <div className="w-[100%] flex justify-center">
-                {" "}
-                <CircularProgress className="!text-#E71D1E" />
-              </div>
-            ) : (
-              <Box sx={{ ...styles.wininfoouter, mb: "40px" }}>
-                {winnner_data?.slice(0, 3)?.map((i, index) => {
-                  return (
-                    <Stack
-                      key={index}
-                      direction="row"
-                      sx={{ ...styles.wininfoinner, mb: "10px" }}
-                    >
-                      <Stack direction="row" sx={styles.wininfoouterone}>
-                        <Avatar
-                          width={50}
-                          src={
-                            Math.floor(Math.random() * 5) + 1 === 1
-                              ? "https://mui.com/static/images/avatar/4.jpg"
-                              : Math.floor(Math.random() * 5) + 1 === 2
-                                ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                                : Math.floor(Math.random() * 5) + 1 === 3
-                                  ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                                  : Math.floor(Math.random() * 5) + 1 === 4
-                                    ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                                    : Math.floor(Math.random() * 5) + 1 === 5
-                                      ? "https://res.cloudinary.com/do7kimovl/image/upload/v1711806164/WhatsApp_Image_2024-03-30_at_6.53.33_PM_qo99n4.jpg"
-                                      : ""
-                          } // Close the src attribute here
-                          className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                            }`}
-                        >
-                          {i?.email?.split("@")[0]?.substring(0, 1)}
-                        </Avatar>
-                        <Typography variant="body1">
-                          {i?.email
-                            ? i.email.split("@")[0].substring(0, 2) +
-                            "**" +
-                            (i.email.split("@")[0].length > 2
-                              ? i.email.split("@")[0].substring(2, 4)
-                              : "")
-                            : "**"}
-                        </Typography>
-                      </Stack>
-                      <Stack direction="row" sx={styles.wininfooutertwo}>
-                        <Box component="img" src={winp4} />
-                        <Box>
-                          <Typography variant="body1" color="initial">
-                            Receive ₹{Number(i?.win || 0)?.toFixed(2)}
-                          </Typography>
-                          <Typography variant="body1" color="initial">
-                            Winning amount
-                          </Typography>
-                        </Box>
-                      </Stack>
-                    </Stack>
-                  );
-                })}
-              </Box>
-            )
-          } */}
-          {/* 
+          
+          
           {
             poicy && !lodingBanner && (
               <Dialog
@@ -915,29 +429,10 @@ function Dashboard() {
                 keepMounted
                 onClose={handleClosepolicy}
                 aria-describedby="alert-dialog-slide-description"
-                PaperProps={{ className: `!max-w-[500px] ${gray}` }}
+               
               >
-                <div
-                  style={{
-                    background: "",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "15px",
-                  }}
-                >
-                  {!openbannerurl ||
-                    (openbannerurl === "" && (
-                      <p style={{ color: "white", fontSize: "14px" }}>
-                        Notification
-                      </p>
-                    ))}
-                  <RxCross2
-                    style={{ color: "white" }}
-                    onClick={handleClosepolicy}
-                  />
-                </div>
-                <DialogContent style={{ background: zubgback }}>
+                
+                <DialogContent style={{ background: kidarkgreen }}>
                   {!openbannerurl ||
                     openbannerurl === "" ? (
                     <Notification handleClosepolicy={handleClosepolicy} />
@@ -947,7 +442,7 @@ function Dashboard() {
                 </DialogContent>
               </Dialog>
             )
-          } */}
+          }
 
 
         </Container >
@@ -1236,7 +731,7 @@ const styles = {
   gamenamebox: { width: '70%', },
   playbutton: { background: kigrad, color: 'white', fontWeight: '600', fontSize: "15px", padding: '5px 30px', width: '100%', mt: 1, },
   maxwin: { background: kigrad, padding: '2px 5px 2px 5px', borderRadius: '5px' },
-  kiNavOuter: { width: '22%', borderRadius: 1, border: `1px solid ${kidarkgreen}`, maxWidth: '120px', mb: 2 },
+  kiNavOuter: { width: '52%', borderRadius: 1, border: `1px solid ${kidarkgreen}`, maxWidth: '150px', mb: 2 },
   kiNavInner: { padding: 1, background: kidarkgreen, },
   KiNavImg: { width: '30px', margin: 'auto', },
   kiNavText: { textAlign: 'center', fontSize: '12px', fontWeight: '600' },

@@ -3,7 +3,7 @@ export const aviatordomain = "https://kimiko-backend.onrender.com"
 
 // export const aviatordomain = "http://192.168.18.183:8000"
 // export const dummy_aviator = "http://192.168.18.183:8000"
-// export const domain = "http://192.168.18.183:8000"
+// export const domainnn = "http://192.168.18.183:8000"
 
 export const rupees = "₹";
 
@@ -28,6 +28,8 @@ export const endpoint = {
   panel_banner:`${baseUrl}/api/panel_banner`,
   get_balance:`${baseUrl}/api/get_balance`,
   change_password :`${baseUrl}/api/update_password`,
+  credit_report:`${newDomain}/api/v1/getWalletCreditedHistory`,
+  self_income:`${newDomain}/api/v1/get-income-self-team`,
 
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,

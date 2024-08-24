@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../../../Shared/CustomCircularProgress";
 import {
+  kidarkgreen,
   zubgback,
   zubgbackgrad,
   zubgmid,
@@ -126,23 +127,17 @@ const user_id = value && JSON.parse(value)?.UserID;
     );
   return (
     <Layout>
-      <Container
-        sx={{
-          background: zubgback,
-          width: "100%",
-          height: "100vh",
-          overflow: "auto",
-          mb: 5,
-        }}
-        className="no-scrollbar"
-      >
-        <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={goBack}>
+      <Container className="!h-[100%]  !overflow-auto no-scrollbar " sx={{ background: '#e7e7e7' }}>
+      
+      <CustomCircularProgress isLoading={isLoading} />
+    
+      <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+      <Box component={NavLink} onClick={() => navigate(-1)} sx={{  }}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <p>Cashback Income</p>
-        </Box>
+          <Box  sx={{ width: "200px", margin: 'auto', }} className="!text-white">Cashback Income</Box>
+        </div>
+       
         <div
           className="!flex !w-fullpx-5 justify-between py-1 items-center"
           style={{ background: zubgwhite, boxShadow: zubgshadow }}
@@ -211,12 +206,11 @@ const user_id = value && JSON.parse(value)?.UserID;
             ))}
           </TableBody>
         </Table>
-       <Box className="paginationTable !mb-10">
+        <Box className="!text-white !mb-10" style={{ width: '100%'  }}>
         <TablePagination
           sx={{
-            background: zubgtext,
+            background: kidarkgreen,
             color: "white",
-            borderRadius: "10px",
             marginTop: "10px",
           }}
           rowsPerPageOptions={[10,15 ,25,35 ]}

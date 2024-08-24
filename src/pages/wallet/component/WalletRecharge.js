@@ -1,7 +1,5 @@
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
-import HistoryIcon from "@mui/icons-material/History";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
   Box,
   Button,
@@ -22,32 +20,29 @@ import * as React from "react";
 import toast from "react-hot-toast";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
-import logo from "../../../assets/logokimi.png";
 import {
   gray,
   kidarkgreen,
   kigrad,
   kigreen,
   zubgback,
-  zubgbackgrad,
-  zubgshadow,
-  zubgtext,
-  zubgwhite,
+  zubgtext
 } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
 import cip from "../../../assets/cip.png";
 import dot from "../../../assets/images/circle-arrow.png";
-import user from "../../../assets/kiimages/order-history.png";
-import playgame from "../../../assets/images/playgame.jpg";
 import balance from "../../../assets/images/send.png";
+import user from "../../../assets/kiimages/order-history.png";
+import logo from "../../../assets/logokimi.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
 import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import Msg from "./Msg";
+import { useQuery } from "react-query";
 
 function WalletRecharge() {
   const dispatch = useDispatch();
@@ -103,6 +98,29 @@ function WalletRecharge() {
       }
     } catch (error) {
       console.error("Error during play:", error);
+    }
+  };
+  const { data: wllet } = useQuery(["wallet_a"], () => main_wallet_functoin(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retryOnMount: false,
+    refetchOnWindowFocus: false
+  })
+
+  const response = wllet || []
+ 
+  const main_wallet_functoin = async () => {
+    const reqbody = {
+      userid: user_id || "",
+      type: 1,
+    };
+
+    try {
+      const response = await axios.post(`${endpoint.get_balance}`, reqbody);
+      return response?.data;
+    } catch (e) {
+      toast.error(e?.message || 'An error occurred');
+      return { data: [] };
     }
   };
 
@@ -348,20 +366,7 @@ function WalletRecharge() {
             background: kigrad,
           }}
         >
-          {/* <Box
-            component="img"
-            src={playgame}
-            sx={{
-              position: "absolute",
-              opacity: "0.9",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              borderRadius: "10px",
-              overflow: "hidden",
-            }}
-          ></Box> */}
+
           <Stack direction="row" sx={{ alignItems: "center" }}>
             <Box
               component="img"
@@ -415,6 +420,7 @@ function WalletRecharge() {
               )}
 
             </Typography>
+
             <CachedIcon
               sx={{
                 color: "white",
@@ -423,6 +429,61 @@ function WalletRecharge() {
               }}
             />
           </Stack>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              justifyContent: "start",
+            
+              position: "relative",
+              zIndex: 10,
+              color: "white",
+            }}
+          >
+          Main Wallet  :
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={{
+                fontSize: "14px ",
+                fontWeight: "600",
+                color: "white",
+                ml: "10px",
+                position: "relative",
+                zIndex: 10,
+              }}
+            >
+           {Number(response?.main_balance || 0)}
+            </Typography>
+          </Stack>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              justifyContent: "start",
+            
+              position: "relative",
+              zIndex: 10,
+              color: "white",
+            }}
+          >
+          Fund Wallet  :
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={{
+                fontSize: "14px ",
+                fontWeight: "600",
+                color: "white",
+                ml: "10px",
+                position: "relative",
+                zIndex: 10,
+              }}
+            >
+           {Number(response?.fund_balance || 0)}
+            </Typography>
+          </Stack>
+         
           <Stack
             direction="row"
             sx={{
