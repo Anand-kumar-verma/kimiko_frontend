@@ -1,17 +1,14 @@
 export const dummy_aviator = "https://kimiko-backend.onrender.com"
 export const aviatordomain = "https://kimiko-backend.onrender.com"
 
-// export const aviatordomain = "http://192.168.18.183:8000"
-// export const dummy_aviator = "http://192.168.18.183:8000"
-// export const domain = "http://192.168.18.183:8000"
 
 export const rupees = "₹";
 
 export const baseUrl = "https://admin.kimiko.biz";
 export const fron_end_main_domain = "https://kimiko.biz";
-export const newDomain = "https://api.kimiko.biz";
+// export const newDomain = "https://api.kimiko.biz";
+export const newDomain = "http://localhost:8000";
 
-// export const domain = "https://aviator-with-sql-backend.onrender.com"
 
 export const domain = "https://kimiko-backend.onrender.com"
 export const support_mail = "";
