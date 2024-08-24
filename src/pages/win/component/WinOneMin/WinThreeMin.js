@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
+import { kidarkgreen, kigrad } from "../../../../Shared/color";
 import pr0 from "../../../../assets/images/0.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
@@ -24,7 +24,7 @@ function WinThreeMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
   const [apply_bit_dialog_box, setapply_bit_dialog_box] = React.useState(false);
   const [dialog_type, setdialog_type] = React.useState(0);
-  const [timing , setBetNumber] = useState(100)
+  const [timing, setBetNumber] = useState(100)
   // const [show_this_one_min_time,setshow_this_one_min_time] = useState()
 
   const initialValues = {
@@ -43,7 +43,7 @@ function WinThreeMin({ gid }) {
   return (
     <Box className="mainBox">
       {React.useMemo(() => {
-        return <TwoMinCountDown fk={fk} setBetNumber={setBetNumber}/>
+        return <TwoMinCountDown fk={fk} setBetNumber={setBetNumber} />
       }, [])}
       {React.useMemo(() => {
         return (
@@ -52,8 +52,8 @@ function WinThreeMin({ gid }) {
               width: "95%",
               marginLeft: "2.5%",
               my: "20px",
-              background: zubgwhite,
-              boxShadow: zubgshadow,
+              background: 'azure',
+              // boxShadow: zubgshadow,
               padding: "10px",
               borderRadius: "10px",
               position: "relative",
@@ -69,13 +69,14 @@ function WinThreeMin({ gid }) {
                     style={{
                       fontSize: 200,
                       borderRadius: 20,
-                      background: zubgtext,
-                      color: zubgwhite,
                       fontWeight: 700,
                       width: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      background: kigrad,
+                      color: 'white',
+                      height: '250px',
 
                     }}
 
@@ -87,13 +88,14 @@ function WinThreeMin({ gid }) {
                     style={{
                       fontSize: 200,
                       borderRadius: 20,
-                      background: zubgtext,
-                      color: zubgwhite,
                       fontWeight: 700,
                       width: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      background: kigrad,
+                      color: 'white',
+                      height: '250px',
 
                     }}
 
@@ -236,7 +238,7 @@ function WinThreeMin({ gid }) {
         {React.useMemo(() => {
           return (
             <>
-              <Box sx={{ background: zubgback, borderRadius: "10px" }}>
+              <Box sx={{ background: kidarkgreen, borderRadius: "10px" }}>
                 <Stack direction="row">
                   <Box
                     component={NavLink}
@@ -290,7 +292,7 @@ function WinThreeMin({ gid }) {
             setapply_bit_dialog_box={setapply_bit_dialog_box}
             type={dialog_type}
             gid={gid}
-          
+
           />
         )}
     </Box>

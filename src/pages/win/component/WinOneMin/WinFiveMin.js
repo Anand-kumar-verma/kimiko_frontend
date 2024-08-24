@@ -1,8 +1,9 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
+import { useFormik } from "formik";
 import * as React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
+import { kidarkgreen, kigrad, zubgback, zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
 import pr0 from "../../../../assets/images/0.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
@@ -17,10 +18,7 @@ import ApplyBetDialogBox from "../ApplyBetDialogBox";
 import Chart from "./Chart";
 import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
-import OneMinCountDown from "./OneMinCountDown";
 import ThreeMinCountDown from "./ThreeMinCountDown";
-import TwoMinCountDown from "./TwoMinCountDown";
-import { useFormik } from "formik";
 
 function WinFiveMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
@@ -45,7 +43,7 @@ function WinFiveMin({ gid }) {
   return (
     <Box className="mainBox">
       {React.useMemo(() => {
-        return <ThreeMinCountDown fk={fk}  setBetNumber={setBetNumber}/>
+        return <ThreeMinCountDown fk={fk} setBetNumber={setBetNumber} />
       }, [])}
       {React.useMemo(() => {
         return (
@@ -54,8 +52,8 @@ function WinFiveMin({ gid }) {
               width: "95%",
               marginLeft: "2.5%",
               my: "20px",
-              background: zubgwhite,
-              boxShadow: zubgshadow,
+              background: 'azure',
+              // boxShadow: zubgshadow,
               padding: "10px",
               borderRadius: "10px",
               position: "relative",
@@ -76,8 +74,9 @@ function WinFiveMin({ gid }) {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      background: zubgtext,
-                      color: zubgwhite,
+                      background: kigrad,
+                      color: 'white',
+                      height: '250px',
                     }}
                   >
                     {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
@@ -92,8 +91,9 @@ function WinFiveMin({ gid }) {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: zubgwhite,
-                      background: zubgtext,
+                      background: kigrad,
+                      color: 'white',
+                      height: '250px',
                     }}
                   >
                     {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
@@ -234,7 +234,7 @@ function WinFiveMin({ gid }) {
         {React.useMemo(() => {
           return (
             <>
-              <Box sx={{ background: zubgback, borderRadius: "10px" }}>
+              <Box sx={{ background: kidarkgreen, borderRadius: "10px" }}>
                 <Stack direction="row">
                   <Box
                     component={NavLink}
@@ -284,13 +284,13 @@ function WinFiveMin({ gid }) {
             ?.split("_")?.[1]
             ?.padStart(2, "0")}`
         ) > 0.1 && (
-        <ApplyBetDialogBox
-          apply_bit_dialog_box={apply_bit_dialog_box}
-          setapply_bit_dialog_box={setapply_bit_dialog_box}
-          type={dialog_type}
-          gid={gid}
-        />
-      )}
+          <ApplyBetDialogBox
+            apply_bit_dialog_box={apply_bit_dialog_box}
+            setapply_bit_dialog_box={setapply_bit_dialog_box}
+            type={dialog_type}
+            gid={gid}
+          />
+        )}
     </Box>
   );
 }

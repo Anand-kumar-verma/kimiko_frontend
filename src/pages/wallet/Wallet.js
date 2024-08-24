@@ -1,20 +1,22 @@
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
   Box,
   Container,
   Dialog,
   IconButton,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
+import axios from "axios";
+import CryptoJS from "crypto-js";
 import * as React from "react";
 import ReactApexChart from "react-apexcharts";
+import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
-  zubgback,
+  kidarkgreen,
   zubggray,
   zubgtext
 } from "../../Shared/color";
@@ -24,26 +26,63 @@ import wdhistory from "../../assets/images/list.png";
 import deposite from "../../assets/images/manuscript.png";
 import wallet from "../../assets/images/wallet (5).png";
 import withdrow from "../../assets/images/withdraw.png";
+import logo from "../../assets/logokimi.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
+import { endpoint } from "../../services/urls";
 
 function Wallet() {
   const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] =
     React.useState(false);
-    const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
-    });
-    const amount = data?.data?.data || 0;
-  
+  const value =
+    (localStorage.getItem("logindataen") &&
+      CryptoJS.AES.decrypt(
+        localStorage.getItem("logindataen"),
+        "anand"
+      )?.toString(CryptoJS.enc.Utf8)) ||
+    null;
+  const user_id = value && JSON.parse(value)?.UserID;
+  const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retryOnMount: false,
+    refetchOnWindowFocus: false
+  });
+  const amount = data?.data?.data || 0;
+
   const series = [(Number(Number(amount?.wallet || 0) % 100) || 0)?.toFixed(2),]
   const series2 = [
     (Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),
   ];
+
+  const { data: wllet } = useQuery(["wallet_a"], () => main_wallet_functoin(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retryOnMount: false,
+    refetchOnWindowFocus: false
+  })
+
+  const response = wllet || []
+  const series1 = [(Number(Number(response?.main_balance || 0) % 100) || 0)?.toFixed(2),]
+  const series3 = [(Number(Number(response?.fund_balance || 0) % 100) || 0)?.toFixed(2),]
+
+
+  const main_wallet_functoin = async () => {
+    const reqbody = {
+      userid: user_id || "",
+      type: 1,
+    };
+
+    try {
+      const response = await axios.post(`${endpoint.get_balance}`, reqbody);
+      return response?.data;
+    } catch (e) {
+      toast.error(e?.message || 'An error occurred');
+      return { data: [] };
+    }
+  };
 
   const [options] = React.useState({
     colors: ["#008000", "red", "green"],
@@ -79,23 +118,15 @@ function Wallet() {
       <Container
         className="no-scrollbar"
         sx={{
-          background: zubgback,
+          background: '#E7E7E7',
           width: "100%",
           height: "100vh",
           overflow: "auto",
         }}
       >
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={() => navigate(-1)}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Wallet
-          </Typography>
-          <Box component={NavLink} onClick={() => navigate(-1)}></Box>
-        </Box>
-
-        {/*  */}
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
         <Box
           sx={{
             pt: 2,
@@ -130,7 +161,7 @@ function Wallet() {
               <Typography variant="h2" color="initial" sx={{ color: zubgtext }}>
                 ₹{" "}
                 {Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0) ||
+                  Number(response?.main_balance || 0) ||
                   0
                 )?.toFixed(2)}
               </Typography>
@@ -139,7 +170,7 @@ function Wallet() {
                 color="initial"
                 sx={{ color: zubgtext }}
               >
-                Total balance
+                Total Main Wallet Balance
               </Typography>
             </Box>
           </Box>
@@ -157,7 +188,7 @@ function Wallet() {
               borderRadius: "10px",
             }}
           >
-          
+
             <Stack
               direction="row"
               sx={{
@@ -173,7 +204,93 @@ function Wallet() {
                   color="initial"
                   sx={{
                     position: "absolute",
-                    left: "42%",
+                    left: "36%",
+                    top: "32%",
+                    fontSize: "15px",
+                    fontWeight: "700",
+                    color: "white",
+                  }}
+                >
+                  {series1}
+                </Typography>
+                <ReactApexChart
+                  options={options}
+                  series={series1}
+                  type="radialBar"
+                  height={150}
+                />
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    "&>p": { fontSize: "13px", fontWeight: 500 },
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    {Number(response?.main_balance || 0)}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    Main Wallet
+                  </Typography>
+                </Box>
+              </Box>
+              <Box sx={{ width: "50%", position: "relative" }}>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    position: "absolute",
+                    left: "36%",
+                    top: "32%",
+                    fontSize: "15px",
+                    fontWeight: "700",
+                    color: "white",
+                  }}
+                >
+                  {series3}
+                </Typography>
+                <ReactApexChart
+                  options={options}
+                  series={series3}
+                  type="radialBar"
+                  height={150}
+                />
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    "&>p": { fontSize: "13px", fontWeight: 500 },
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    {Number(response?.fund_balance || 0)}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    Fund Wallet
+                  </Typography>
+                </Box>
+              </Box>
+              <Box sx={{ width: "50%", position: "relative" }}>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    position: "absolute",
+                    left: "34%",
                     top: "32%",
                     fontSize: "15px",
                     fontWeight: "700",
@@ -206,7 +323,7 @@ function Wallet() {
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                    Wallet Amount
+                    Game  Wallet
                   </Typography>
                 </Box>
               </Box>
@@ -217,7 +334,7 @@ function Wallet() {
                   sx={{
                     position: "absolute",
                     color: "white",
-                    left: "42%",
+                    left: "34%",
                     top: "32%",
                     fontSize: "15px",
                     fontWeight: "700",
@@ -242,19 +359,19 @@ function Wallet() {
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                     {Number(amount?.winning || 0)}
+                    {Number(amount?.winning || 0)}
                   </Typography>
                   <Typography
                     variant="body1"
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                    Winning Amount
+                    Game  Winning
                   </Typography>
                 </Box>
               </Box>
             </Stack>
-           
+
           </Stack>
           <Stack
             direction="row"
@@ -455,7 +572,7 @@ function Wallet() {
                 </IconButton>
               </p>
               <p>
-                <img src={sunlotteryhomebanner} />
+                <img src={sunlotteryhomebanner} alt="" />
               </p>
             </div>
           </Dialog>

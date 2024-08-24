@@ -1,7 +1,5 @@
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
-import HistoryIcon from "@mui/icons-material/History";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
   Box,
   Button,
@@ -22,28 +20,29 @@ import * as React from "react";
 import toast from "react-hot-toast";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
 import {
   gray,
+  kidarkgreen,
+  kigrad,
+  kigreen,
   zubgback,
-  zubgbackgrad,
-  zubgshadow,
-  zubgtext,
-  zubgwhite,
+  zubgtext
 } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
 import cip from "../../../assets/cip.png";
 import dot from "../../../assets/images/circle-arrow.png";
-import user from "../../../assets/images/manuscript.png";
-import playgame from "../../../assets/images/playgame.jpg";
 import balance from "../../../assets/images/send.png";
+import user from "../../../assets/kiimages/order-history.png";
+import logo from "../../../assets/logokimi.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
 import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import Msg from "./Msg";
+import { useQuery } from "react-query";
 
 function WalletRecharge() {
   const dispatch = useDispatch();
@@ -101,6 +100,29 @@ function WalletRecharge() {
       console.error("Error during play:", error);
     }
   };
+  const { data: wllet } = useQuery(["wallet_a"], () => main_wallet_functoin(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retryOnMount: false,
+    refetchOnWindowFocus: false
+  })
+
+  const response = wllet || []
+ 
+  const main_wallet_functoin = async () => {
+    const reqbody = {
+      userid: user_id || "",
+      type: 1,
+    };
+
+    try {
+      const response = await axios.post(`${endpoint.get_balance}`, reqbody);
+      return response?.data;
+    } catch (e) {
+      toast.error(e?.message || 'An error occurred');
+      return { data: [] };
+    }
+  };
 
   const walletamountFn = async () => {
     try {
@@ -153,7 +175,7 @@ function WalletRecharge() {
           qr_url = msg;
         }
       }
-      
+
       if (qr_url) {
         setDeposit_req_data(qr_url);
       } else {
@@ -182,7 +204,7 @@ function WalletRecharge() {
           width: "95%",
           margin: "auto",
           mt: "20px",
-          background: zubgwhite,
+          background: kidarkgreen,
           borderRadius: "10px",
           mb: 5,
         }}
@@ -192,7 +214,7 @@ function WalletRecharge() {
           <Typography
             variant="body1"
             color="initial"
-            sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+            sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
           >
             {" "}
             Recharge instructions
@@ -206,28 +228,28 @@ function WalletRecharge() {
           }}
         >
           <Stack direction="row" sx={style.rechargeinstext}>
-            <Box component="img" src={dot} width={15}></Box>
+            <Box component="img" src={dot} width={15} sx={{ filter: 'hue-rotate(156deg)' }}></Box>
             <Typography variant="body1" color="initial">
               If the transfer time is up, please fill out the deposit form
               again.
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
-            <Box component="img" src={dot} width={15}></Box>
+            <Box component="img" src={dot} width={15} sx={{ filter: 'hue-rotate(156deg)' }}></Box>
             <Typography variant="body1" color="initial">
               The transfer amount must match the order you created, otherwise
               the money cannot be credited successfully.
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
-            <Box component="img" src={dot} width={15}></Box>
+            <Box component="img" src={dot} width={15} sx={{ filter: 'hue-rotate(156deg)' }}></Box>
             <Typography variant="body1" color="initial">
               If you transfer the wrong amount, our company will not be
               responsible for the lost amount!
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
-            <Box component="img" src={dot} width={15}></Box>
+            <Box component="img" src={dot} width={15} sx={{ filter: 'hue-rotate(156deg)' }}></Box>
             <Typography variant="body1" color="initial">
               Note: do not cancel the deposit order after the money has been
               transferred.
@@ -249,25 +271,72 @@ function WalletRecharge() {
           mt: "10px",
         }}
       >
-        {[110, 500, 1000, 5000, 10000, 15000].map((amount) => (
-          <Button
-            key={amount}
-            sx={style.paytmbtn}
-            onClick={() => {
-              formik.setFieldValue("txtamount", amount);
-              setDeposit_req_data(null);
-            }}
-          >
-            ₹ {amount.toLocaleString()}
-          </Button>
-        ))}
+        <Button
+          className="kip15" sx={style.paytmbtn}
+          onClick={() => {
+            formik.setFieldValue("txtamount", 110);
+            setDeposit_req_data(null);
+          }}
+        >
+          {" "}
+          ₹   110
+        </Button>
+        <Button
+          className="kip15" sx={style.paytmbtn}
+          onClick={() => {
+            formik.setFieldValue("txtamount", 500);
+            setDeposit_req_data(null);
+          }}
+        >
+          {" "}
+          ₹   500
+        </Button>
+        <Button
+          className="kip15" sx={style.paytmbtn}
+          onClick={() => {
+            formik.setFieldValue("txtamount", 1000);
+            setDeposit_req_data(null);
+          }}
+        >
+          {" "}
+          ₹   1k
+        </Button>
+        <Button
+          className="kip15" sx={style.paytmbtn}
+          onClick={() => {
+            formik.setFieldValue("txtamount", 5000);
+            setDeposit_req_data(null);
+          }}
+        >
+          {" "}
+          ₹   5k
+        </Button>
+        <Button
+          className="kip15" sx={style.paytmbtn}
+          onClick={() => {
+            formik.setFieldValue("txtamount", 10000);
+            setDeposit_req_data(null);
+          }}
+        >
+          ₹  10k
+        </Button>
+        <Button
+          className="kip15" sx={style.paytmbtn}
+          onClick={() => {
+            formik.setFieldValue("txtamount", 15000);
+            setDeposit_req_data(null);
+          }}
+        >
+          ₹  15k
+        </Button>
+
       </Stack>
     );
   }, [formik]);
 
   if (deposit_req_data) {
     window.open(deposit_req_data);
-   
+
   }
   return (
     <Layout>
@@ -282,20 +351,10 @@ function WalletRecharge() {
           mb: 4,
         }}
       >
-        <Box sx={style.header}>
-          <Box component={NavLink}  onClick={() => {
-                  setDeposit_req_data(null);
-                  goBack()
-                }}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Deposit
-          </Typography>
-          <Box component={NavLink} to="/depositHistory">
-            <HistoryIcon />
-          </Box>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+
+        </div>
         <Box
           sx={{
             borderRadius: "10px",
@@ -303,22 +362,11 @@ function WalletRecharge() {
             width: "95%",
             margin: "auto",
             position: "relative",
+            mt: 2,
+            background: kigrad,
           }}
         >
-          <Box
-            component="img"
-            src={playgame}
-            sx={{
-              position: "absolute",
-              opacity: "0.9",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              borderRadius: "10px",
-              overflow: "hidden",
-            }}
-          ></Box>
+
           <Stack direction="row" sx={{ alignItems: "center" }}>
             <Box
               component="img"
@@ -329,11 +377,11 @@ function WalletRecharge() {
                 zIndex: 10,
               }}
             ></Box>
-            <Typography
+            {/* <Typography
               variant="body1"
               color="initial"
               sx={{
-                fontSize: "16px ",
+                fontSize: "20px ",
                 fontWeight: 500,
                 color: "white",
                 ml: "10px",
@@ -343,7 +391,7 @@ function WalletRecharge() {
             >
               {" "}
               Balance
-            </Typography>
+            </Typography> */}
           </Stack>
           <Stack
             direction="row"
@@ -354,10 +402,13 @@ function WalletRecharge() {
               zIndex: 10,
             }}
           >
+                      <span className="!text-white !text-[20px] !font-semibold">Game Wallet: </span> 
+
             <Typography
               variant="body1"
               color="initial"
               sx={{
+                paddingLeft:"10px",
                 fontSize: "30px ",
                 fontWeight: "600",
                 color: "white",
@@ -370,8 +421,9 @@ function WalletRecharge() {
                 Number(deposit_amount ? amount?.cricket_wallet || 0
                   : Number(amount?.wallet || 0) + Number(amount?.winning || 0)).toFixed(2)
               )}
-            
+
             </Typography>
+
             <CachedIcon
               sx={{
                 color: "white",
@@ -380,6 +432,61 @@ function WalletRecharge() {
               }}
             />
           </Stack>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              justifyContent: "start",
+            
+              position: "relative",
+              zIndex: 10,
+              color: "white",
+            }}
+          >
+          Main Wallet  :
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={{
+                fontSize: "14px ",
+                fontWeight: "600",
+                color: "white",
+                ml: "10px",
+                position: "relative",
+                zIndex: 10,
+              }}
+            >
+           {Number(response?.main_balance || 0)}
+            </Typography>
+          </Stack>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              justifyContent: "start",
+            
+              position: "relative",
+              zIndex: 10,
+              color: "white",
+            }}
+          >
+          Fund Wallet  :
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={{
+                fontSize: "14px ",
+                fontWeight: "600",
+                color: "white",
+                ml: "10px",
+                position: "relative",
+                zIndex: 10,
+              }}
+            >
+           {Number(response?.fund_balance || 0)}
+            </Typography>
+          </Stack>
+         
           <Stack
             direction="row"
             sx={{
@@ -419,61 +526,60 @@ function WalletRecharge() {
           </Box>
         </Box>
         <Box>
-          
-            <Box
+
+          <Box
+            sx={{
+              padding: "10px",
+              width: "95%",
+              margin: "auto",
+              mt: "20px",
+              background: kidarkgreen,
+              borderRadius: "10px",
+              mb: 2,
+            }}
+          >
+            {paymentButtons}
+            <Stack
+              direction="row"
               sx={{
-                padding: "10px",
-                width: "95%",
-                margin: "auto",
-                mt: "20px",
-                background: zubgwhite,
-                boxShadow: zubgshadow,
-                borderRadius: "10px",
-                mb: 2,
+                alignItems: "center",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                mt: "10px",
               }}
             >
-              {paymentButtons}
-              <Stack
-                direction="row"
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  flexWrap: "wrap",
-                  mt: "10px",
-                }}
-              >
-                <OutlinedInput
-                  fullWidth
-                  placeholder="Enter amount"
-                  className="wallet-textfield !text-green-500"
-                  type="number"
-                  id="txtamount"
-                  name="txtamount"
-                  value={formik.values.txtamount}
-                  onChange={formik.handleChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton edge="end">
-                        <CloseIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-                {formik.touched.txtamount && formik.errors.txtamount && (
-                  <div className="error">{formik.errors.txtamount}</div>
-                )}
-                <Button sx={style.paytmbtntwo}
-                 onClick={() => {
+              <OutlinedInput
+                fullWidth
+                placeholder="Enter amount"
+                className="wallet-textfield !text-green-500"
+                type="number"
+                id="txtamount"
+                name="txtamount"
+                value={formik.values.txtamount}
+                onChange={formik.handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton edge="end">
+                      <CloseIcon SX={{ color: kidarkgreen }} />
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              {formik.touched.txtamount && formik.errors.txtamount && (
+                <div className="error">{formik.errors.txtamount}</div>
+              )}
+              <Button sx={style.paytmbtntwo}
+                onClick={() => {
                   setDeposit_req_data(null);
                   formik.handleSubmit()
                 }}
-                >
-                  Deposit
-                </Button>
-             
-              </Stack>
-            </Box>
-        
+              >
+                Deposit
+              </Button>
+
+            </Stack>
+          </Box>
+
 
           {rechargeInstruction}
         </Box>
@@ -488,7 +594,7 @@ function WalletRecharge() {
           >
             <div
               style={{
-                background: zubgtext,
+                background: kidarkgreen,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -502,10 +608,10 @@ function WalletRecharge() {
 
               <RxCross2
                 style={{ color: "white" }}
-                  onClick={() => {
-                    setDeposit_req_data(null);
-                    handleClosemsg()
-                  }}
+                onClick={() => {
+                  setDeposit_req_data(null);
+                  handleClosemsg()
+                }}
               />
             </div>
             <DialogContent style={{ background: zubgback }}>
@@ -516,7 +622,7 @@ function WalletRecharge() {
           </Dialog>
         )}
         <CustomCircularProgress isLoading={loding} />
-   
+
       </Container>
     </Layout>
   );
@@ -562,8 +668,7 @@ const style = {
     alignItems: "center",
     justifyContent: "center",
     height: "auto",
-    background: zubgtext,
-    boxShadow: zubgshadow,
+    background: kidarkgreen,
     padding: "10px 0px",
     borderRadius: "10px",
     "&>p": {
@@ -585,10 +690,10 @@ const style = {
   },
   paytmbtn: {
     mb: 2,
-    background: zubgtext,
-    color: "white !important",
+    background: kigrad,
+    color: kidarkgreen,
     width: "31%",
-    border: "1px solid white",
+    // border: "1px solid white",
     padding: "10px",
     "&:hover": { background: zubgtext, border: "1px solid transparent" },
   },
@@ -596,13 +701,13 @@ const style = {
     borderRadius: "5px",
     textTransform: "capitalize",
     mb: 2,
-    background: zubgtext,
-    color: "white !important",
+    background: kigrad,
+    color: kidarkgreen,
     width: "100%",
     mt: "20px",
-    border: "1px solid white",
+    // border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
+    "&:hover": { background: kigreen, border: "1px solid transparent" },
   },
   rechargeinstext: {
     mb: "10px",
@@ -610,7 +715,7 @@ const style = {
     justifyContent: "start",
     "&>p": {
       marginLeft: "10px",
-      color: zubgtext,
+      color: 'white',
       fontSize: "14px",
     },
   },

@@ -13,28 +13,17 @@ import FundTransfer from "../pages/account/Component/FundTransfer";
 import FundTransferHistory from "../pages/account/Component/FundTransferHistory";
 import GameNotification from "../pages/account/Component/GameNotification";
 import Gamestaticks from "../pages/account/Component/Gamestaticks";
-import Gift from "../pages/account/Component/Gift";
 import Income from "../pages/account/AccountSubSection/Income/IncomeSubParts/Income";
 import Languages from "../pages/account/Component/Language";
 import LoginPassword from "../pages/account/Component/LoginPassword";
 import Mail from "../pages/account/Component/Mail";
 import Notification from "../pages/account/Component/Notification";
 import SettingCenter from "../pages/account/Component/SettingCenter";
-import Activity from "../pages/activity/Activity";
 import Register from "../pages/auth/register/Register";
 import Dashboard from "../pages/dashboard/Dashboard";
 import FundRequest from "../pages/dashboard/FundRequest";
 import Withdrawl from "../pages/dashboard/Withdrawl";
 import MainPageOFIncome from "../pages/income/MainPageOFIncome";
-import DailyCashBackBonus from "../pages/income/incomeSubSection/DailyCashBackBonus";
-import DailyNonWorking from "../pages/income/incomeSubSection/DailyNonWorkingBonus";
-import DailySalaryBonus from "../pages/income/incomeSubSection/DailySalaryBonus";
-import DepositBonus from "../pages/income/incomeSubSection/DepositBonus";
-import ReferralBonus from "../pages/income/incomeSubSection/ReferralBonus";
-import RegistrationBonus from "../pages/income/incomeSubSection/RegistrationBonus";
-import SelfTradingBonus from "../pages/income/incomeSubSection/SelfTradingBonus";
-import TeamRewardBonus from "../pages/income/incomeSubSection/TeamRewardBonus";
-import TeamTradingBonus from "../pages/income/incomeSubSection/TeamTradingBonus";
 import Promotion from "../pages/promotion/Promotion";
 import CustomerLine from "../pages/promotion/component/CustomerLine";
 import CustomerQueryHistory from "../pages/promotion/component/CustomerQueryHistory";
@@ -55,6 +44,8 @@ import Win from "../pages/win/win";
 import Cashback from "../pages/account/AccountSubSection/Income/IncomeSubParts/Cashback";
 import ROI from "../pages/account/AccountSubSection/Income/IncomeSubParts/RoiIncome";
 import Level from "../pages/account/AccountSubSection/Income/IncomeSubParts/LevelBonus";
+import Bonus from "../pages/Bonus/Bonus";
+import CreditReport from "../pages/wallet/component/CreditReport";
 
 export const routes = [
     {
@@ -75,13 +66,17 @@ export const routes = [
     },
     {
         path: "/account/income-main/roi-income",
-        component: <ROI  />
+        component: <ROI />
+    },
+    {
+        path: "/income",
+        component: <Bonus />
     },
     {
         path: "/account/income-main/level-income",
         component: <Level />
     },
-   
+
     {
         path: "/menu",
         component: <Menu />
@@ -90,6 +85,10 @@ export const routes = [
         path: "/rent",
         component: <RentNow />
     },
+    // {
+    //     path: "/menu/menu-details/:m_pack_id",
+    //     component: <MenuDetails />
+    // },
     {
         path: "/menu/menu-details/:m_pack_id",
         component: <MenuDetails />
@@ -110,7 +109,7 @@ export const routes = [
         path: "/wallet/Recharge",
         component: <WalletRecharge />
     },
-   
+
     {
         path: "/wallet",
         component: <Wallet />
@@ -122,10 +121,6 @@ export const routes = [
     {
         path: "/notification",
         component: <Notification />
-    },
-    {
-        path: "/gift",
-        component: <Gift />
     },
     {
         path: "/gamestaticks",
@@ -168,12 +163,12 @@ export const routes = [
         component: <GameNotification />
     },
     {
-        path:"/services",
-        component:<Services/>
+        path: "/services",
+        component: <Services />
     },
     {
-        path:"/queries",
-        component:<CustomerQueryHistory/>
+        path: "/queries",
+        component: <CustomerQueryHistory />
     },
     {
         path: "/test",
@@ -187,13 +182,14 @@ export const routes = [
         path: "/dashboard",
         component: <Dashboard />
     },
-    {
-        path: "/activity",
-        component: <Activity />
-    },
+
     {
         path: "/win",
         component: <Win />
+    },
+    {
+        path: "/credit",
+        component: <CreditReport />
     },
     {
         path: "/promotion",
@@ -235,42 +231,7 @@ export const routes = [
         path: "/account/income-main",
         component: <MainPageOFIncome />
     },
-    {
-        path: "/account/income-main/registration-bonus",
-        component: <RegistrationBonus />
-    },
-    {
-        path: "/account/income-main/deposit-bonus",
-        component: <DepositBonus />
-    },
-    {
-        path: "/account/income-main/referral-bonus",
-        component: <ReferralBonus />
-    },
-    {
-        path: "/account/income-main/daily-cash-back-bonus",
-        component: <DailyCashBackBonus />
-    },
-    {
-        path: "/account/income-main/daily-salary-bonus",
-        component: <DailySalaryBonus />
-    },
-    {
-        path: "/account/income-main/self-trading-bonus",
-        component: <SelfTradingBonus />
-    },
-    {
-        path: "/account/income-main/team-trading-bonus",
-        component: <TeamTradingBonus />
-    },
-    {
-        path: "/account/income-main/team-reward-bonus",
-        component: <TeamRewardBonus />
-    },
-    {
-        path: "/account/income-main/daily-non-working",
-        component: <DailyNonWorking />
-    },
+   
     {
         path: "/add-bank-details",
         component: <AddBankDetails />
@@ -283,5 +244,5 @@ export const routes = [
         path: "/deposit/qr-screen",
         component: <QRScreen />
     },
-    
+
 ]

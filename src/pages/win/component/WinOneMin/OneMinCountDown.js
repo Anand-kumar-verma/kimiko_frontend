@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
-import { zubgmid } from "../../../../Shared/color";
+import { kidarkgreen, zubgmid } from "../../../../Shared/color";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
 import pr0 from "../../../../assets/images/0.png";
@@ -27,19 +27,18 @@ import howToPlay from "../../../../assets/images/user-guide.png";
 import {
   dummycounterFun,
   trx_game_history_data_function,
-  trx_my_history_data,
   trx_my_history_data_function,
-  updateNextCounter,
+  updateNextCounter
 } from "../../../../redux/slices/counterSlice";
+import { My_All_HistoryFn } from "../../../../services/apicalling";
 import { changeImages } from "../../../../services/schedular";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
-import {  My_All_HistoryFn } from "../../../../services/apicalling";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const OneMinCountDown = ({ fk ,setBetNumber }) => {
+const OneMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const client = useQueryClient();
   const [one_min_time, setOne_min_time] = useState(0);
@@ -147,10 +146,10 @@ const OneMinCountDown = ({ fk ,setBetNumber }) => {
     dispatch(trx_game_history_data_function(game_history?.data?.data));
   }, [game_history?.data?.data]);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history_data?.data?.data));
-    one_min_time>=58 ||one_min_time===0 &&  dispatch(dummycounterFun());
-  },[my_history_data?.data?.data])
+    one_min_time >= 58 || one_min_time === 0 && dispatch(dummycounterFun());
+  }, [my_history_data?.data?.data])
 
   const handlePlaySound = async () => {
     try {
@@ -179,7 +178,7 @@ const OneMinCountDown = ({ fk ,setBetNumber }) => {
   };
 
   return (
-    <Box className="countdownbg" sx={{ background: zubgmid }}>
+    <Box className="countdownbg" sx={{ background: kidarkgreen }}>
       {React.useMemo(() => {
         return (
           <>
@@ -221,7 +220,7 @@ const OneMinCountDown = ({ fk ,setBetNumber }) => {
                 <Box
                   component="img"
                   src={circle}
-                  sx={{ width: "15px !important", height: "15px !important" }}
+                  sx={{ width: "15px !important", height: "15px !important", filter: 'hue-rotate(161deg)', }}
                 ></Box>
               </Box>
             );

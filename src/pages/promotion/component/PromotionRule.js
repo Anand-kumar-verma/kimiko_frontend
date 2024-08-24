@@ -1,31 +1,24 @@
-import * as React from 'react';
-import { Container, Typography, Box, Stack } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Box, Container, Stack, Typography } from '@mui/material';
+import * as React from 'react';
+import { NavLink } from 'react-router-dom';
+import Leval from '../../../assets/images/leval.png';
 import Layout from '../../../component/Layout/Layout';
-import Leval from '../../../assets/images/leval.png'
-import { gamename, iconcolorpink, zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
-
+import { gamename, kidarkgreen, kigrad, zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 
 
 function PromotionRule() {
   return (
     <Layout>
       <Container sx={style.container}>
-        <Box sx={style.header}>
-          <Box component={NavLink} to='/promotion/'>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">Rules</Typography>
-          <Typography variant="body1" color="initial"> </Typography>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} /> 【Promotion partner】program</Box>
 
-        <Box sx={style.contentText}>
-          <Typography variant="body1" color="initial">【Promotion partner】program</Typography>
-          <Typography variant="body1" color="initial">This activity is valid for a long time</Typography>
-        </Box>
 
         <Box sx={{ px: 2, mt: 5 }}>
           <Box sx={style.box}>
@@ -209,11 +202,11 @@ const style = {
   },
   contentText: { '& > p:nth-child(1)': { fontSize: '20px', textAlign: 'center', py: 1, color: zubgtext, }, '& > p:nth-child(2)': { fontSize: '15px', textAlign: 'center', color: 'gray' } },
   box: {
-    position: 'relative', border: '1px solid #6F6F6F', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', padding: 2, background: zubgtext,
+    position: 'relative', border: '1px solid #6F6F6F', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', padding: 2, background: kigrad,
     '&>p': { color: 'white !important', fontSize: '13px', fontWeight: '400', wordSpacing: '1x', lineHeight: '20px' },
     '&>p>a': { color: '#FEA237', fontSize: '13px', fontWeight: '400', wordSpacing: '1x', lineHeight: '20px', display: 'flex', alignItems: 'center' },
   },
-  boxNumber: { color: 'white !important', position: 'absolute', textAlign: 'center', background: zubgbackgrad, clipPath: 'polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%)', width: '30%', top: '-13px', left: '35%' },
+  boxNumber: { color: 'white !important', position: 'absolute', textAlign: 'center', background: kidarkgreen, clipPath: 'polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%)', width: '30%', top: '-13px', left: '35%' },
   levalBox: {
     px: '0px', background: zubgmid, display: 'flex !important', alignItems: 'center', justifyContent: 'space-between',
     '&>div': {

@@ -371,3 +371,35 @@ export const GetRentListFn = async () => {
     console.log(e);
   }
 };
+export const GetPanelBanner = async ()=>{
+  try{
+    const response = await axios.get(endpoint.panel_banner);
+    return response;
+  } catch(e){
+    toast (e?.message);
+    console.log(e)
+  }
+}
+export const CreditFn = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.credit_report}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+
+export  const SelIncomefFn = async ()=>{
+  try{
+    const response = await axios.get(
+      `${endpoint.self_income}?userid=${user_id}`
+    )
+    return response ;
+  } catch (e) {
+    toast (e?.message);
+    console.log(e)
+  }
+}

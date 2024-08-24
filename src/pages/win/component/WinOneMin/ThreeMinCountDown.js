@@ -2,11 +2,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
+import { kidarkgreen, zubgmid } from "../../../../Shared/color";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
 import pr0 from "../../../../assets/images/0.png";
@@ -24,21 +27,17 @@ import howToPlay from "../../../../assets/images/user-guide.png";
 import {
   dummycounterFun,
   trx_game_history_data_function,
-  trx_my_history_data,
   trx_my_history_data_function,
-  updateNextCounter,
+  updateNextCounter
 } from "../../../../redux/slices/counterSlice";
-import { changeImages } from "../../../../services/schedular";
-import Policy from "../policy/Policy";
-import { zubgmid } from "../../../../Shared/color";
-import axios from "axios";
-import { endpoint } from "../../../../services/urls";
-import toast from "react-hot-toast";
 import { My_All_HistoryFn } from "../../../../services/apicalling";
+import { changeImages } from "../../../../services/schedular";
+import { endpoint } from "../../../../services/urls";
+import Policy from "../policy/Policy";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const ThreeMinCountDown = ({ fk ,setBetNumber }) => {
+const ThreeMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const dispatch = useDispatch();
   const client = useQueryClient();
@@ -122,7 +121,7 @@ const ThreeMinCountDown = ({ fk ,setBetNumber }) => {
       socket.off("fivemin", handleFiveMin);
     };
   }, []);
-  
+
   const { data: game_history } = useQuery(
     ["gamehistory_wingo_3"],
     () => GameHistoryFn(),
@@ -145,7 +144,7 @@ const ThreeMinCountDown = ({ fk ,setBetNumber }) => {
       console.log(e);
     }
   };
-  const {  data: my_history_data } = useQuery(
+  const { data: my_history_data } = useQuery(
     ["myAllhistory_3"],
     () => My_All_HistoryFn(3),
     {
@@ -155,10 +154,10 @@ const ThreeMinCountDown = ({ fk ,setBetNumber }) => {
       refetchOnWindowFocus: false,
     }
   );
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history_data?.data?.data));
-    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0 &&  dispatch(dummycounterFun());
-  },[my_history_data?.data?.data])
+    (Number(show_this_three_min_time_sec) >= 58 || Number(show_this_three_min_time_sec) === 0) && Number(show_this_three_min_time_min) === 0 && dispatch(dummycounterFun());
+  }, [my_history_data?.data?.data])
 
   React.useEffect(() => {
     dispatch(
@@ -198,7 +197,7 @@ const ThreeMinCountDown = ({ fk ,setBetNumber }) => {
   };
 
   return (
-    <Box className="countdownbg" sx={{ background: zubgmid }}>
+    <Box className="countdownbg" sx={{ background: kidarkgreen }}>
       {React.useMemo(() => {
         return (
           <>
@@ -240,7 +239,7 @@ const ThreeMinCountDown = ({ fk ,setBetNumber }) => {
                 <Box
                   component="img"
                   src={circle}
-                  sx={{ width: "15px !important", height: "15px !important" }}
+                  sx={{ width: "15px !important", height: "15px !important", filter: 'hue-rotate(161deg)', }}
                 ></Box>
               </Box>
             );

@@ -1,28 +1,28 @@
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import CloseIcon from "@mui/icons-material/Close";
 import EmojiPeopleOutlinedIcon from "@mui/icons-material/EmojiPeopleOutlined";
 import Groups2OutlinedIcon from "@mui/icons-material/Groups2Outlined";
 import { Box, Container, Dialog, IconButton, Stack, Typography } from "@mui/material";
 import copy from "clipboard-copy";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
-import { zubgback, zubgbackgrad, zubggray, zubgmid, zubgtext } from "../../Shared/color";
+import CustomCircularProgress from "../../Shared/CustomCircularProgress";
+import { kidarkgreen, kigreen, zubgback, zubggray, zubgtext } from "../../Shared/color";
 import customer from "../../assets/images/24-hours-service.png";
-import copyIimage from "../../assets/images/copy.png";
 import bgms from "../../assets/images/bgs.jpg";
 import bgms1 from "../../assets/images/bgs1.jpg";
+import copyIimage from "../../assets/images/copy.png";
 import sort from "../../assets/images/data-flow.png";
 import donut from "../../assets/images/database.png";
 import book from "../../assets/images/rules.png";
 import money from "../../assets/images/salary.png";
-import coin from "../../assets/images/settings.png";
-import Layout from "../../component/Layout/Layout";
-import { MygetdataFn, MypromotionDataFn, walletamount } from "../../services/apicalling";
-import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { fron_end_main_domain } from "../../services/urls";
-import CloseIcon from "@mui/icons-material/Close";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
-import { useState } from "react";
+import Layout from "../../component/Layout/Layout";
+import { MygetdataFn, walletamount } from "../../services/apicalling";
+import { fron_end_main_domain } from "../../services/urls";
+import logo from "../../assets/logokimi.png";
 
 function Promotion() {
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
@@ -37,11 +37,11 @@ function Promotion() {
     }
   );
   const result = data?.data?.data;
-  const {  data:amount } = useQuery(["walletamount"], () => walletamount(), {
+  const { data: amount } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: false,
-    refetchOnWindowFocus:false,
-    retryOnMount:false,
+    refetchOnWindowFocus: false,
+    retryOnMount: false,
 
   });
 
@@ -54,33 +54,12 @@ function Promotion() {
   };
   return (
     <Layout>
-      <Container>
+      <Container sx={{ background: '#E7E7E7' }}>
         <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Typography variant="body1" color="initial">
-            {" "}
-          </Typography>
-          <Typography variant="body1" color="initial" className="!text-white">
-            Agency
-          </Typography>
-          <Box component={NavLink} to="/promotion/TeamReport/">
-            <Box component="img" src={sort} width={30}></Box>
-          </Box>
-        </Box>
-        <Box sx={style.commitionboxOuter}>
-          <Box sx={style.commitionbox}>
-            <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
-              {newdata?.total_turnover}
-            </Typography>
-            <Typography variant="body1" color="initial" sx={{ color: 'white' }}>
-              Total Turnover
-            </Typography>
-            <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
-              Upgrade the level to increase turnover
-            </Typography>
-          </Box>
-        </Box>
-        <Box sx={style.subcordinateBox}>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+ <Box sx={style.subcordinateBox} className='w95'>
           <Stack direction="row" sx={{ width: "100%" }}>
             <Box sx={style.subordinatesleft}>
               <EmojiPeopleOutlinedIcon />
@@ -104,7 +83,7 @@ function Promotion() {
                   color="initial"
                   className="!text-white"
                 >
-                  {result?.filter(entry => entry.LEVEL === 1).length || 0 }
+                  {result?.filter(entry => entry.LEVEL === 1).length || 0}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -138,7 +117,7 @@ function Promotion() {
                   color="initial"
                   className="!text-white"
                 >
-                    {result?.filter((j)=>j?.LEVEL === 1)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0}
+                  {result?.filter((j) => j?.LEVEL === 1)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -149,13 +128,13 @@ function Promotion() {
                   Deposit amount
                 </Typography>
               </Box>
-           
+
             </Box>
 
             <Box sx={style.innerBoxStylestwo}>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" color="initial">
-                {result?.filter((j)=>j?.LEVEL !== 0)?.length|| 0 }
+                  {result?.filter((j) => j?.LEVEL !== 0)?.length || 0}
                 </Typography>
                 <Typography variant="body1" color="initial">
                   {" "}
@@ -164,7 +143,7 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" color="initial">
-            {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length|| 0}
+                  {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length || 0}
 
                 </Typography>
                 <Typography variant="body1" color="initial">
@@ -174,19 +153,18 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" color="initial">
-                {result?.filter((j)=>j?.LEVEL !== 0)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0}
+                  {result?.filter((j) => j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
                 </Typography>
                 <Typography variant="body1" color="initial">
                   {" "}
                   Deposit amount
                 </Typography>
               </Box>
-            
+
             </Box>
           </Box>
           <Box sx={style.invitebtn}>
             <NavLink
-              //  to="/promotion/PromotionShare"
               onClick={() => functionTOCopy(`${fron_end_main_domain}/register?ref=${newdata?.referral_code}`)}
             >
               <Typography sx={{}}>INVITATION LINK</Typography>
@@ -196,7 +174,6 @@ function Promotion() {
         <Box sx={style.invitebutton} className="invitebutton">
           <Box sx={style.invitbox}>
             <Stack direction="row">
-              {/* <Box component='img' src={copycode}></Box> */}
               <Box
                 component="img"
                 src={copyIimage}
@@ -217,7 +194,6 @@ function Promotion() {
           <NavLink to="/promotion/TeamReport">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={team_port}></Box> */}
                 <Box component="img" src={donut}></Box>
                 <Typography variant="body1" color="initial">
                   Subordinate data
@@ -231,7 +207,6 @@ function Promotion() {
           <NavLink to="/promotion/TeamReport/data">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={team_port}></Box> */}
                 <Box component="img" src={donut}></Box>
                 <Typography variant="body1" color="initial">
                   Team data
@@ -242,10 +217,27 @@ function Promotion() {
               </Stack>
             </Box>
           </NavLink>
+          <NavLink to="/promotion/TeamReport/">
+            <Box sx={style.invitbox}>
+              <Stack direction="row">
+                <Box component="img" src={sort}></Box>
+                <Typography variant="body1" color="initial">
+                  Team Report
+                </Typography>
+              </Stack>
+              <Stack direction="row">
+                <ArrowForwardIosOutlinedIcon />
+              </Stack>
+            </Box>
+          </NavLink>
+
+
+
+
+
           <NavLink to="/promotion/PromotionRule">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={invite_reg}></Box> */}
                 <Box component="img" src={book}></Box>
                 <Typography variant="body1" color="initial">
                   Invitation rules
@@ -256,21 +248,7 @@ function Promotion() {
               </Stack>
             </Box>
           </NavLink>
-          <NavLink to="/promotion/customerLine/">
-            <Box sx={style.invitbox}>
-              <Stack direction="row">
-                {/* <Box component='img' src={server}></Box> */}
-                <Box component="img" src={customer}></Box>
-                <Typography variant="body1" color="initial">
-                  Agent line customer service
-                </Typography>
-              </Stack>
-              <Stack direction="row">
-                <ArrowForwardIosOutlinedIcon />
-              </Stack>
-            </Box>
-          </NavLink>
-         
+
           <Box sx={style.promotionBoxOuter}>
             <Box sx={style.promotionBox}>
               <Stack direction="row">
@@ -281,28 +259,11 @@ function Promotion() {
                 </Typography>
               </Stack>
             </Box>
+           
             <Stack direction="row">
               <Box>
                 <Typography variant="body1" color="initial">
-                  {Number(newdata?.total_turnover || 0)?.toFixed(2)}
-                </Typography>
-                <Typography variant="body1" color="initial">
-                  Total Turnover
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="body1" color="initial">
-                  {result?.commission || 0}
-                </Typography>
-                <Typography variant="body1" color="initial">
-                  Total Commission
-                </Typography>
-              </Box>
-            </Stack>
-            <Stack direction="row">
-              <Box>
-                <Typography variant="body1" color="initial">
-                {result?.filter(entry => entry.LEVEL === 1).length || 0 }
+                  {result?.filter(entry => entry.LEVEL === 1).length || 0}
                 </Typography>
                 <Typography variant="body1" color="initial">
                   Direct subordinate
@@ -310,7 +271,7 @@ function Promotion() {
               </Box>
               <Box>
                 <Typography variant="body1" color="initial">
-                {result?.filter((j)=>j?.LEVEL !== 0)?.length || 0}
+                  {result?.filter((j) => j?.LEVEL !== 0)?.length || 0}
                 </Typography>
                 <Typography variant="body1" color="initial">
                   Total number of <br />
@@ -390,9 +351,9 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: zubgtext,
+    background: kidarkgreen,
     borderTopLeftRadius: "10px",
-    borderRight: "2px solid black",
+    borderRight: "2px solid white",
     "&>svg": { color: "white", fontSize: "25px", marginRight: "10px" },
     "&>p": { color: "white", fontSize: "14px", fontWeight: "500" },
   },
@@ -403,46 +364,43 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: zubgtext,
+    background: kidarkgreen,
     borderTopRightRadius: "10px",
     "&>svg": { color: "white", fontSize: "25px", marginRight: "10px" },
     "&>p": { color: "white", fontSize: "14px", fontWeight: "500" },
   },
   boxStyles: {
-    backgroundImage: `url(${bgms1})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 100%',
+    background: kigreen,
     padding: "30px 15px",
     display: "flex",
     borderRadius: " 0px 0px 10px 10px",
   },
   innerBoxStyles: {
     width: "50%",
-    borderRight: "1px solid black",
+    borderRight: "1px solid white",
     borderBottomLeftRadius: "10px",
     padding: "0px 0px",
   },
   innerBoxStylestwo: { width: "50%", padding: "0px 0px" },
   subcordinatelist: {
     textAlign: "center",
-    "&>p": { color: "black !important", fontSize: "13px" },
+    "&>p": { color: "white !important", fontSize: "13px" },
     mb: 1,
   },
   subcordinateBox: {
     width: "100%",
-    padding: "20px 10px",
-    background: zubgback,
+    mt: 2,
   },
   invitebutton: {
     width: "100%",
-    background: zubgback,
+    background: '#E7E7E7',
+    mt: 2,
   },
   invitebtn: {
-    mt: "20px",
+    mt: 2,
     "&>a>p": {
-      width: "80%",
-      marginLeft: "10%",
-      borderRadius: "20px",
+      width: "100%",
+      borderRadius: "5px",
       textAlign: "center",
       padding: "10px",
       background: zubgtext,
@@ -453,7 +411,7 @@ const style = {
   },
   invitbox: {
     width: "95%",
-    background: zubggray,
+    background: kidarkgreen,
     padding: "10px",
     mb: "20px",
     borderRadius: "10px",
@@ -528,7 +486,7 @@ const style = {
   },
   promotionBoxOutertwo: {
     width: "90%",
-    background: zubgback,
+    background: '#e7e7e7',
     padding: "10px",
     borderRadius: "5px",
     marginLeft: "5%",

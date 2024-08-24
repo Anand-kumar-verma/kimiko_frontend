@@ -51,8 +51,6 @@ function IncomeMainSection() {
     },
   });
 
-  const amount = data?.data?.data?.wallet || 0;
-
   const page_data = [
     {
       icon: (

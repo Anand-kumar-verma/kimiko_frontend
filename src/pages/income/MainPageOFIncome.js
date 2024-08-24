@@ -100,66 +100,66 @@ function MainPageOFIncome() {
     // },
   ];
   return (
-   
-      <Container
+
+    <Container
+      sx={{
+        background: zubgback,
+        width: "100%",
+        // height: "100vh",
+        overflow: "auto",
+        mb: 5,
+      }}
+    >
+      <Box
+
         sx={{
-          background: zubgback,
-          width: "100%",
-          // height: "100vh",
-          overflow: "auto",
-          mb: 5,
+          width: "95%",
+          marginLeft: "2.5%",
+          borderRadius: "10px",
+          background: zubgtext,
+          padding: "10px",
+          mt: "20px",
+          "&>:nth-child(1)": {
+            color: "white",
+            fontSize: "15px",
+            fontWeight: "600",
+            mb: "25px",
+          },
         }}
       >
-        <Box
-      
-          sx={{
-            width: "95%",
-            marginLeft: "2.5%",
-            borderRadius: "10px",
-            background: zubgtext,
-            padding: "10px",
-            mt: "20px",
-            "&>:nth-child(1)": {
-              color: "white",
-              fontSize: "15px",
-              fontWeight: "600",
-              mb: "25px",
-            },
-          }}
-        >
-          <Typography variant="body1" color="initial">
-            Income
-          </Typography>
+        <Typography variant="body1" color="initial">
+          Income
+        </Typography>
 
-          <div className="!w-full !grid !grid-cols-3 !place-items-center">
-            {data_array?.map((i) => {
-              return (
-                <Box
-                  component={NavLink}
-                  to={i.to}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: "10px",
-                    "&>p": {
-                      color: "white",
-                      fontSize: "14px",
-                      fontWeight: "500",
-                      mt: "5px",
-                    },
-                  }}
-                >
-                  <p>{i?.logo}</p>
-                  <p className="lg:!whitespace-nowrap !text-center">{i.name}</p>
-                </Box>
-              );
-            })}
-          </div>
-        </Box>
-      </Container>
-   
+        <div className="!w-full !grid !grid-cols-3 !place-items-center">
+          {data_array?.map((i) => {
+            return (
+              <Box
+                component={NavLink}
+                to={i.to}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: "10px",
+                  "&>p": {
+                    color: "white",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    mt: "5px",
+                  },
+                }}
+              >
+                <p>{i?.logo}</p>
+                <p className="lg:!whitespace-nowrap !text-center">{i.name}</p>
+              </Box>
+            );
+          })}
+        </div>
+      </Box>
+    </Container>
+
   );
 }
 

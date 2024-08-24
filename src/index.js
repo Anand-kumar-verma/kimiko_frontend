@@ -1,29 +1,29 @@
+import { ThemeProvider } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "@mui/material";
-import theme from "./utils/theme";
-import "../src/index.css";
-import "tailwindcss/tailwind.css";
 import { Toaster } from "react-hot-toast";
-import { Provider } from "react-redux";
-import store from "./redux/store/store";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import "tailwindcss/tailwind.css";
+import "../src/index.css";
+import App from "./App";
 import { SocketProvider } from "./Shared/SocketContext";
-import { zubgback, zubgmid } from "./Shared/color";
+import { kidarkgreen, zubgback } from "./Shared/color";
+import store from "./redux/store/store";
+import reportWebVitals from "./reportWebVitals";
+import theme from "./utils/theme";
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-  <SocketProvider>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <App />
-          <Toaster
+    <SocketProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <App />
+            <Toaster
               toastOptions={{
                 className: "",
                 style: {
@@ -31,15 +31,15 @@ root.render(
                   color: "white",
                   fontSize: "15px",
                   marginTop: "100px",
-                  borderRadius: "50px",
-                  background: zubgmid,
+                  borderRadius: "10px",
+                  background: kidarkgreen,
                 },
               }}
               limit={1}
             />
-        </ThemeProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
     </SocketProvider>
   </Provider>
 );

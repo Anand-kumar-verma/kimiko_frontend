@@ -1,3 +1,4 @@
+import { ArrowRightAltTwoTone } from "@mui/icons-material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
@@ -15,6 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -23,12 +25,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
-import { zubgbackgrad, zubgtext } from "../../../Shared/color";
+import { kidarkgreen, kigrad, kigreen, zubgbackgrad } from "../../../Shared/color";
 import logo from "../../../assets/logokimi.png";
-import poster from "../../../assets/images/poster3.jpg";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
-import CryptoJS from "crypto-js";
 function Register() {
   const url = new URL(window.location.href);
   const [refParam, setrefParam] = useState(url.searchParams.get("ref") || "");
@@ -44,17 +44,7 @@ function Register() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  // useEffect(() => {
-  //   const value =
-  //     url.searchParams.get("ref") &&
-  //     crypto.AES.decrypt(
-  //       url.searchParams.get("ref")?.split(" ")?.join("+"),
-  //       "anand"
-  //     )?.toString(crypto.enc.Utf8);
-  //   setrefParam(value);
-  // }, [url.searchParams.get("ref")]);
-
+  
   const initialValue = {
     email: "",
     mobile: "",
@@ -103,7 +93,6 @@ function Register() {
         headers: {
           "Content-Type": "multipart/form-data",
           "Access-Control-Allow-Origin": "*",
-          // Add any other headers you may need, such as authorization
         },
       });
 
@@ -131,14 +120,14 @@ function Register() {
     setloding(false);
   };
 
-  const { isLoading, data } = useQuery(
+  const { data } = useQuery(
     ["getname", fk.values.referral_code],
     () => CandidateNameFn({ reffral_id: fk.values.referral_code }),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
 
@@ -146,13 +135,12 @@ function Register() {
   return (
     <Container
       sx={{
-        backgroundImage: `url(${poster})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100% 100%",
+        background: kigrad,
         minHeight: "100vh",
-        pb: '100px !important',
+        pb: '30px !important',
       }}
     >
+      <Typography variant="body1" color="initial" sx={{ textAlign: 'center', py: 2, fontWeight: '600', fontSize: '17px' }}>Register</Typography>
       <Box>
         <Box
           sx={{
@@ -161,7 +149,7 @@ function Register() {
             borderRadius: "10px",
           }}
         >
-          <Box sx={{ width: "100%" }}>
+          <Box sx={{ width: "100%", py: "5vh" }}>
             <Box
               component="img"
               src={logo}
@@ -169,35 +157,8 @@ function Register() {
             ></Box>
           </Box>
           <Box
-            sx={{
-              mt: "2vh",
-              background: "white",
-              borderRadius: "10px",
-              padding: "20px 10px",
-              "& > p:nth-child(1)": {
-                fontSize: "20px",
-                fontWeight: "500",
-                color: "white",
-              },
-              "& > p:nth-child(2)": {
-                fontSize: "12px",
-                fontWeight: "400",
-                color: "white",
-              },
-              background: "rgba(255, 255, 255, 0.15)",
-              WebkitBackdropFilter: "blur(17px)",
-              backdropFilter: "blur(60px)",
-              border: "1px solid rgba(255, 255, 255, 0.075)",
-            }}
-          >
-            <Typography variant="body1" color="initial">
-              Register{" "}
-            </Typography>
-            <Typography variant="body1" color="initial">
-              {" "}
-              Please register by phone number or email
-            </Typography>
 
+          >
             <Box
               component="form"
               sx={{
@@ -209,9 +170,6 @@ function Register() {
             >
               <Box mt={3}>
                 <FormControl fullWidth>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3">Referral Code</Typography>
-                  </Stack>
                   <TextField
                     id="referral_code"
                     placeholder="Enter Referral Code"
@@ -224,17 +182,15 @@ function Register() {
                   {fk.touched.referral_code && fk.errors.referral_code ? (
                     <div className="error">{fk.errors.referral_code}</div>
                   ) : result ? (
-                    <div className="no-error">Referral From: {result}</div>
+                    <div className="no-error" style={{ textAlign: 'center' }}>Referral From: {result}</div>
                   ) : (
-                    <div className="error">Invalid Referral Id</div>
+                    <div className="error" style={{ textAlign: 'center' }}>Invalid Referral Id</div>
                   )}
                 </FormControl>
               </Box>
-              <Box mt={2}>
+              <Box mt={3}>
                 <FormControl fullWidth>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3">Name</Typography>
-                  </Stack>
+
                   <TextField
                     id="name"
                     placeholder="Enter Name"
@@ -250,11 +206,9 @@ function Register() {
                   )}
                 </FormControl>
               </Box>
-              <Box mt={2}>
+              <Box mt={4}>
                 <FormControl fullWidth>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3">Mobile</Typography>
-                  </Stack>
+
                   <TextField
                     id="fullWidth"
                     placeholder="Enter Mobile Number"
@@ -264,17 +218,18 @@ function Register() {
                     value={fk.values.mobile}
                     onChange={fk.handleChange}
                     onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start" sx={{ color: 'white !important' }}>+91</InputAdornment>,
+                    }}
                   />
                   {fk.touched.mobile && fk.errors.mobile && (
                     <div className="error">{fk.errors.mobile}</div>
                   )}
                 </FormControl>
               </Box>
-              <Box mt={2}>
+              <Box mt={4}>
                 <FormControl fullWidth>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3">E-mail</Typography>
-                  </Stack>
+
                   <TextField
                     id="fullWidth"
                     type="email"
@@ -290,18 +245,16 @@ function Register() {
                   )}
                 </FormControl>
               </Box>
-              <Box mt={2}>
+              <Box mt={4}>
                 <FormControl fullWidth>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3">Set password</Typography>
-                  </Stack>
+
                   <OutlinedInput
                     placeholder="Enter password"
                     name="password"
                     value={fk.values.password}
                     onChange={fk.handleChange}
                     onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                    className="loginfieldspass"
+                    className="loginfieldspass2"
                     type={showPassword ? "text" : "password"}
                     endAdornment={
                       <InputAdornment position="end">
@@ -325,13 +278,11 @@ function Register() {
                   )}
                 </FormControl>
               </Box>
-              <Box mt={2}>
+              <Box mt={4}>
                 <FormControl fullWidth>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3">Confirm password</Typography>
-                  </Stack>
+
                   <OutlinedInput
-                    className="loginfieldspass"
+                    className="loginfieldspass2"
                     name="confirmed_password"
                     id="confirmed_password"
                     value={fk.values.confirmed_password}
@@ -367,11 +318,11 @@ function Register() {
               <Box mt={1}>
                 <FormControl fullWidth>
                   <FormControlLabel
-                    required
+
                     control={
                       <Checkbox
                         checked={fk.values.privacy_policy}
-                        sx={{ color: zubgtext }}
+                        sx={{ color: kidarkgreen, ml: 5 }}
                         onClick={() =>
                           fk.setFieldValue(
                             "privacy_policy",
@@ -380,22 +331,11 @@ function Register() {
                         }
                       />
                     }
-                    label="I have read and agree 【Privacy Agreement】"
-                    sx={{ color: 'white', fontSize: '13px !important', fontWeight: '800 !important' }}
+                    label={<Typography sx={{ color: 'kidarkgreen', fontSize: '12px !important', fontWeight: '400 !important' }}> I have read and agree 【Privacy Agreement】</Typography>}
                   />
                 </FormControl>
               </Box>
-              <Stack direction="row" className="loginbtnbox" mt={2}>
-
-                <Button
-                  component={NavLink}
-                  to="/"
-                  className="btnregister"
-                  mt={2}
-                  sx={{ color: zubgtext }}
-                >
-                  Log in
-                </Button>
+              <Stack direction="row" className="loginbtnbox" >
                 <Button
                   component={NavLink}
                   className="btnLogin"
@@ -404,6 +344,12 @@ function Register() {
                   Register
                 </Button>
               </Stack>
+              <Box sx={{ width: '100%', textAlign: 'center' }} mt={5}>
+                <Typography variant="body1" sx={{ color: kidarkgreen, fontSize: '13px !important', fontWeight: '500 !important' }}>already have an account</Typography>
+                <NavLink to="/auth">
+                  <Typography variant="body1" sx={{ color: kigreen, fontSize: '17px', fontWeight: '600', mt: 1, }}>Login Now <ArrowRightAltTwoTone /></Typography>
+                </NavLink>
+              </Box>
             </Box>
           </Box>
         </Box>

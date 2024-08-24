@@ -3,7 +3,7 @@ import TablePagination from "@mui/material/TablePagination";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { zubgback, zubgtext } from "../../../../Shared/color";
-import history from "../../../../assets/images/list.png";
+import history from '../../../../assets/kiimages/data-transfer.png';
 
 const Chart = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -41,22 +41,22 @@ const Chart = ({ gid }) => {
           element.number === "0"
             ? `zero${index}`
             : element.number === "1"
-            ? `one${index}`
-            : element.number === "2"
-            ? `two${index}`
-            : element.number === "3"
-            ? `three${index}`
-            : element.number === "4"
-            ? `four${index}`
-            : element.number === "5"
-            ? `five${index}`
-            : element.number === "6"
-            ? `six${index}`
-            : element.number === "7"
-            ? `seven${index}`
-            : element.number === "8"
-            ? `eight${index}`
-            : `nine${index}`;
+              ? `one${index}`
+              : element.number === "2"
+                ? `two${index}`
+                : element.number === "3"
+                  ? `three${index}`
+                  : element.number === "4"
+                    ? `four${index}`
+                    : element.number === "5"
+                      ? `five${index}`
+                      : element.number === "6"
+                        ? `six${index}`
+                        : element.number === "7"
+                          ? `seven${index}`
+                          : element.number === "8"
+                            ? `eight${index}`
+                            : `nine${index}`;
         const childRect = document
           .getElementById(childId)
           .getBoundingClientRect();
@@ -70,7 +70,7 @@ const Chart = ({ gid }) => {
   }, [visibleRows]);
 
   return (
-    <Box className="chartTable">
+    <Box className="chartTable" sx={{ mb: 5 }}>
       <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
@@ -108,11 +108,10 @@ const Chart = ({ gid }) => {
                     {/* /// 0   //// */}
                     <div id={`zero${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody  !font-bold ${
-                          i?.number === "0"
-                            ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody  !font-bold ${i?.number === "0"
+                          ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         0
@@ -121,11 +120,10 @@ const Chart = ({ gid }) => {
                     {/* /// 1   //// */}
                     <div id={`one${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
-                          i?.number === "1"
-                            ? "!bg-[#4bef98] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody   !font-bold ${i?.number === "1"
+                          ? "!bg-[#4bef98] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         1
@@ -134,11 +132,10 @@ const Chart = ({ gid }) => {
                     {/* /// 2   //// */}
                     <div id={`two${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
-                          i?.number === "2"
-                            ? "!bg-[#f1494c] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody   !font-bold ${i?.number === "2"
+                          ? "!bg-[#f1494c] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         2
@@ -147,11 +144,10 @@ const Chart = ({ gid }) => {
                     {/* /// 3   //// */}
                     <div id={`three${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
-                          i?.number === "3"
-                            ? "!bg-[#46eb93] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody   !font-bold ${i?.number === "3"
+                          ? "!bg-[#46eb93] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         3
@@ -160,11 +156,10 @@ const Chart = ({ gid }) => {
                     {/* /// 4   //// */}
                     <div id={`four${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
-                          i?.number === "4"
-                            ? "!bg-[#ed4b4e] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody   !font-bold ${i?.number === "4"
+                          ? "!bg-[#ed4b4e] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         4
@@ -173,11 +168,10 @@ const Chart = ({ gid }) => {
                     {/* /// 5   //// */}
                     <div id={`five${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody  !font-bold ${
-                          i?.number === "5"
-                            ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody  !font-bold ${i?.number === "5"
+                          ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         5
@@ -186,11 +180,10 @@ const Chart = ({ gid }) => {
                     {/* /// 6   //// */}
                     <div id={`six${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody  !font-bold ${
-                          i?.number === "6"
-                            ? "!bg-[#f54b4e] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody  !font-bold ${i?.number === "6"
+                          ? "!bg-[#f54b4e] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         6
@@ -199,11 +192,10 @@ const Chart = ({ gid }) => {
                     {/* /// 7   //// */}
                     <div id={`seven${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody  !font-bold ${
-                          i?.number === "7"
-                            ? "!bg-[#4af499] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody  !font-bold ${i?.number === "7"
+                          ? "!bg-[#4af499] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         7
@@ -212,11 +204,10 @@ const Chart = ({ gid }) => {
                     {/* /// 8   //// */}
                     <div id={`eight${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
-                          i?.number === "8"
-                            ? "!bg-[#eb494c] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody   !font-bold ${i?.number === "8"
+                          ? "!bg-[#eb494c] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         8
@@ -225,20 +216,18 @@ const Chart = ({ gid }) => {
                     {/* /// 9   //// */}
                     <div id={`nine${indexi}`} className="z-20">
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
-                          i?.number === "9"
-                            ? "!bg-[#4cf199] !text-white"
-                            : "!bg-white !text-black"
-                        }`}
+                        className={`circleNumberbody   !font-bold ${i?.number === "9"
+                          ? "!bg-[#4cf199] !text-white"
+                          : "!bg-white !text-black"
+                          }`}
                       >
                         {" "}
                         9
                       </Typography>
                     </div>
                     <Typography
-                      className={`circleNumberbody ${
-                        i?.number <= 4 ? "!bg-[#468ce8] " : "!bg-[#df4be1]"
-                      }  !h-[20px] !w-[20px] !rounded-full !text-center !text-white `}
+                      className={`circleNumberbody ${i?.number <= 4 ? "!bg-[#468ce8] " : "!bg-[#df4be1]"
+                        }  !h-[20px] !w-[20px] !rounded-full !text-center !text-white `}
                     >
                       {i?.number <= 4 ? "S" : "B"}
                     </Typography>

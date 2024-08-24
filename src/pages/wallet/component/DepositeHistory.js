@@ -14,13 +14,14 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { kidarkgreen, kigrad, kigreen, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgwhite } from "../../../Shared/color";
 import deposit from "../../../assets/images/list.png";
 import Layout from "../../../component/Layout/Layout";
-import gmbg from "../../../assets/images/gmbg.jpg";
 import {
   depositHistoryFunction
 } from "../../../services/apicalling";
+import logo from "../../../assets/logokimi.png";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 
 function DepositeHistory() {
   const navigate = useNavigate();
@@ -33,18 +34,18 @@ function DepositeHistory() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   );
-  const res = data?.data?.data?.filter((i) => i?.tr15_depo_type === "Winzo")
+  const res = data?.data?.data || []
 
 
   return (
     <Layout>
       <Container
         sx={{
-          background: zubgback,
+          background: '#E7E7E7',
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -53,36 +54,21 @@ function DepositeHistory() {
         className="no-scrollbar"
       >
         <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={goBack}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <Typography variant="body1" color="initial">
-            Deposit history
-          </Typography>
-          <Box></Box>
-        </Box>
+        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
+          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        </div>
+        <Box sx={{ background: kigrad, padding: '10px', color: 'white' }} className="kip15"><ReceiptLongOutlinedIcon sx={{ fontSize: '20px', mb: '6px' }} /> Deposit history</Box>
+
 
         <Box>
           <Box
             sx={{
               padding: "10px",
-              background: zubgwhite,
               borderRadius: "10px",
               mb: 5,
               mt: 2,
             }}
           >
-            <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-              <Box component="img" src={deposit} width={30}></Box>
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
-              >
-                Deposit history
-              </Typography>
-            </Stack>
             {res?.map((i) => {
               return (
                 <Box
@@ -90,8 +76,7 @@ function DepositeHistory() {
                     mb: 2,
                     padding: "15px",
                     borderRadius: "10px",
-                    border: `1px solid #ff00422b`,
-                    background: zubgback,
+                    background: kigreen,
                     boxShadow: zubgshadow,
                   }}
                 >
@@ -107,7 +92,7 @@ function DepositeHistory() {
                     <Box>
                       <Button
                         sx={{
-                          background: zubgmid,
+                          background: kidarkgreen,
                           color: 'white',
                           textTransform: "capitalize",
                         }}
@@ -117,16 +102,16 @@ function DepositeHistory() {
                     </Box>
                     <Box>
                       <Button
-                        sx={{ color: "green", textTransform: "capitalize" }}
-                        className={`${i?.tr15_status === "Success"
+                        sx={{ color: "white", textTransform: "capitalize" }}
+                        className={`${i?.tr15_status === "success"
                           ? "!text-green-500"
-                          : "!text-green-500"
+                          : "!text-red-500"
                           }`}
                       >
                         {i?.tr15_status}
                       </Button>
                       <IconButton>
-                        <ArrowForwardIcon sx={{ color: zubgtext }} />
+                        <ArrowForwardIcon sx={{ color: 'white' }} />
                       </IconButton>
                     </Box>
                   </Stack>
@@ -135,15 +120,16 @@ function DepositeHistory() {
                     direction="row"
                     sx={{
                       mb: "10px",
+                      mt: '10px',
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Balance
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       ₹ {i?.tr15_amt}
                     </Typography>
                   </Stack>
@@ -153,13 +139,13 @@ function DepositeHistory() {
                       mb: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Date/Time
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       {moment(i?.tr15_date)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.tr15_date)?.format("HH:mm:ss")}
                     </Typography>
@@ -170,10 +156,10 @@ function DepositeHistory() {
                       mb: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Success Date/Time
                     </Typography>
                     <Typography variant="body1" color="initial" className="!text-green-500">
@@ -187,33 +173,32 @@ function DepositeHistory() {
                       mb: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" className="kip13">
                       Trans number
                     </Typography>
                     <Stack
                       direction="row"
                       sx={{
-                        mb: "10px",
+
                         alignItems: "center",
                         justifyContent: "space-between",
-                        "&>p": { color: zubgtext },
+                        "&>p": { color: 'white' },
                       }}
                     >
-                      <Typography variant="body1" color="initial">
+                      <Typography variant="body1" className="kip13">
                         {i?.tr15_trans}
                       </Typography>
                       <IconButton>
-                        <ContentCopyIcon sx={{ color: zubgtext }} />
+                        <ContentCopyIcon sx={{ color: 'white' }} />
                       </IconButton>
                     </Stack>
                   </Stack>
                 </Box>
               );
             })}
-            {/* <Button sx={style.paytmbtntwo}>All history</Button> */}
           </Box>
         </Box>
       </Container>
@@ -226,7 +211,7 @@ export default DepositeHistory;
 const style = {
   header: {
     padding: "15px 8px",
-    background: zubgtext,
+    background: 'white',
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",

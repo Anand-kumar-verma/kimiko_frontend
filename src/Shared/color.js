@@ -6,10 +6,10 @@ export const menhdi = "#8f5206"
 
 
 // aviator color
-export const gray = "!bg-[#151617]"
-export const graydark = "!bg-[#1F2937]"
-export const graymedium = "!bg-gray-500"
-export const red = "#BC0319"
+export const gray = "#163300"
+export const graydark = "#163300"
+export const graymedium = "#163300"
+export const red = "#163300"
 
 
 
@@ -29,9 +29,7 @@ export const zubgshadow = ' rgba(149, 157, 165, 0.2) 0px 8px 24px';
 export const zubgwhite = '#c1c1c1';
 export const zubgback_cricket = '#3883BF';
 export const zubgbackgrad = '#79e279';
-// export const zubgbackgrad = 'linear-gradient(0deg, rgb(255 0 0) 0%, rgb(129, 0, 0) 100%)';
-
-export const zubgmid = '#E71D1E';
+export const zubgmid = '#89EA5F';
 export const iconcoloryellow = '#FBB13B';
 
 export const iconcolorpink = '#EE1285';
@@ -42,3 +40,8 @@ export const zubgcricklight = "#00B55E";
 
 
 export const gamename = 'Kimiko'
+export const kigrad = ' linear-gradient(-182.9deg, rgb(34, 126, 34) 2.9%, rgb(168, 251, 60) 90.3%)';
+export const kilightgreen = '#89EA5F';
+export const kidarkgreen = '#163300';
+export const kigreen = '#278223';
+

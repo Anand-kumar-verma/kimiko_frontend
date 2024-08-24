@@ -1,13 +1,16 @@
 export const dummy_aviator = "https://kimiko-backend.onrender.com"
 export const aviatordomain = "https://kimiko-backend.onrender.com"
 
+// export const aviatordomain = "http://192.168.18.183:8000"
+// export const dummy_aviator = "http://192.168.18.183:8000"
+// export const domainnn = "http://192.168.18.183:8000"
 
 export const rupees = "₹";
 
 export const baseUrl = "https://admin.kimiko.biz";
 export const fron_end_main_domain = "https://kimiko.biz";
-// export const newDomain = "https://api.kimiko.biz";
-export const newDomain = "http://localhost:8000";
+export const newDomain = "https://api.kimiko.biz";
+// export const newDomain = "http://localhost:8000";
 
 
 export const domain = "https://kimiko-backend.onrender.com"
@@ -22,7 +25,12 @@ export const endpoint = {
   rent_now_history :`${baseUrl}/api/buy_product_report`,
   report_income :`${baseUrl}/api/view_income_report`,
   deposit_request: `${baseUrl}/api/insert_fund_request_vapayout`,
-  
+  panel_banner:`${baseUrl}/api/panel_banner`,
+  get_balance:`${baseUrl}/api/get_balance`,
+  change_password :`${baseUrl}/api/update_password`,
+  credit_report:`${newDomain}/api/v1/getWalletCreditedHistory`,
+  self_income:`${newDomain}/api/v1/get-income-self-team`,
+
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
