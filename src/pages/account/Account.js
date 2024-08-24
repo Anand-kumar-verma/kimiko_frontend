@@ -1,52 +1,29 @@
-import { Calculate, Coffee, CreditCard, Description, Download, LocalOffer, Lock, PhoneAndroid, Receipt, Shield, ShoppingCart, Spa, Support } from "@mui/icons-material";
-import CachedIcon from "@mui/icons-material/Cached";
-import CloseIcon from "@mui/icons-material/Close";
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import TranslateIcon from '@mui/icons-material/Translate';
+import { CreditCard, Description, Download, Lock, PhoneAndroid, ShoppingCart, Support } from "@mui/icons-material";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import TranslateIcon from '@mui/icons-material/Translate';
 import {
   Box,
   Button,
   Container,
-  Dialog,
   Divider,
-  IconButton,
   List, ListItem, ListItemIcon,
-  Stack,
   Typography
 } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { kidarkgreen, kigreen, zubgmid, zubgtext } from "../../Shared/color";
-import cip from "../../assets/cip.png";
-import edit from "../../assets/images/banking.png";
-import buy from "../../assets/images/casino.png";
-import gift from "../../assets/images/gift-box-with-a-bow.png";
-import hand from "../../assets/images/hand.png";
-import namer from "../../assets/images/namer.png";
-import notification from "../../assets/images/notification (1).png";
-import notification1 from "../../assets/images/notification.png";
-// import user2 from "../../assets/images/password (1).png";
+import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 import bgms from "../../assets/images/playgame.jpg";
-import dp1 from "../../assets/images/pr.png";
-import balance from "../../assets/images/send.png";
-import trans from "../../assets/images/translate.png";
-import s from "../../assets/images/wallet (1).png";
-import dpt from "../../assets/images/wallet (3).png";
-import wtd from "../../assets/images/withdraw.png";
 import withdraw from '../../assets/kiimages/hand.png';
 import recharge from '../../assets/kiimages/mobile.png';
 import profile from "../../assets/kiimages/profile.png";
 import logo from "../../assets/logokimi.png";
-import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { MyProfileDataFn, SelIncomefFn, walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
-import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 
 
 function Account() {
