@@ -152,7 +152,7 @@ function Dashboard() {
   };
   useEffect(() => {
     if (isAvailableUser) {
-      setpoicy(true);
+      // setpoicy(true);
     }
   }, []);
 
@@ -413,7 +413,7 @@ function Dashboard() {
                       <Typography variant="body1" color="initial" sx={styles.kipercentageLabel}></Typography>
                       <Box sx={{ ...styles.kiprogressBar }}></Box>
                     </Box>
-                    <Button onClick={() => navigate(`/menu/menu-details/${item?.m_pack_id}`)} sx={styles.kibutton} variant="contained">Buy {item.date} <NavigateNextRounded /></Button>
+                    <Button onClick={() => navigate(`/menu/menu-details/${item?.m_pack_id}`)} sx={styles.kibutton} variant="contained">Rent Now {item.date} <NavigateNextRounded /></Button>
                   </Stack>
                 </Box>
               ))
