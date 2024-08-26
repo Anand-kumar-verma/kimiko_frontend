@@ -155,11 +155,12 @@ function Account() {
           </Box>
         </Box>
         <Box sx={{ width: '95%', ml: '2.5%', padding: 2, borderRadius: '10px', background: kidarkgreen, mb: 2, mt: 2 }}>
-          <Typography variant="body1" sx={{ color: 'white', fontSize: '12px', mb: 1 }}>
-            You are already a <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>SHOP LEVEL 0 AGENT</span> You can withdraw cash <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>0 times </span> a day, with a maximum withdrawal amount of 3,000 Rs each time and a daily withdrawal limit of <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>₹0</span>
+         <p className="text-center text-white pb-2 font-bold"> Terms & Conditions</p>
+          <Typography variant="body1" sx={{ color: 'white', fontSize: '12px' }}>
+         Withdrawal Timing :  <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>Mon to Fri (10 AM to 6 PM)</span> <br/> Arrival in 2 : <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>36 Hrs .</span>
           </Typography>
           <Typography variant="body1" sx={{ color: 'white', fontSize: '12px', mb: 1 }}>
-            You can continue to purchase other SHOP agent products to improve your level. The higher the level, the more cash you can withdraw every day.
+          Withdrawal Charge : <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}> 5 %  </span> <br/> Minimum Withdrawal: <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}> 199/-  </span>
           </Typography>
         </Box>
 
