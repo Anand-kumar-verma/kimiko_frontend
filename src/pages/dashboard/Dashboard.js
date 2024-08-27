@@ -235,7 +235,7 @@ function Dashboard() {
                 <Box component='img' src={recharge} sx={styles.KiNavImg}></Box>
               </Box>
               <Box sx={{ padding: '8px 0px' }}>
-                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Recharge</Typography>
+                <Typography variant="body1" color="initial" sx={styles.kiNavText}>Deposit</Typography>
               </Box>
             </Stack>
             <Stack sx={styles.kiNavOuter} component={NavLink} to='/Withdrawal'>

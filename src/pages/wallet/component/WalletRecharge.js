@@ -145,7 +145,7 @@ function WalletRecharge() {
 
   const formik = useFormik({
     initialValues: {
-      txtamount: deposit_amount || 110,
+      txtamount: deposit_amount || 299,
     },
     validationSchema: cashDepositRequestValidationSchema,
     onSubmit: (values) => {
@@ -274,60 +274,60 @@ function WalletRecharge() {
         <Button
           className="kip15" sx={style.paytmbtn}
           onClick={() => {
-            formik.setFieldValue("txtamount", 110);
+            formik.setFieldValue("txtamount", 299);
             setDeposit_req_data(null);
           }}
         >
           {" "}
-          ₹   110
+          ₹   299
         </Button>
         <Button
           className="kip15" sx={style.paytmbtn}
           onClick={() => {
-            formik.setFieldValue("txtamount", 500);
+            formik.setFieldValue("txtamount", 899);
             setDeposit_req_data(null);
           }}
         >
           {" "}
-          ₹   500
+          ₹   899
         </Button>
         <Button
           className="kip15" sx={style.paytmbtn}
           onClick={() => {
-            formik.setFieldValue("txtamount", 1000);
+            formik.setFieldValue("txtamount", 1999);
             setDeposit_req_data(null);
           }}
         >
           {" "}
-          ₹   1k
+          ₹  1999 
         </Button>
         <Button
           className="kip15" sx={style.paytmbtn}
           onClick={() => {
-            formik.setFieldValue("txtamount", 5000);
+            formik.setFieldValue("txtamount", 3499);
             setDeposit_req_data(null);
           }}
         >
           {" "}
-          ₹   5k
+          ₹   3499
         </Button>
         <Button
           className="kip15" sx={style.paytmbtn}
           onClick={() => {
-            formik.setFieldValue("txtamount", 10000);
+            formik.setFieldValue("txtamount", 9999);
             setDeposit_req_data(null);
           }}
         >
-          ₹  10k
+          ₹  9999
         </Button>
         <Button
           className="kip15" sx={style.paytmbtn}
           onClick={() => {
-            formik.setFieldValue("txtamount", 15000);
+            formik.setFieldValue("txtamount", 14999);
             setDeposit_req_data(null);
           }}
         >
-          ₹  15k
+          ₹  14999
         </Button>
 
       </Stack>
