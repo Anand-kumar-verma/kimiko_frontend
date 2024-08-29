@@ -84,7 +84,7 @@ export const withdrawAmountSchemaValidaton = Yup.object().shape({
 export const withdraw_amount_validation_schema = Yup.object().shape({
   amount: Yup.number()
     .required("Amount is required")
-    .min(110, "Amount must be greater than or equal to 110")
+    .min(199, "Amount must be greater than or equal to 199")
     .max(50000, "Amount must be less than or equal to 50000"),
   bank_id: Yup.string().required("Bank Name is required"),
 });

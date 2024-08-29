@@ -146,7 +146,7 @@ function Withdrawl() {
         return toast("Select Withdrawl Type");
 
       if (Number(fk.values.amount) < 199 && Number(fk.values.amount) > 50000)
-        return toast("Amount shoulb be minimum 110 and maximum 50,000");
+        return toast("Amount shoulb be minimum 199 and maximum 50,000");
 
       const data = result?.find((i) => i?.id === fk.values.bank_id);
       if (!data) return toast("Data not found");

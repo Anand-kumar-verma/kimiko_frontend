@@ -52,7 +52,7 @@ export const endpoint = {
   payment_request: `${baseUrl}/api/deposit-request`,
   registration_bonus: `${baseUrl}/api/welcom-bonus`,
   deposit_history: `${baseUrl}/api/deposit-history`,
-  withdrawl_history: `${baseUrl}/api/withdrawl-history`,
+  withdrawl_history: `${baseUrl}/api/withdrawl_history_new`,
   deposit_bonus: `${baseUrl}/api/deposit-bonus`,
   referral_bonus: `${baseUrl}/api/refral-bonus`,
   get_daily: `${baseUrl}/api/get-daily-non-working-bonus`,

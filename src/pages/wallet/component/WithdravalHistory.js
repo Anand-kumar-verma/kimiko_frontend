@@ -105,12 +105,12 @@ function WithdravalHistory() {
                     <Box>
                       <Button
                         sx={{ color: "green", textTransform: "capitalize" }}
-                        className={`${i?.status === "Success"
+                        className={`${i?.m_w_status === "Approve"
                           ? "!text-green-500"
                           : "!text-green-500"
                           }`}
                       >
-                        {i?.status}
+                        {i?.m_w_status}
                       </Button>
                       <IconButton>
                         <ArrowForwardIcon sx={{ color: 'white' }} />
@@ -132,7 +132,7 @@ function WithdravalHistory() {
                       Balance
                     </Typography>
                     <Typography variant="body1" className="kip13">
-                      ₹ {i?.amount}
+                      ₹ {i?.m_w_amount}
                     </Typography>
                   </Stack>
                   <Stack
@@ -148,8 +148,8 @@ function WithdravalHistory() {
                       Date/Time
                     </Typography>
                     <Typography variant="body1" className="kip13">
-                      {moment(i?.date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.date)?.format("HH:mm:ss")}
+                      {moment(i?.m_w_reqdate)?.format("DD-MM-YYYY")}{" "}
+                      {moment(i?.m_w_reqdate)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>
                   <Stack
@@ -165,10 +165,10 @@ function WithdravalHistory() {
                       Status
                     </Typography>
                     <Typography variant="body1" className="kip13">
-                      {i?.status}{" "}
+                      {i?.m_w_status}{" "}
                     </Typography>
                   </Stack>
-                  {i?.approve_date !== null && i?.approve_date !== "" && <Stack
+                  {i?.m_w_approvedate !== null && i?.m_w_approvedate !== "" && <Stack
                     direction="row"
                     sx={{
                       mb: "10px",
@@ -181,8 +181,8 @@ function WithdravalHistory() {
                       Success Date/Time
                     </Typography>
                     <Typography variant="body1" color="initial" className="!text-green-500">
-                      {moment(i?.approve_date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.approve_date)?.format("HH:mm:ss")}
+                      {moment(i?.m_w_approvedate)?.format("DD-MM-YYYY")}{" "}
+                      {moment(i?.m_w_approvedate)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>}
                   <Stack
@@ -207,7 +207,7 @@ function WithdravalHistory() {
                       }}
                     >
                       <Typography variant="body1" className="kip13">
-                        {i?.tran_id}
+                        {i?.m_order_id}
                       </Typography>
                       <IconButton>
                         <ContentCopyIcon sx={{ color: 'white' }} />
