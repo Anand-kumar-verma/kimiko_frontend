@@ -16,9 +16,8 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { gray, kidarkgreen, kigrad, kigreen, zubgback, zubgshadow, zubgtext } from "../../Shared/color";
+import { kidarkgreen, kigrad, kigreen, zubgback, zubgshadow, zubgtext } from "../../Shared/color";
 import gmbg from "../../assets/images/gmbg.jpg";
-
 import logo from "../../assets/logokimi.png";
 import Layout from "../../component/Layout/Layout";
 import {
@@ -36,18 +35,15 @@ import {
   support_mail,
   telegram_url
 } from "../../services/urls";
-
-import { Close, CurrencyExchangeTwoTone, NavigateNextRounded } from "@mui/icons-material";
+import { CurrencyExchangeTwoTone, NavigateNextRounded } from "@mui/icons-material";
 import SwipeRightAltRoundedIcon from '@mui/icons-material/SwipeRightAltRounded';
 import solor from '../../Kimassets/images/service-5.jpg';
 import kislider1 from '../../assets/kiimages/banner1.jpg';
 import kislider2 from '../../assets/kiimages/banner2.jpg';
 import kislider3 from '../../assets/kiimages/banner3.jpg';
 import bonus from '../../assets/kiimages/bonus.png';
-import task from '../../assets/kiimages/clipboard.png';
 import coffeem1 from '../../assets/kiimages/coffeem1.jpg';
 import withdraw from '../../assets/kiimages/hand.png';
-import about from '../../assets/kiimages/messages.png';
 import recharge from '../../assets/kiimages/mobile.png';
 import wdrlhistory from '../../assets/kiimages/order-history.png';
 import order from '../../assets/kiimages/order-now.png';

@@ -110,38 +110,37 @@ function Account() {
         </div>
         <Box sx={{ display: 'flex', gap:"10px" ,alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_deposit)?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_deposit)?.toFixed(2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Deposit Balance</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income )?.toFixed(0,2) || 0} </Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income )?.toFixed(2) || 0} </Typography>
             <Typography variant="body1" className="kip13">Self Total Income</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_withdrawl) ?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_withdrawl) ?.toFixed(2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Withdrawal Balance</Typography>
           </Box>
         </Box>
         <Box sx={{ display: 'flex', gap:"10px" ,alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income)?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income)?.toFixed(2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Team Total Income</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_recharge) ?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_recharge) ?.toFixed(2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Total  Recharge</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income_today )?.toFixed(0,2) || 0} </Typography>
-            <Typography variant="body1" className="kip13">Team  Income Today</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income_today )?.toFixed(2) || 0} </Typography>
+            <Typography variant="body1" className="kip13">Total Income</Typography>
           </Box>
-         
         </Box>
       
         <Box sx={{ flexWrap: 'wrap', background: 'white', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
        
           <Box sx={{ width: '100%', p: 1, '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income_today )?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income_today )?.toFixed(2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Self Total Income Today</Typography>
           </Box>
         
@@ -216,7 +215,7 @@ function Account() {
                     <ListItemIcon sx={{ color: kidarkgreen }}>➔</ListItemIcon>
                   </ListItem>
                   {index < menuItems.length - 1 && <Divider />}
-                </NavLink >
+                </NavLink>
               </>
             ))}
           </List>
