@@ -10,7 +10,7 @@ import {
   Typography
 } from "@mui/material";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
@@ -24,9 +24,12 @@ import logo from "../../assets/logokimi.png";
 import Layout from "../../component/Layout/Layout";
 import { MyProfileDataFn, SelIncomefFn, walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
+import Countdown from "./Component/Countdown";
 
 
 function Account() {
+
+
   const menuItems = [
     { path: '/add-bank-details', icon: <CreditCard />, text: "Link Bank Account" },
     { path: '/add-bank-details/pre-added-bank-details', icon: <Description />, text: "Bank Account" },
@@ -34,7 +37,7 @@ function Account() {
     { path: '/rent', icon: <ShoppingCart />, text: "My Order" },
     // { path: '#', icon: <LocalOffer />, text: "My Coupon" },
     { path: '/Language', icon: <TranslateIcon />, text: "Language" },
-    { path: '/gameNotification',icon: <NotificationsActiveIcon /> , text: "Notification" },
+    { path: '/gameNotification', icon: <NotificationsActiveIcon />, text: "Notification" },
     // { path: '/notification', icon: <Receipt />, text: "Game Notification" },
     // { path: '#', icon: <Calculate />, text: "Income Calculator" },
     { path: '/SettingCenter/LoginPassword', icon: <Lock />, text: "Reset Password" },
@@ -108,45 +111,45 @@ function Account() {
         <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
           <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
         </div>
-        <Box sx={{ display: 'flex', gap:"10px" ,alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
+        <Box sx={{ display: 'flex', gap: "10px", alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_deposit)?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_deposit)?.toFixed(0, 2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Deposit Balance</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income )?.toFixed(0,2) || 0} </Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income)?.toFixed(0, 2) || 0} </Typography>
             <Typography variant="body1" className="kip13">Self Total Income</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_withdrawl) ?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_withdrawl)?.toFixed(0, 2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Withdrawal Balance</Typography>
           </Box>
         </Box>
-        <Box sx={{ display: 'flex', gap:"10px" ,alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
+        <Box sx={{ display: 'flex', gap: "10px", alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income)?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income)?.toFixed(0, 2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Team Total Income</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_recharge) ?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_recharge)?.toFixed(0, 2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Total  Recharge</Typography>
           </Box>
           <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income_today )?.toFixed(0,2) || 0} </Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income_today)?.toFixed(0, 2) || 0} </Typography>
             <Typography variant="body1" className="kip13">Team  Income Today</Typography>
           </Box>
-         
+
         </Box>
-      
+
         <Box sx={{ flexWrap: 'wrap', background: 'white', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
-       
+
           <Box sx={{ width: '100%', p: 1, '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income_today )?.toFixed(0,2) || 0}</Typography>
+            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income_today)?.toFixed(0, 2) || 0}</Typography>
             <Typography variant="body1" className="kip13">Self Total Income Today</Typography>
           </Box>
-        
+
         </Box>
-      
+
         <Typography variant="body1" className="kip15" mt={2} sx={{ textAlign: 'center' }}>{result?.full_name}</Typography>
         <Box sx={{ mt: 1 }} className="w95 flexs">
 
@@ -157,16 +160,18 @@ function Account() {
             <Typography variant="body1" className="kip13" mb={1}>ID : {result?.custid}</Typography>
             <Typography variant="body1" className="kip13" mb={1}><PhoneAndroid className="kip13" /> : +91{result?.mobile}</Typography>
             <Typography variant="body1" className="kip13" mb={1}><EnergySavingsLeafIcon className="kip13" /> : {result?.email}</Typography>
+           </Box>
+      </Box>
+      <div className="mt-2"> {profiled?.data?.reward_status === 0 ? <Countdown /> : null} </div>
+      <div className="mb-2 text-center text-sm font-bold"> {profiled?.data?.reward_status === 0 ? " ( Need 5 Direct with business of 31694 )" : null} </div>
 
-          </Box>
-        </Box>
         <Box sx={{ width: '95%', ml: '2.5%', padding: 2, borderRadius: '10px', background: kidarkgreen, mb: 2, mt: 2 }}>
-         <p className="text-center text-white pb-2 font-bold"> Terms & Conditions</p>
+          <p className="text-center text-white pb-2 font-bold"> Terms & Conditions</p>
           <Typography variant="body1" sx={{ color: 'white', fontSize: '12px' }}>
-         Withdrawal Timing :  <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>Mon to Fri (10 AM to 6 PM)</span> <br/> Arrival in 2 : <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>36 Hrs .</span>
+            Withdrawal Timing :  <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>Mon to Fri (10 AM to 6 PM)</span> <br /> Arrival in 2 : <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>36 Hrs .</span>
           </Typography>
           <Typography variant="body1" sx={{ color: 'white', fontSize: '12px', mb: 1 }}>
-          Withdrawal Charge : <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}> 5 %  </span> <br/> Minimum Withdrawal: <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}> 199/-  </span>
+            Withdrawal Charge : <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}> 5 %  </span> <br /> Minimum Withdrawal: <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}> 199/-  </span>
           </Typography>
         </Box>
 
@@ -189,7 +194,7 @@ function Account() {
           </Button>
         </Box>
 
-      
+
 
 
         <Box
