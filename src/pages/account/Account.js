@@ -1,48 +1,72 @@
-import { CreditCard, Description, Download, Lock, PhoneAndroid, ShoppingCart, Support } from "@mui/icons-material";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import TranslateIcon from '@mui/icons-material/Translate';
+import {
+  CreditCard,
+  Description,
+  Download,
+  Lock,
+  PhoneAndroid,
+  ShoppingCart,
+  Support,
+} from "@mui/icons-material";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import TranslateIcon from "@mui/icons-material/Translate";
 import {
   Box,
   Button,
   Container,
   Divider,
-  List, ListItem, ListItemIcon,
-  Typography
+  List,
+  ListItem,
+  ListItemIcon,
+  Typography,
 } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { kidarkgreen, kigreen, zubgmid, zubgtext } from "../../Shared/color";
-import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
+import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import bgms from "../../assets/images/playgame.jpg";
-import withdraw from '../../assets/kiimages/hand.png';
-import recharge from '../../assets/kiimages/mobile.png';
+import withdraw from "../../assets/kiimages/hand.png";
+import recharge from "../../assets/kiimages/mobile.png";
 import profile from "../../assets/kiimages/profile.png";
 import logo from "../../assets/logokimi.png";
 import Layout from "../../component/Layout/Layout";
-import { MyProfileDataFn, SelIncomefFn, walletamount } from "../../services/apicalling";
+import {
+  MyProfileDataFn,
+  SelIncomefFn,
+  walletamount,
+} from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 import Countdown from "./Component/Countdown";
 
 
 function Account() {
-
-
   const menuItems = [
-    { path: '/add-bank-details', icon: <CreditCard />, text: "Link Bank Account" },
-    { path: '/add-bank-details/pre-added-bank-details', icon: <Description />, text: "Bank Account" },
+    {
+      path: "/add-bank-details",
+      icon: <CreditCard />,
+      text: "Link Bank Account",
+    },
+    {
+      path: "/add-bank-details/pre-added-bank-details",
+      icon: <Description />,
+      text: "Bank Account",
+    },
     // { path: '#', icon: <Shield />, text: "Compliance Statement" },
-    { path: '/rent', icon: <ShoppingCart />, text: "My Order" },
+    { path: "/rent", icon: <ShoppingCart />, text: "My Order" },
     // { path: '#', icon: <LocalOffer />, text: "My Coupon" },
     { path: '/Language', icon: <TranslateIcon />, text: "Language" },
-    { path: '/gameNotification', icon: <NotificationsActiveIcon />, text: "Notification" },
+    { path: '/gameNotification',icon: <NotificationsActiveIcon /> , text: "Notification" },
     // { path: '/notification', icon: <Receipt />, text: "Game Notification" },
     // { path: '#', icon: <Calculate />, text: "Income Calculator" },
-    { path: '/SettingCenter/LoginPassword', icon: <Lock />, text: "Reset Password" },
-    { path: '#', icon: <Support />, text: "Customer Service" },
-    { path: '#', icon: <Download />, text: "APP Download" },
+    {
+      path: "/SettingCenter/LoginPassword",
+      icon: <Lock />,
+      text: "Reset Password",
+    },
+    { path: "#", icon: <Support />, text: "Customer Service" },
+    { path: "#", icon: <Download />, text: "APP Download" },
   ];
 
   const location = useLocation();
@@ -55,7 +79,7 @@ function Account() {
     refetchOnMount: false,
     refetchOnReconnect: false,
     retryOnMount: false,
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
   const amount = data?.data?.data || 0;
 
@@ -80,130 +104,411 @@ function Account() {
     }
   }, []);
 
-  const { data: profiled } = useQuery(
-    ["myprofile"],
-    () => MyProfileDataFn(),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false
-    }
-  );
+  const { data: profiled } = useQuery(["myprofile"], () => MyProfileDataFn(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
 
   const result = profiled?.data?.data || [];
 
+  const { data: self } = useQuery(["selfincome"], () => SelIncomefFn(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
 
-  const { data: self } = useQuery(
-    ["selfincome"],
-    () => SelIncomefFn(),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false
-    }
-  );
-
-  const income = self?.data?.data || [];
+  const income = self?.data?.earning?.[0] || [];
 
   return (
     <Layout>
       <Container sx={style.container}>
-        <div className="flex items-center justify-center " style={{ width: '100%', background: kidarkgreen, padding: '15px' }}>
-          <Box component="img" src={logo} sx={{ width: "120px", margin: 'auto', }}></Box>
+        <div
+          className="flex items-center justify-center "
+          style={{ width: "100%", background: kidarkgreen, padding: "15px" }}
+        >
+          <Box
+            component="img"
+            src={logo}
+            sx={{ width: "120px", margin: "auto" }}
+          ></Box>
         </div>
-        <Box sx={{ display: 'flex', gap: "10px", alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
-          <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_deposit)?.toFixed(0, 2) || 0}</Typography>
-            <Typography variant="body1" className="kip13">Deposit Balance</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "10px",
+            alignItems: "center",
+            justifyContent: "space-between",
+            mt: 2,
+            width: "95%",
+            marginLeft: "2.5%",
+          }}
+        >
+          <Box
+            sx={{
+              width: "49%",
+              p: 1,
+              background: "white",
+              borderRadius: "10px",
+              "&>p": { textAlign: "center" },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              className="kip13"
+              sx={{ color: "#5aaa1e" }}
+            >
+              ₹ {Number(income?.total_deposit_all)?.toFixed(2) || 0}
+            </Typography>
+            <Typography variant="body1" className="kip13">
+              Total Recharge
+            </Typography>
           </Box>
-          <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income)?.toFixed(0, 2) || 0} </Typography>
-            <Typography variant="body1" className="kip13">Self Total Income</Typography>
+          <Box
+            sx={{
+              width: "49%",
+              p: 1,
+              background: "white",
+              borderRadius: "10px",
+              "&>p": { textAlign: "center" },
+              "&>h6": { textAlign: "center" },
+            }}
+            onClick={()=>navigate("/rent")}
+          >
+            <Typography
+              variant="h6"
+              className="kip13"
+              sx={{ color: "#5aaa1e" }}
+            >
+               ₹ {Number(income?.total_recharge)?.toFixed(2) || 0}
+            </Typography>
+            <Typography variant="body1" className="kip13">
+              Rent Product
+            </Typography>
           </Box>
-          <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_withdrawl)?.toFixed(0, 2) || 0}</Typography>
-            <Typography variant="body1" className="kip13">Withdrawal Balance</Typography>
+          <Box
+            sx={{
+              width: "49%",
+              p: 1,
+              background: "white",
+              borderRadius: "10px",
+              "&>p": { textAlign: "center" },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              className="kip13"
+              sx={{ color: "#5aaa1e" }}
+            >
+              ₹ {Number(income?.total_withdrawl)?.toFixed(2) || 0}
+            </Typography>
+            <Typography variant="body1" className="kip13">
+              Withdrawal Balance
+            </Typography>
           </Box>
         </Box>
-        <Box sx={{ display: 'flex', gap: "10px", alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
-          <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income)?.toFixed(0, 2) || 0}</Typography>
-            <Typography variant="body1" className="kip13">Team Total Income</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "10px",
+            alignItems: "center",
+            justifyContent: "space-between",
+            mt: 2,
+            width: "95%",
+            marginLeft: "2.5%",
+          }}
+        >
+          <Box
+            sx={{
+              width: "49%",
+              p: 1,
+              background: "white",
+              borderRadius: "10px",
+              "&>p": { textAlign: "center" },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              className="kip13"
+              sx={{ color: "#5aaa1e" }}
+            >
+              ₹ {Number(income?.team_total_income)?.toFixed(2) || 0}
+            </Typography>
+            <Typography variant="body1" className="kip13">
+              Team Total Income
+            </Typography>
           </Box>
-          <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.total_recharge)?.toFixed(0, 2) || 0}</Typography>
-            <Typography variant="body1" className="kip13">Total  Recharge</Typography>
+          <Box
+            sx={{
+              width: "49%",
+              p: 1,
+              background: "white",
+              borderRadius: "10px",
+              "&>p": { textAlign: "center" },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              className="kip13"
+              sx={{ color: "#5aaa1e" }}
+            >
+              ₹ {Number(income?.self_total_income)?.toFixed(2) || 0}{" "}
+            </Typography>
+            <Typography variant="body1" className="kip13">
+              Self Total Income
+            </Typography>
           </Box>
-          <Box sx={{ width: '49%', p: 1, background: 'white', borderRadius: '10px', '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.team_total_income_today)?.toFixed(0, 2) || 0} </Typography>
-            <Typography variant="body1" className="kip13">Team  Income Today</Typography>
+          <Box
+            sx={{
+              width: "49%",
+              p: 1,
+              background: "white",
+              borderRadius: "10px",
+              "&>p": { textAlign: "center" },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              className="kip13"
+              sx={{ color: "#5aaa1e" }}
+            >
+              ₹ {Number(income?.team_total_income_today)?.toFixed(2) || 0}{" "}
+            </Typography>
+            <Typography variant="body1" className="kip13">
+              Team Income Today
+            </Typography>
           </Box>
-
         </Box>
 
-        <Box sx={{ flexWrap: 'wrap', background: 'white', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
-
-          <Box sx={{ width: '100%', p: 1, '&>p': { textAlign: 'center' }, '&>h6': { textAlign: 'center' } }}>
-            <Typography variant="h6" className="kip13" sx={{ color: '#5aaa1e' }}>₹ {Number(income?.self_total_income_today)?.toFixed(0, 2) || 0}</Typography>
-            <Typography variant="body1" className="kip13">Self Total Income Today</Typography>
+     
+        <Box
+          sx={{
+            display: "flex",
+            gap: "10px",
+            alignItems: "center",
+            justifyContent: "space-between",
+            mt: 2,
+            width: "95%",
+            marginLeft: "2.5%",
+          }}
+        >
+          <Box
+            sx={{
+              width: "49%",
+              p: 1,
+              background: "white",
+              borderRadius: "10px",
+              "&>p": { textAlign: "center" },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              className="kip13"
+              sx={{ color: "#5aaa1e" }}
+            >
+ 
+          ₹ {Number(income?.total_deposit)?.toFixed(2) || 0}            </Typography>
+            <Typography variant="body1" className="kip13">
+            Net Wallet
+            </Typography>
           </Box>
-
+          <Box
+            sx={{
+              width: "49%",
+              p: 1,
+              background: "white",
+              borderRadius: "10px",
+              "&>p": { textAlign: "center" },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              className="kip13"
+              sx={{ color: "#5aaa1e" }}
+            >
+              ₹ {Number(income?.self_total_income_today)?.toFixed(2) || 0}            </Typography>
+            <Typography variant="body1" className="kip13">
+            Self Income Today
+            </Typography>
+          </Box>
+       
         </Box>
 
-        <Typography variant="body1" className="kip15" mt={2} sx={{ textAlign: 'center' }}>{result?.full_name}</Typography>
+        <Typography
+          variant="body1"
+          className="kip15"
+          mt={2}
+          sx={{ textAlign: "center" }}
+        >
+          {result?.full_name}
+        </Typography>
         <Box sx={{ mt: 1 }} className="w95 flexs">
-
           <Box sx={{}}>
-            <Box sx={{ width: '80px ', height: '80px', objectFit: 'cover', borderRadius: '50%', }} component='img' src={profile}></Box>
+            <Box
+              sx={{
+                width: "80px ",
+                height: "80px",
+                objectFit: "cover",
+                borderRadius: "50%",
+              }}
+              component="img"
+              src={profile}
+            ></Box>
           </Box>
           <Box sx={{ ml: 5 }}>
-            <Typography variant="body1" className="kip13" mb={1}>ID : {result?.custid}</Typography>
-            <Typography variant="body1" className="kip13" mb={1}><PhoneAndroid className="kip13" /> : +91{result?.mobile}</Typography>
-            <Typography variant="body1" className="kip13" mb={1}><EnergySavingsLeafIcon className="kip13" /> : {result?.email}</Typography>
-           </Box>
-      </Box>
-      <div className="mt-2"> {profiled?.data?.reward_status === 0 ? <Countdown /> : null} </div>
+            <Typography variant="body1" className="kip13" mb={1}>
+              ID : {result?.custid}
+            </Typography>
+            <Typography variant="body1" className="kip13" mb={1}>
+              <PhoneAndroid className="kip13" /> : +91{result?.mobile}
+            </Typography>
+            <Typography variant="body1" className="kip13" mb={1}>
+              <EnergySavingsLeafIcon className="kip13" /> : {result?.email}
+            </Typography>
+          </Box>
+        </Box>
+        <div className="mt-2"> {profiled?.data?.reward_status === 0 ? <Countdown /> : null} </div>
       <div className="mb-2 text-center text-sm font-bold"> {profiled?.data?.reward_status === 0 ? " ( Need 5 Direct with business of 31694 )" : null} </div>
-
-        <Box sx={{ width: '95%', ml: '2.5%', padding: 2, borderRadius: '10px', background: kidarkgreen, mb: 2, mt: 2 }}>
-          <p className="text-center text-white pb-2 font-bold"> Terms & Conditions</p>
-          <Typography variant="body1" sx={{ color: 'white', fontSize: '12px' }}>
-            Withdrawal Timing :  <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>Mon to Fri (10 AM to 6 PM)</span> <br /> Arrival in 2 : <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}>36 Hrs .</span>
+        <Box
+          sx={{
+            width: "95%",
+            ml: "2.5%",
+            padding: 2,
+            borderRadius: "10px",
+            background: kidarkgreen,
+            mb: 2,
+            mt: 2,
+          }}
+        >
+          <p className="text-center text-white pb-2 font-bold">
+            {" "}
+            Terms & Conditions
+          </p>
+          <Typography variant="body1" sx={{ color: "white", fontSize: "12px" }}>
+            Withdrawal Timing :{" "}
+            <span
+              style={{
+                color: kigreen,
+                textDecoration: "underline",
+                fontWeight: "600",
+                fontSize: "13px",
+              }}
+            >
+              Mon to Fri (10 AM to 6 PM)
+            </span>{" "}
+            <br /> Arrival in 2 :{" "}
+            <span
+              style={{
+                color: kigreen,
+                textDecoration: "underline",
+                fontWeight: "600",
+                fontSize: "13px",
+              }}
+            >
+              36 Hrs .
+            </span>
           </Typography>
-          <Typography variant="body1" sx={{ color: 'white', fontSize: '12px', mb: 1 }}>
-            Withdrawal Charge : <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}> 5 %  </span> <br /> Minimum Withdrawal: <span style={{ color: kigreen, textDecoration: 'underline', fontWeight: '600', fontSize: '13px' }}> 199/-  </span>
+          <Typography
+            variant="body1"
+            sx={{ color: "white", fontSize: "12px", mb: 1 }}
+          >
+            Withdrawal Charge :{" "}
+            <span
+              style={{
+                color: kigreen,
+                textDecoration: "underline",
+                fontWeight: "600",
+                fontSize: "13px",
+              }}
+            >
+              {" "}
+              5 %{" "}
+            </span>{" "}
+            <br /> Minimum Withdrawal:{" "}
+            <span
+              style={{
+                color: kigreen,
+                textDecoration: "underline",
+                fontWeight: "600",
+                fontSize: "13px",
+              }}
+            >
+              {" "}
+              199/-{" "}
+            </span>
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2, width: '95%', marginLeft: '2.5%' }}>
-          <Button component={NavLink} to='/Withdrawal' sx={{
-            width: '49.8%', p: '10px', background: kidarkgreen, color: 'white', '&:hover': {
-              backgroundColor: kigreen,
-            }, borderRadius: '5px 0px 0px 5px', '&>p': { textAlign: 'center', ml: 2, }, '&>h6': { textAlign: 'center' }
-          }}>
-            <Box component='img' src={withdraw} sx={{ width: '30px' }}></Box>
-            <Typography variant="body1" className="kip13"> Withdraw</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            mt: 2,
+            width: "95%",
+            marginLeft: "2.5%",
+          }}
+        >
+          <Button
+            component={NavLink}
+            to="/Withdrawal"
+            sx={{
+              width: "49.8%",
+              p: "10px",
+              background: kidarkgreen,
+              color: "white",
+              "&:hover": {
+                backgroundColor: kigreen,
+              },
+              borderRadius: "5px 0px 0px 5px",
+              "&>p": { textAlign: "center", ml: 2 },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Box component="img" src={withdraw} sx={{ width: "30px" }}></Box>
+            <Typography variant="body1" className="kip13">
+              {" "}
+              Withdraw
+            </Typography>
           </Button>
-          <Button component={NavLink} to='/wallet/Recharge' sx={{
-            width: '49.8%', p: '10px', background: kidarkgreen, color: 'white', '&:hover': {
-              backgroundColor: kigreen,
-            }, borderRadius: '0px 5px 5px 0px', '&>p': { textAlign: 'center', ml: 2, }, '&>h6': { textAlign: 'center' }
-          }}>
-            <Box component='img' src={recharge} sx={{ width: '30px' }}></Box>
-            <Typography variant="body1" className="kip13"> Deposit</Typography>
+          <Button
+            component={NavLink}
+            to="/wallet/Recharge"
+            sx={{
+              width: "49.8%",
+              p: "10px",
+              background: kidarkgreen,
+              color: "white",
+              "&:hover": {
+                backgroundColor: kigreen,
+              },
+              borderRadius: "0px 5px 5px 0px",
+              "&>p": { textAlign: "center", ml: 2 },
+              "&>h6": { textAlign: "center" },
+            }}
+          >
+            <Box component="img" src={recharge} sx={{ width: "30px" }}></Box>
+            <Typography variant="body1" className="kip13">
+              {" "}
+              Deposit
+            </Typography>
           </Button>
         </Box>
-
-
-
 
         <Box
           className="w95"
           sx={{
-            margin: 'auto',
-            backgroundColor: '#fff',
-            borderRadius: '8px',
-            overflow: 'hidden',
+            margin: "auto",
+            backgroundColor: "#fff",
+            borderRadius: "8px",
+            overflow: "hidden",
             mt: 2,
           }}
         >
@@ -211,17 +516,28 @@ function Account() {
             {menuItems.map((item, index) => (
               <>
                 <NavLink to={`${item.path}`}>
-                  <ListItem sx={{ padding: '8px', display: 'flex', justifyContent: 'space-between', color: kidarkgreen, }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <ListItemIcon sx={{ color: kidarkgreen, minWidth: '35px !important', }}>
+                  <ListItem
+                    sx={{
+                      padding: "8px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      color: kidarkgreen,
+                    }}
+                  >
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <ListItemIcon
+                        sx={{ color: kidarkgreen, minWidth: "35px !important" }}
+                      >
                         {item.icon}
                       </ListItemIcon>
-                      <Typography variant="body1" className="kip13">{item.text} </Typography>
+                      <Typography variant="body1" className="kip13">
+                        {item.text}{" "}
+                      </Typography>
                     </Box>
                     <ListItemIcon sx={{ color: kidarkgreen }}>➔</ListItemIcon>
                   </ListItem>
                   {index < menuItems.length - 1 && <Divider />}
-                </NavLink >
+                </NavLink>
               </>
             ))}
           </List>
@@ -235,14 +551,14 @@ function Account() {
             navigate("/");
           }}
           sx={{
-            width: '100%',
-            padding: '8px 0',
+            width: "100%",
+            padding: "8px 0",
             backgroundColor: kidarkgreen,
-            color: '#fff',
-            fontWeight: 'bold',
+            color: "#fff",
+            fontWeight: "bold",
             borderRadius: 1,
             mt: 2,
-            mb: 3
+            mb: 3,
           }}
         >
           LOGOUT
@@ -563,14 +879,14 @@ function Account() {
         )} */}
         <CustomCircularProgress isLoading={isLoading} />
       </Container>
-    </Layout >
+    </Layout>
   );
 }
 
 export default Account;
 
 const style = {
-  container: { background: '#E7E7E7', mb: "64px" },
+  container: { background: "#E7E7E7", mb: "64px" },
   header: {
     alignItems: "center",
     paddingTop: "20px",

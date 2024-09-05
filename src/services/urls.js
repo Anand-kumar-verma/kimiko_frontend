@@ -29,7 +29,8 @@ export const endpoint = {
   get_balance:`${baseUrl}/api/get_balance`,
   change_password :`${baseUrl}/api/update_password`,
   credit_report:`${newDomain}/api/v1/getWalletCreditedHistory`,
-  self_income:`${newDomain}/api/v1/get-income-self-team`,
+  // self_income:`${newDomain}/api/v1/get-income-self-team`,
+  self_income:`${baseUrl}/api/view_income_data`,
 
   login: `${newDomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,

@@ -1,20 +1,17 @@
-import { Star } from "@mui/icons-material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { Box, Container, Typography } from "@mui/material";
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+import { Box, Container } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import * as React from "react";
 import { useQuery } from "react-query";
-import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { kidarkgreen, kigrad, zubgback, zubggray, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { kidarkgreen, kigrad, zubgback, zubgtext } from "../../../Shared/color";
+import logo from "../../../assets/logokimi.png";
 import Layout from "../../../component/Layout/Layout";
 import { MygetdataFn } from "../../../services/apicalling";
 import { rupees } from "../../../services/urls";
-import logo from "../../../assets/logokimi.png";
-import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 
 
 function TeamData() {
@@ -87,24 +84,26 @@ function TeamData() {
                 <AccordionDetails sx={{ color: "white", background: '' }}>
                   <Box >
                     <Box sx={style.accordian}>
-                      <div className="flexb" style={{ width: '100%', color: 'white', borderBottom: `2px solid ${kidarkgreen}`, padding: '10px 0px', }}>
-                        <span style={{ display: 'inline-block', width: '20%', color: kidarkgreen, }} >S.No.</span>
-                        <span style={{ display: 'inline-block', width: '30%', color: kidarkgreen, }}  >User Id</span>
-                        <span style={{ display: 'inline-block', width: '50%', color: kidarkgreen, }} >Name</span>
-
+                      <div style={{ width: '100%', color: 'white', borderBottom: `2px solid ${kidarkgreen}`, padding: '10px 0px', }} className="flexb !w-[100%]  !grid !grid-cols-4">
+                        <span style={{  color: kidarkgreen, }} >S.No.</span>
+                        <span style={{ color: kidarkgreen, }}  >User Id</span>
+                        <span style={{  color: kidarkgreen, }} >Name</span>
+                        <span style={{  color: kidarkgreen, }} >Recharge</span>
                       </div>
                       <div className="h-[2px] w-full "></div>
                       {result?.filter((j) => j?.LEVEL === i)?.map((i, index) => {
                         return (
-                          <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', width: "100%" }} >
-                            <span style={{ display: 'inline-block', width: '20%' }}>{index + 1}</span>
-                            <span style={{ display: 'inline-block', width: '30%' }} className=" ">
+                          <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', width: "100%" }} className="flexb  !grid !grid-cols-4" >
+                            <span style={{ }}>{index + 1}</span>
+                            <span style={{ }} className=" ">
                               {i?.username || "No data found"}
                             </span>
-                            <span style={{ display: 'inline-block', width: '50%' }}>
+                            <span style={{  }}>
                               {i?.full_name || "No data found"}
                             </span>
-
+                            <span style={{  }}>
+                              {i?.recharge_amount || "0"}
+                            </span>
                           </div>
                         );
                       })}
@@ -115,8 +114,8 @@ function TeamData() {
             </Box>
           );
         })}
-      </Container >
-    </Layout >
+      </Container>
+    </Layout>
   );
 }
 

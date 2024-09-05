@@ -52,9 +52,6 @@ const ApplyBetDialogBox = ({
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  // const login_data_ = localStorage.getItem("aviator_data");
-  const first_rechange =
-    aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
 
   React.useEffect(() => {
@@ -290,9 +287,7 @@ const ApplyBetDialogBox = ({
           variant="text"
           color="primary"
           onClick={() => {
-            Number(first_rechange) === 1
-              ? betFunctionStart()
-              : toast("You must be sure that , your first deposit is done.");
+            betFunctionStart()
           }}
           loding={true}
         >
